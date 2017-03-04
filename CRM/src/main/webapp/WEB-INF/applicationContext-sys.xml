@@ -22,6 +22,7 @@
     <context:component-scan base-package="com.leosys.app.laanavi.service"/>
   <context:component-scan base-package="com.leosys.app.type.service"/>
     <context:component-scan base-package="com.leosys.app.common.service"/>
+    <context:component-scan base-package="com.leosys.app.item.service"/>
 
      
 </beans>

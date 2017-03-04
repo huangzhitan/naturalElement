@@ -7,11 +7,12 @@ package com.leosys.app.item.service;
 
 import com.leosys.app.item.entity.LAAItem;
 import com.leosys.core.service.BaseService;
+import java.util.List;
 
 /**
  *
  * @author fanyouyong
  */
 public interface LAAItemService extends BaseService<LAAItem>{
-    
+    public List findAllItems(); 
 }
