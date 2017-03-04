@@ -4,7 +4,7 @@
 <link href="${RESOURCE}/bootstrap/css/ymcss/user.css" rel="stylesheet">
 <form action="#" name="frmMain" class="form-horizontal form-horizontal-bg">
     <div class="frow">
-        <span ><strong>菜单名称</strong></span>
+        <span ><strong>类别名称</strong></span>
         <input  class="input" id='naviName' name="naviName"  type="text"/>
     </div>
     <div class="frow">
@@ -16,25 +16,19 @@
         <input  type="radio" name="isParent" value="1" />是
         <input  class="show-margin-left" id="radio0" type="radio" name="isParent" value="0" />否
     </div>
-    <div class="frow">
-        <span ><strong>图标</strong></span>
-        <input  class="input" id='naviIcon' name="naviIcon"  type="text"/>
-    </div>
+   
     <div class="frow">
         <span ><strong>父节点</strong></span>
         <select class="input" id='parentNaviId' name="parentNaviId">
             <option value ="0">无</option>
-            <#if parentNavis ??>
-            <#list parentNavis as parentNavi>
-            <option value ="${parentNavi.naviId}">${parentNavi.naviName}</option>
+            <#if parentTypes ??>
+            <#list parentTypes as parentNavi>
+            <option value ="${parentNavi.typeId}">${parentNavi.typeName}</option>
             </#list>
             </#if>
         </select>
     </div>
-    <div class="frow">
-        <span ><strong>访问链接</strong></span>
-        <input  class="input" id='naviUrl' name="naviUrl"  type="text"   style="color:#999999;"/>
-    </div>
+  
 <!--    <div style="float: left;text-align: center;width: 100%;padding: 10px 0px; margin-top: 20px">
         <a href="#" class="btn btn-info" onclick="commit()">确定</a>
         <a href="javascript:" class="btn" onclick="$.tbox.close()">取消</a>

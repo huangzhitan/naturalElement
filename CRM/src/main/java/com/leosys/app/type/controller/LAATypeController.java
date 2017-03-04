@@ -50,8 +50,8 @@ public class LAATypeController {
     public String getSingleType(@PathVariable long typeid,Model model) throws Exception {
         LAAType navi = (LAAType) laaTypeService.querySingleEntity(LAAType.class, typeid);
         List<LAAType> list = laaTypeService.finAllParentTypes();
-        model.addAttribute("parentTypes", list);
-        model.addAttribute("type", navi);
+        model.addAttribute("parentNavis", list);
+        model.addAttribute("navi", navi);
         return "type/updateType";
     }
 

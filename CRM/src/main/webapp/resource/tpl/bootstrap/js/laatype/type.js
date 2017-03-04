@@ -26,7 +26,7 @@ var typeManager={
      addNavi:function(){
            var index = layer.open({
                 type: 2,
-                title: '新增菜单',
+                title: '新增类别',
                 closeBtn: 1,
                 shade: 0.3,
                 skin: 'layer-seat',
@@ -34,22 +34,20 @@ var typeManager={
                 content: APP_PATH+"/goAddNavi/",
                 btn: ['确定', '取消'],
                 yes: function (index) {
-                    var naviName = layer.getChildFrame("#naviName").val();
+                    var typeName = layer.getChildFrame("#naviName").val();
                     var orderNo = layer.getChildFrame("#orderNo").val();
-                    var naviIcon = layer.getChildFrame("#naviIcon").val();
-                    var naviUrl = layer.getChildFrame("#naviUrl").val();
+                    
+                    
                     var isParent = layer.getChildFrame('input[name="isParent"]:checked').val();
-                    var parentNaviId = layer.getChildFrame("#parentNaviId").val();
-                    if(isParent == 1 && parentNaviId != 0){
+                    var parentTypeId = layer.getChildFrame("#parentNaviId").val();
+                    if(isParent == 1 && parentTypeId != 0){
                         layer.msg("父节点不能再选择一个父节点");return;
                     }
-                    if(naviIcon == null && naviIcon == ""){
-                        naviIcon = "noIcon";
-                    }
-                    if(isParent == 0 && parentNaviId == 0){
+                   
+                    if(isParent == 0 && parentTypeId == 0){
                         layer.msg("必须选择一个父节点");return;
                     }
-                    if(!naviName){
+                    if(!typeName){
                         layer.msg("名字不能为空");return;
                     }
                     if(!orderNo){
@@ -60,21 +58,19 @@ var typeManager={
                    layer.msg("非法字符！");
                      return;
                 }
-                    if(!naviUrl){
-                        layer.msg("链接不能为空");return;
-                    }
+                  
                     layer.confirm("确定新增？",  {icon:3,title:"提示"},function(index){     
                         var loadIndex =layer.load();
                         $.ajax({
-                                url :APP_PATH+ "/addNavi/",
+                                url :APP_PATH+ "/addType/",
                                 type : "POST",
                                 data : {
-                                        'naviName':naviName,
+                                        'naviName':typeName,
                                         'orderNo':orderNo,
-                                        'naviUrl':naviUrl,
+                                        
                                         'isParent':isParent,
-                                        'naviIcon':naviIcon,
-                                        'parentNaviId':parentNaviId
+                                        
+                                        'parentId':parentTypeId
                                 },
                                 success : function(data) {
                                     layer.close(loadIndex);
@@ -94,7 +90,7 @@ var typeManager={
     editNavi: function (nid){
            var index = layer.open({
                 type: 2,
-                title: '编辑菜单',
+                title: '编辑类别',
                 closeBtn: 1,
                 shade: 0.3,
                 skin: 'layer-seat',
@@ -104,10 +100,10 @@ var typeManager={
                 yes: function (index) {
                     var naviName = layer.getChildFrame("#naviName").val();
                     var orderNo = layer.getChildFrame("#orderNo").val();
-                    var naviUrl = layer.getChildFrame("#naviUrl").val();
+               
                     var isParent = layer.getChildFrame('input[name="isParent"]:checked').val();
                     var parentNaviId = layer.getChildFrame("#parentNaviId").val();
-                    var naviIcon = layer.getChildFrame("#naviIcon").val();
+                    
                     if(isParent == 1 && parentNaviId != 0){
                         layer.msg("父节点不能再选择一个父节点");return;
                     }
@@ -125,22 +121,20 @@ var typeManager={
                    layer.msg("非法字符！");
                      return;
                 }
-                    if(!naviUrl){
-                        layer.msg("链接不能为空");return;
-                    }
+                  
                     layer.confirm("确定修改？", {icon: 3, title:'提示'}, function(index){          
                         var loadIndex=layer.load();
                         $.ajax({
-                                url :APP_PATH+ "/updateNavi/",
+                                url :APP_PATH+ "/updateType/",
                                 type : "POST",
                                 data : {
-                                        'naviId':layer.getChildFrame("#naviId").val(),
-                                        'naviName':naviName,
+                                        'typeId':layer.getChildFrame("#naviId").val(),
+                                        'typeName':naviName,
                                         'orderNo':orderNo,
-                                        'naviUrl':naviUrl,
+                                        
                                         'isParent':isParent,
-                                        'naviIcon':naviIcon,
-                                        'parentNaviId':parentNaviId
+                                        
+                                        'parentId':parentNaviId
                                 },
                                 success : function(data) {
                                     layer.close(loadIndex);

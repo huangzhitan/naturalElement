@@ -4,12 +4,12 @@
 <link href="${RESOURCE}/bootstrap/css/ymcss/user.css" rel="stylesheet">
 <form action="#" name="frmMain" class="form-horizontal form-horizontal-bg">
     <div class="frow">
-        <span ><strong>菜单ID</strong></span>
-        <input  readonly="readonly" class="input" id='naviId' name="naviId"  type="text"   value="${navi.naviId}" />
+        <span ><strong>类别ID</strong></span>
+        <input  readonly="readonly" class="input" id='naviId' name="naviId"  type="text"   value="${navi.typeId}" />
     </div>
     <div class="frow">
         <span ><strong>菜单名称</strong></span>
-        <input  class="input" id='naviName' name="naviName"  type="text"   value="${navi.naviName}" />
+        <input  class="input" id='naviName' name="naviName"  type="text"   value="${navi.typeName}" />
     </div>
     <div class="frow">
         <span ><strong>排序编号</strong></span>
@@ -20,29 +20,23 @@
         <input  id="radio1" type="radio" name="isParent" value="1" />是
         <input  class="show-margin-left" id="radio0" type="radio" name="isParent" value="0" />否
     </div>
-    <div class="frow">
-        <span ><strong>图标</strong></span>
-        <input  class="input" id='naviIcon' name="naviIcon"  type="text"   value="${navi.naviIcon}" />
-    </div>
+ 
     <div class="frow">
         <span ><strong>父节点</strong></span>
         <select class="input" id='parentNaviId' name="parentNaviId" >
             <option value ="0">无</option>
             <#if parentNavis ??>
             <#list parentNavis as parentNavi>
-            <option value ="${parentNavi.naviId}">${parentNavi.naviName}</option>
+            <option value ="${parentNavi.typeId}">${parentNavi.typeName}</option>
             </#list>
             </#if>
         </select>
     </div>
-    <div class="frow">
-        <span ><strong>访问链接</strong></span>
-        <input  class="input" id='naviUrl' name="naviUrl"  type="text"   value ="${navi.naviUrl}"/>
-    </div>
+ 
 </form>
     
 <script>
     //默认非父节点
     $("#radio"+'${navi.isParent}').attr("checked","checked");
-    $("#parentNaviId").val('${navi.parentNaviId}');
+    $("#parentNaviId").val('${navi.parentId}');
 </script>
