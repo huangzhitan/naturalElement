@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+             function subimtBtn() { 
+         if($("#infoName").val()==""){
+             jAlert("请填写客户名","警告");
+             return;
+         }
+         if($("#infoProvince").val()==""){
+             jAlert("请填写省份","警告");
+             return;
+         }
+         if($("#infoCity").val()==""){
+             jAlert("请填写城市","警告");
+             return;
+         }
+//         if($("#infoLaa").val()==""){
+//             jAlert("请填写LAA客户类别","警告");
+//             return;
+//         }
+//             
+//         if($("#infomationLaa").val()==""){
+//             jAlert("请填写LAA客户反馈","警告");
+//             return;
+//         }
+//         if($("#infoLibseat").val()==""){
+//             jAlert("请填写客户类别","警告");
+//             return;
+//         }
+//         if($("#infomationLibseat").val()==""){
+//             jAlert("请填写客户反馈","警告");
+//             return;
+//         }
+//         if($("#infoPerson").val()==""){
+//             jAlert("请填写主导人","警告");
+//             return;
+//         } 
+       var form = $("form[name=fileForm]");  
+        var options  = {    
+            url:'${APP_PATH}/save/',    
+            type:'post', 
+             cache:false,
+             dataType:'json',
+            success:function(data){
+                if(data.status){
+                 queryCrm(1);
+              $.tbox.close(); 
+           }else{
+                  jAlert(data.content ,"警告");
+           }
+            }    
+        };    
+        form.ajaxSubmit(options);  
+        
+    }  
+            
+        </script>
+        <style>
+            #tbox{width:600px;}
+            .frow{float: left;width: 100%;padding: 5px 0 10px 0px;}
+            .frow span{width: 100px;display: block;float: left;text-align: right;}
+            .frow .input{width: 350px;margin-left:20px}
+            ul{float: left;}
+            li{width: 120px;float: left;} 
+        
+        
+        
+      .modal-header{
+    background: #089CFF!important;
+    color: #fff!important;
+    
+}
+.modal-header h3{
+    text-shadow: none!important;
+    font-size: 16px;
+    font-family: "微软雅黑"!important;
+}
+.btn-info{
+    background: #089CFF!important;
+}
+.modal-header .close{
+    color: #fff!important;
+}
+.tbox_background{
+    opacity: .5!important;
+}
+#tbox{
+    width:600px!important;
+    /*height:750px!important;*/
+    left:50%!important;
+    margin-left: -300px!important;
+    border: none!important;
+}
+.tab_wh{
+    width: 570px!important;
+}
+#dialogaddGcqUnit,#dialogaddYrUnit{
+    /*width: 600px!important;*/
+    left: 50%!important;
+    margin-left: -300px!important;
+}
+#dialogaddSyUnit{
+    /*height: 630px!important;*/
+    top:7%!important;
+    left:50%;
+    margin-left:-300px; 
+}
+#qkform .huis .input{
+    width: 460px;
+}
+#zrtime{
+    width: 460px!important;
+}
+#applyIdNoUnitSelectGcq{
+    width: 470px!important;
+}
+#chosedUnitNameGcq{
+    width: 460px!important;
+}
+#unitNamesyrunitGcq,#unitNamesyrunitsy{
+    width:450px!important;
+}
+#selectApplyUnitGcq,#applyIdNoUnitSelect{
+    width:460px!important;
+}
+.bla {
+    width: 435px!important;
+}
+#chosedzikuyrunitGcq,#qtyyunit,#chosedUnitName,#jestime,#jeetime,#ysje,#zbje,#zxje,#chosedzikuyrunitsy,#tjrunit,#syinfounit,#unitNamesyrunit,#chosedzikuyrunit{
+    width:450px!important;
+}
+#nounit{
+    width: 560px!important;
+}
+#applyIdNoUnitSelectSy{
+    width: 420px!important;
+}
+#tjr{
+    width: 405px!important;
+}
+#syinfoadd,#chosedUnitNamesy{
+    width: 410px!important;
+}
+#systime{
+    margin-right: 110px!important;
+}
+#tbox_content form{
+    width: 560px!important;
+}
+#selectApplyUnitSy,#selectApplyUnitYr{
+    width:463px!important;
+}
+#ysjes,#zbjes,#zxjes{
+    width: 445px!important;
+}
+#popup_message{
+    background: #FFFFFF!important;
+}
+#supName,#supAddress,#supLegal,#supMoney,#supUsername,#supPhone,#supEmail{
+    width:425px!important;
+}
+#supClicense,#supLicense{
+    width:430px!important;
+}
+
+
+
+        </style>
+        
+    </head>
+    <body>
+        <form method="POST" enctype="multipart/form-data"
+              action="${APP_PATH}/save/" style="padding-top: 10px; width: 600px;height: 600px " name="fileForm" >
+          <div >
+    
+            <div class="frow">
+                <span><strong>客户名</strong></span>
+                <input  class="input" id='infoName' name="infoName" value="${entity.infoName!}" type="text"  style="color:#999999;" />
+                <input   id='id' type="hidden"  name="id" value="${entity.id!'-1'}"   style="color:#999999;"/>
+            </div>
+            <div class="frow">
+                <span ><strong>省份</strong></span>
+                <input  class="input" id='infoProvince' name="infoProvince" value="${entity.infoProvince!}"  type="text"  style="color:#999999;" />
+            </div>
+            <div class="frow" id='div2'>
+                    <span><strong>城市</strong></span>
+                    <input  class="input" id='infoCity' name="infoCity"  type="text" value="${entity.infoCity!}"  style="color:#999999;" />
+<!--                    <textarea type="text" id="jianjie" class="input"   ></textarea>-->
+                    
+</div>
+           <div class="frow">
+                <span ><strong>联系人</strong></span>
+                <input  class="input" id='infoUname' name="infoUname"  type="text" value="${entity.infoUname!}"  style="color:#999999;" />
+            </div>
+         <div class="frow">
+                <span ><strong>联系电话</strong></span>
+                <input  class="input" id='infoUphone' name="infoUphone"  type="text" value="${entity.infoUphone!}"  style="color:#999999;" />
+            </div>
+         <div class="frow">
+                <span ><strong>邮箱</strong></span>
+                <input class="input" type='text' name='infoUemail' id="infoUemail" value="${entity.infoUemail!}"/>
+            </div>
+<!--               <div class="frow">
+                <span ><strong>联系人1</strong></span>
+                <input  class="input" id='infoUname1' name="infoUname1"  type="text"  style="color:#999999;" value="${entity.infoUname1!}" />
+            </div>
+         <div class="frow">
+                <span ><strong>联系电话1</strong></span>
+                <input  class="input" id='infoUphone1' name="infoUphone1"  type="text"  style="color:#999999;" value="${entity.infoUphone1!}" />
+            </div>
+         <div class="frow">
+                <span ><strong>邮箱1</strong></span>
+                <input class="input" type='text' name='infoUemail1' id="infoUemail1" value="${entity.infoUemail1!}"/>
+            </div>
+               <div class="frow">
+                <span ><strong>联系人2</strong></span>
+                <input  class="input" id='infoUname2' name="infoUname2"  type="text"  style="color:#999999;" value="${entity.infoUname2!}" />
+            </div>
+         <div class="frow">
+                <span ><strong>联系电话2</strong></span>
+                <input  class="input" id='infoUphone2' name="infoUphone2"  type="text"  style="color:#999999;" value="${entity.infoUphone2!}" />
+            </div>
+         <div class="frow">
+                <span ><strong>邮箱2</strong></span>
+                <input class="input" type='text' name='infoUemail2' id="infoUemail2" value="${entity.infoUemail2!}"/>
+            </div>-->
+         <div class="frow">
+                <span ><strong>LAA客户类别</strong></span>
+<!--                <input class="input" type="text" name='infoLaa' id='infoLaa' value='${entity.infoLaa!}'/>-->
+                <select id="infoLaa" name="infoLaa" class="input">
+                   <option value="" selected="true">请选择</option>
+                  <option value="N" >N</option><option value="U" >U</option><option value="T1" >T1</option>
+                  <option value="T2" >T2</option><option value="T3" >T3</option> <option value="C" >C</option>
+                </select>
+            </div>
+     <div class="frow" id='div2'>
+                    <span><strong>LAA客户反馈</strong></span>
+                    <!--<input  class="input" id='infomationLaa' name="infomationLaa"  type="text"  style="color:#999999;" />-->
+                    <textarea type="text" id="infomationLaa" name='infomationLaa' class="input" value='${entity.infomationLaa!}'   >${entity.infomationLaa!}</textarea>
+                    
+</div>
+                   <div class="frow" id='div2'>
+                    <span><strong>LibSeat客户类别</strong></span>
+<!--                    <input  class="input" id='infoLibseat' name="infoLibseat"  type="text" value='${entity.infoLibseat!}' style="color:#999999;" />-->
+                    <!--<textarea type="text" id="jianjie" class="input"   ></textarea>-->
+                     <select id="infoLibseat" name="infoLibseat" class="input">
+                   <option value="" selected="true">请选择</option>
+                  <option value="N" >N</option><option value="U" >U</option><option value="T1" >T1</option>
+                  <option value="T2" >T2</option><option value="T3" >T3</option> <option value="C" >C</option>
+                </select>
+                    
+</div>
+                   <div class="frow" id='div2'>
+                    <span><strong>Libseat客户反馈</strong></span>
+<!--                    <input  class="input" id='infoCity' name="infoCity"  type="text"  style="color:#999999;" />-->
+                    <textarea type="text" id="infomationLibseat" name='infomationLibseat' value='${entity.infomationLibseat!}' class="input"   >${entity.infomationLibseat!}</textarea>
+                    
+</div>
+               <div class="frow" id='div2'>
+                    <span><strong>主导人</strong></span>
+                    <input  class="input" id='infoPerson' name="infoPerson"  type="text" value='${entity.infoPerson!}' style="color:#999999;" />
+                    <!--<textarea type="text" id="jianjie" class="input"   ></textarea>-->
+                    
+</div>
+<div class="frow" id='div2'>
+                    <span><strong>其他</strong></span>
+                    <input  class="input" id='bz' name="bz"  type="text" value='${entity.bz!}' style="color:#999999;" />
+                    <!--<textarea type="text" id="jianjie" class="input"   ></textarea>-->
+                    
+</div>
+               <div style="float: left;text-align: center;width: 100%;padding: 10px 0px;">
+                <a class="btn btn-info" href="javascript:subimtBtn();" >提交</a> 
+            </div>
+           
+            </div>
+        </form>
+    </body>
+    <script>
+        function setSelect(){
+           var lib= "${entity.infoLibseat!}";
+           var laa='${entity.infoLaa!}';
+           
+           $("#infoLibseat option").each(function(){
+               if($(this).val()==lib){
+                   $(this).attr("selected","true");
+                   
+               }
+               
+           })
+           
+           $("#infoLaa option").each(function(){
+               if($(this).val()==laa){
+                   $(this).attr("selected","true");
+                   
+               }
+               
+           })
+           
+            
+            
+            
+        }
+        $(function(){
+            setSelect();
+            
+            
+        })
+        
+        
+    </script>
+    
+</html>

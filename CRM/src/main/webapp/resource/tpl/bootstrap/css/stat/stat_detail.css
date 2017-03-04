@@ -1,0 +1,16 @@
+ .table-u thead tr th{
+    font-size: 14px;
+}
+.table-u tbody tr td{
+    font-size: 12px;
+}
+.tfoot-div{
+    border: none;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-right: 10px;
+}  
+.table{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}  

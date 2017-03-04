@@ -1,0 +1,303 @@
+.mianban{
+    margin: 0px 30px 0px 30px
+}
+.mianbans{
+    margin: 30px 30px 0px 30px
+}
+.panel-u .panel-heading h3{
+    // color: #049CDB;
+    font-weight: bold;
+}
+.padbotten{
+    padding-bottom: 30px;
+}
+.weizhi{
+    float: right;
+    margin-right: 30px;
+    margin-bottom: 5px;
+}
+.weizhi2{
+    margin-left: 5%;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.weizhi3{
+    margin-left: 38%; 
+    margin-bottom: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 30px;
+}
+.weizhi4{
+    margin-left: 46%;
+    margin-bottom: 30px;
+}
+
+.divconent{
+    margin-top: 50px;
+    // background-color: #f0f4fd;
+
+}
+.topdivs{
+    padding-top: 10px;
+    min-height: 200px;
+    margin-bottom: 30px;
+}
+
+.leftdivs{
+    float: left;
+    width: 40%;
+    min-height: 160px;
+}
+.leftdivssup{
+    width: 100%;
+    background: url(../../images/icon-vs.png) no-repeat right center; 
+}
+.centerdivs{
+    margin-left: 40%;
+    width: 40%;
+    min-height: 160px;
+}
+.centerdivssup{
+/*    background: url(/LAA/resource/tpl/bootstrap/images/icon-vs.png) no-repeat right center; */
+background: url(../../images/icon-vs.png) no-repeat right center;
+}
+.rightdivs{
+    width: 20%;
+    float: right;
+    margin-top: 3px;
+}
+
+.leftdivs1{
+    padding-top: 10px; 
+    width: 100%;
+}
+.leftdivs11{
+    display: inline-block;
+    padding: 20px 0px 20px 20px;
+}
+.leftdivs12{
+    display: inline-block;
+    padding-left: 20px;
+    width: 67%;
+}
+.leftdivs2{
+    padding-top: 40px;
+    width: 100%;
+}
+.leftdivs21{
+    display: inline-block;
+    padding: 20px 0px 20px 43px;
+}
+.leftdivs22{
+    display: inline-block;
+    padding-left: 20px;
+    width: 67%;
+}
+.leftdivs12 select{
+    width: 100%; 
+    height: 35px;
+}
+.leftdivs22 select{
+    width: 100%; 
+    height: 35px;
+}
+.rightdivs1{
+    padding-left: 40px;
+}
+
+.hiddenss{
+    display: none;
+}
+.hiddens{
+    visibility: hidden;
+}
+.visibles{
+    visibility: visible;
+}
+.bottemdivs{
+    margin-bottom: 30px;
+    margin-top: 30px;
+    width: 100%;
+}
+.leftbottemdivs{
+    float: left;
+    width: 40%;
+    min-height: 160px;
+}
+.centerbottemdivs{
+    margin-left: 40%;
+    width: 40%;
+    min-height: 160px;
+}
+.leftbottemdivs1{
+    min-height: 80px;
+    width: 90%;
+}
+.leftbottemdivs11{
+    display: inline-block;
+    padding: 20px 0px 20px 20px;
+}
+.leftbottemdivs12{
+    width: 74%;
+    margin-left: 91px;
+    margin-top: -42px;
+}
+.leftbottemdivs2{
+    width: 90%;
+}
+.leftbottemdivs21{
+    display: inline-block;
+    padding: 20px 0px 20px 32px;
+}
+.leftbottemdivs22{
+    width: 80%;
+    margin-left: 90px;
+    margin-top: -42px;
+}
+.quansdiv{
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background: #999;
+}
+.spandivs{
+    padding: 5px 10px;
+    display: inline-block;
+    color: #fff;
+    font-size: 75%;
+    font-weight: 700;
+}
+table thead tr td{
+    font-size: 14px !important;
+}
+.content .table tbody tr td{
+    font-size: 12px !important;
+    padding: 12px;
+}
+.tfoot-div{
+    border: none;
+}
+.panel-u-lines{
+    border: none;
+    border-top: 2px solid #1197fe;
+    border-radius: 0; 
+}
+.padss{
+    padding: 20px;
+}
+.padsss{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.itemdevChartsy{
+    height: 300px;
+    float: left;
+    width: 100%;
+}
+.itemdevChartss{
+    height: 300px;
+    float: left;
+    width: 100%;
+}
+.itemdevChartsss{
+    height: 300px;
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 3px;
+}
+
+.lifestyle div span.time-line-tip{
+    font-size: 12px;
+}
+.lifestyle div .outO{
+    width: 15px;
+    height: 15px;
+    background: #a5a5a5;
+    border-radius: 10px;
+    float: left;
+    margin-left: 20px;
+    text-align: center;
+    padding: 5px;
+}
+.lifestyle div .outI{
+    width: 5px;
+    height: 5px;
+    background: #fff;
+    border-radius: 5px;
+}
+.lifestyle div .outO-c{
+    background: #227DCE;
+}
+.lifestyle div .gun{
+    width: 200px;
+}
+@media screen and (max-width:1024px){
+    .lifestyle div .gun{
+    width: 100px;
+}
+}
+.time-line-ma ul{
+    width: 1040px;
+    margin: 0 auto;
+}
+.time-line{
+    margin-top: 70px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 0px;
+}
+
+.displaynone{
+    display: none;
+}
+
+
+
+
+.table > thead > tr > th{
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    }
+.thds{
+    padding-bottom: 15px !important;
+}
+.thdss{
+    padding-bottom: 20px !important;
+}
+.tdstop{
+    padding-top: 30px!important;
+}
+
+.checkbox input[type="checkbox"]{
+    position: absolute;
+    margin-left: -20px;
+    margin-top: 2.8px;
+}
+
+.panel-headingss{
+    background-color: #fff;
+    border: none;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.panel-headings{
+    background-color: #fff;
+    border: none;
+    text-align: right;
+}
+.panel-titles{
+    font-size: 16px;
+    color: #999;
+    font-weight: 800;
+} 
+.table-parren .label-success{
+    margin-right: 5px;
+}
+
+/*
+html{overflow: auto;min-width: 1024px;}*/

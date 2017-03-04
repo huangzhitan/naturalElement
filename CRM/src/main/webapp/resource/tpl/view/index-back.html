@@ -1,0 +1,49 @@
+
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <#include "/bootstrap/header/header.html" /> 
+    <#import "/bootstrap/forms/forms.html" as forms />
+    <style>
+         .clear {
+            clear: both;
+        }
+    </style>
+    <body>
+     <div class="container">
+            <@forms.edit/>
+        </div>
+        <div class="container">
+        <div class="">
+            <@forms.buttonSet btnSet/>    
+        </div>
+        <div class="block" style="width:50%">
+            <@forms.accordion accordion/>
+        </div>
+        <div class="block" style="width:50%">
+            <@forms.tabs tabs/>
+        </div>
+        <div class="block">
+            <@forms.datepicker/>
+        </div>
+        <div class="block"><@forms.autocomplete itemKey="name" sourceUrl="http://ws.geonames.org/searchJSON"/></div>
+
+        <div class="block"><@forms.spinner/></div>
+        <div class="block">
+            <@forms.text />
+        </div>
+         <div class="block">
+              <@forms.password />
+        </div>
+        <div class="block">
+              <@forms.checkbox label="check me" name="cbx" value="3" />
+        </div>
+        
+         
+        </div>
+   
+    </body>
+</html>

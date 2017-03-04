@@ -1,0 +1,23 @@
+.control-table-filter{
+    text-align:left;padding-left:33px
+}
+.selRadio{
+    margin-top: 30px;
+    margin-bottom: -30px;
+}
+.show-clear-padding{
+    padding: 0px 0px 0px 0px;
+}
+.show-margin-top{
+    margin-top: 10px;
+}
+.show-margin-left{
+    margin-left:10px!important;
+}
+.show-clear-margin{
+    margin:0 0 0 0 ;
+}
+.audit-register-table{
+    margin-left:30px;
+    width:90%;
+}

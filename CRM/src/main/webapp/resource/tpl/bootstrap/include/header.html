@@ -1,0 +1,33 @@
+ <div id="header">			
+            <h1>
+                <a href="#"></a>
+            </h1>				
+        </div>				
+        <div id="search">			
+            <input id="searchTxt" type="text" style="width: 300px;color: #F0F0F0"  placeholder="搜索我的资源">
+            <button type="submit" data-original-title="Search" onclick="search()" class="tip-right">
+                <i class="icon-search icon-white"></i>
+            </button>		
+        </div>
+        <div id="user-nav" class="navbar navbar-inverse">            
+            <ul class="nav btn-group">                
+                <li class="btn btn-inverse" >
+                    <a title=""  data-toggle="modal" data-target="#userinfoModal" href="<!--{url('index','user','userinfo')}-->">
+                        <i class="icon icon-user"></i> 
+                        <span class="text">当前用户：<!--{$.session.sessionUser.uname}--></span>
+                    </a>
+                </li>                               
+                <li class="btn btn-inverse">
+                    <a title="" href="<!--{url('index','user','about')}-->" data-toggle="modal" data-target="#aboutModal">
+                        <i class="icon icon-cog"></i> 
+                      <span class="text">关于利昂</span>
+                    </a>
+                </li>                
+                <li class="btn btn-inverse">
+                    <a title="" href="<!--{url('index','user','logout')}-->">
+                        <i class="icon icon-share-alt"></i> 
+                        <span class="text">退出</span>
+                    </a>
+                </li>            
+            </ul>        
+        </div>

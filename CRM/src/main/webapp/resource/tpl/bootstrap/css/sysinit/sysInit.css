@@ -1,0 +1,14 @@
+.command{padding-top: 15px;}
+.command .info{background-color: #FFF;height: 100px;margin-top: 15px;color: red;border:1px solid #d6d6d6;padding: 10px 10px; word-wrap: break-word;}
+.command button{background-color:#0172D0;color:#fff;background-image:none;border:none;}
+#searchTxt{margin-top:10px;}
+.mianban{
+    margin: 0px 30px 0px 30px
+}
+.panel-u .panel-heading h3{
+    // color: #049CDB;
+    font-weight: bold;
+}
+.padbotten{
+    padding-bottom: 30px;
+}

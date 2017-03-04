@@ -1,0 +1,51 @@
+<#include "/bootstrap/include/boxjs.html" />  
+<#include "/bootstrap/include/static.html"/>
+<#import "/bootstrap/baseui/UIE.html" as forms />
+<link href="${RESOURCE}/bootstrap/css/ymcss/user.css" rel="stylesheet">
+<form action="#" name="frmMain" class="form-horizontal form-horizontal-bg">
+    <input id="uId" value="${user.uId}"  type="hidden">
+    <div class="frow form-group show-clear-padding" >
+        <span ><strong>用户名</strong></span>
+        <input  readonly="readonly" class="input" id='uname' name="uname"  type="text"  value="${user.uName}" />
+    </div>
+    <div class="frow form-group show-clear-padding" >
+        <span ><strong>姓名</strong></span>
+        <input  class="input" id='name' name="name"  type="text"  value="${user.name}" />
+    </div>
+    <div class="frow form-group show-clear-padding" >
+        <span ><strong>性别</strong></span>
+        <select id="sex" class="input" >
+            <option value="0">男</option>
+            <option value="1">女</option>
+        </select>
+    </div>
+    <div class="frow form-group show-clear-padding" >
+       <span ><strong>所属角色</strong></span>
+        <select id="roleId" class="input" >
+            <option value="">请选择</option>
+           <#if roles??>
+           <#list roles as role>
+            <#if role.roleId != 16>
+           <option value="${role.roleId}">${role.name}</option>
+           </#if>
+           </#list>
+           </#if>
+        </select>
+    </div>
+    <div class="frow form-group show-clear-padding" >
+        <span ><strong>Email</strong></span>
+        <input  class="input" id='email' name="email"  type="email"  value="${user.email}" />
+    </div>
+</form>
+<script>
+    
+    $("#sex").val("${user.sex}");
+    $(function(){
+        <#if role??>
+        $("#roleId").val("${role.roleId!}");
+        <#else>
+         $("#roleId").val("");
+        </#if>
+        
+    })
+</script>

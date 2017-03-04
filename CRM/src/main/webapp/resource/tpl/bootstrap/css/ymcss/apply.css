@@ -1,0 +1,40 @@
+.tbo-descripe td div span{
+    display: inline-block;
+    width: 100px;
+    padding: 2px;
+    color: #000;
+    text-align: left;
+
+}
+.newcontrol-label{
+    padding-left: 5px;
+
+}
+.tbo-descripe td div span strong{
+    width: 50px; 
+
+}
+.form-group .col-sm-offset-1{
+    margin-left: 80px;
+
+}
+.btn-infonew:hover{
+    background: #049cdb;
+    color: #fff;
+    border: 1px solid #049cdb;
+
+}
+
+.form-horizontal input[type=text], .form-horizontal input[type=password], .form-horizontal textarea{
+    width: 100% !important;
+}
+.kanDetail{margin-top: 10px}
+.downloadModel span{float: right;margin-right: 20px}
+.downloadModel span a{display: inline-block;margin-left: 10px}
+.kanDetail table tr th,.kanDetail table tr td{text-align: center;vertical-align: middle;}
+.kanDetail table tr td.qiMessage>span{display: inline-block;margin-right: 10px;}
+.red{color: red}
+.unLoad{color: #ccc}
+.kanDetail table tr td.load a{display: inline-block;margin: 0 5px}
+.sorceHead select{display: inline-block;width: 20%}
+.sorceHead  .searchSource input{width: 20%;display: inline-block;}

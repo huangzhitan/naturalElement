@@ -1,0 +1,63 @@
+ 
+ freemarker宏 
+  分页组件
+ <#macro pagination  pagearr="">
+
+<!--   分页 -->
+        <div  class="tfoot-div">
+            <div>
+                <#if pagearr??>
+                    <span>共有<b>${pagearr.pageTotal}</b>页</span>
+                    <#if pagearr.pageTotal != 0>
+                        <span>当前<b>${pagearr.page}/${pagearr.pageTotal}</b></span>
+                        <#if pagearr.page != 1>
+                            <a href="${APP_PATH}${pagearr.url}1">首页</a>
+                            <a href="${APP_PATH}${pagearr.url}${pagearr.page-1}">上一页</a>
+                        </#if>
+                        <#if pagearr.page != pagearr.pageTotal>
+                            <a href="${APP_PATH}${pagearr.url}${pagearr.page+1}">下一页</a>
+                            <a href="${APP_PATH}${pagearr.url}${pagearr.pageTotal}">末页</a>
+                        </#if>
+                         <input type=text id="tiaozhuanInput"  value="${pagearr.page}" onkeyup=check() />
+                         <a href='javascript:void(0)' onclick="tiaoz()">跳转</a>
+                    </#if>    
+                </#if>
+            </div>
+            <script>
+//                 function check(){
+//                    var tiaozhuan=$("#tiaozhuanInput").val();
+//                        if (isNaN(tiaozhuan)){
+//                            layer.msg("非法字符！"); 
+//                            $("#tiaozhuanInput").val("");
+//                        } 
+//                        
+//                    }
+                    function check() {
+                        var tiaozhuan = $("#tiaozhuanInput").val();
+                        tiaozhuan =tiaozhuan.replace(/(\s*$)/g,"");
+//                        if(tiaozhuan==null||tiaozhuan==""){
+//                        $("#tiaozhuanInput").val(1);
+//                    }
+                        var rule =  /^\d+$/;
+                        if (!rule.test(tiaozhuan)||tiaozhuan<=0) {
+                            layer.msg("输入格式不对");
+                            $("#tiaozhuanInput").val("");
+                        }
+                    }
+                function tiaoz(){
+                  var tiaozhuan=$("#tiaozhuanInput").val();
+                  if(tiaozhuan !==''){
+                      var totalPage='${pagearr.pageTotal}';
+                      if(parseInt(tiaozhuan)>parseInt(totalPage)){
+                           tiaozhuan=totalPage;
+                       }
+                    window.location.href="${APP_PATH}${pagearr.url}"+tiaozhuan;
+                  } else{
+                      layer.msg("请输入跳转页数！");
+                  } 
+                } 
+            </script>
+        </div>
+</#macro>
+
+ 

@@ -1,0 +1,13 @@
+/*弹窗提示*/
+#popup_container {font-family: Arial, sans-serif;font-size: 12px;min-width: 300px;width:300px;max-width: 600px;background: #FFF;border:solid;color: #000;-moz-border-radius: 2px;-webkit-border-radius: 2px;border-radius:2px;}
+#popup_title {font-size: 14px;font-weight: bold;text-align: center;line-height: 1.75em;color: #666;cursor: default;padding: 0em;margin: 0em;}
+#popup_content {padding: 1em 1.75em;margin: 0em;}
+#popup_message{text-align:center;}
+/*#popup_message {padding-left: 48px;}*/
+#popup_panel {text-align: center;margin: 1em 0em 0em 1em;}
+#popup_prompt {margin: .5em 0em;}
+#popup_ok,#popup_cancel{font-size: 12px}
+
+.modal-backdrop2{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1040;background-color:#000}
+.modal-backdrop2.fade{opacity:0}
+.modal-backdrop2,.modal-backdrop2.fade.in{opacity:.8;filter:alpha(opacity=80)}

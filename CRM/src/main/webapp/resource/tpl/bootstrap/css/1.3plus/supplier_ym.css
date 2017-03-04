@@ -1,0 +1,96 @@
+
+
+    
+
+    .tab_ym ul {
+        background-color: #A4AEB9 !important;
+        height: 41px;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .tab_ym ul li {
+        
+        color: #666666;
+        cursor: pointer;
+        float: left;
+        font-size: 12px;
+        height:41px;
+        line-height: 41px;
+        text-align: center;
+        width: 112px;
+        border: 0px solid #d6d6d6;
+    }
+    .tab_ym ul li.active {
+        background-color: #f8f8f8;
+        font-weight: bold;
+        border-bottom: 0px solid #f8f8f8;
+    }
+
+
+   .tab_ym ul li a {
+        color: #fff;
+    }
+    .tab_ym ul li.active a{
+        color: #A4AEB9;
+    }
+    
+    .tab_ym a:hover {
+        text-decoration: underline;
+    }
+
+	.btn_position{
+		text-align: center;
+    	margin-top: 20px;
+	}
+   /* .form-horizontal .control-label.control-source1{
+    	width: 120px!important
+    }
+    .modal-supplier{
+    	width:100%;
+
+    }*/
+  .form-horizontal input[type=text].control-common, .form-horizontal input[type=password].control-common, .form-horizontal textarea.control-common{
+        width: 100%!important;
+    }
+    .footfyy-div.text-c{
+        text-align: center;
+    }
+
+
+
+
+    .form-horizontal .control-label.control-source1{
+    	width: 192px!important;
+        //padding-top:10px!important;
+        text-align:right;
+    }
+    .modal-supplier{
+    	width:100%;
+
+    }
+
+    .control-display1{
+		display: inline-block;
+                width:50%;
+                text-align:left;
+    }
+
+     .select_width{
+    	width:150px;
+
+    }
+
+    .form-horizontal .control-label.clear-padding{
+        padding-top: 10px;
+       width:180px;
+    }
+    
+    .clear-min-width{
+        min-width:0px;
+    }
+    
+ .footfyy-div{height: 30px;line-height: 20px;margin-top: 10px;text-align: right;width: 100%;}
+.footfyy-div div > a{background: #049cdb none repeat scroll 0 0;color: #fff;font-size: 12px;margin-left: 8px;padding: 1px 5px;color:#fff}
+.footfyy-div div > a:hover{background: #3BBEF5;text-decoration: none;}
+.footfyy-div .footfyy-wrap>a{display: inline-block;padding: 3px 15px;}

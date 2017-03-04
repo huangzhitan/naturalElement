@@ -1,0 +1,28 @@
+.show-ul{float: left;}
+.show-li{width: 120px;float: left;} 
+.show-inline{display: inline-block;}
+.show-margin-top{margin-top: 10px;}
+.show-margin-left{margin-left: 10px;}
+.show-width{width:12.666667%;}
+.show-float-right{
+    float:right;
+}
+//类型编辑框
+.greadeList{height: 100px;text-align: left;}
+.greadeList label{margin-left: 70px;width: 110px}
+.typelist{
+    margin:8px 0 0 41px ;
+}
+//学科编辑框
+.xuekelist{
+   margin: 16px 0 0 120px;
+}
+//新增申请
+.adddes-top-margin{
+    margin-left:25px!important;
+}
+//供应商信息修改
+.span-width{
+    text-align: right!important;
+    width:102px!important;
+}

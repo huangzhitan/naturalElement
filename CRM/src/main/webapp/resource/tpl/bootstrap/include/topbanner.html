@@ -1,0 +1,77 @@
+
+<div class="topbanner clearfix">
+    <!-- 三列：左右两边固定宽度，中间自适应 -->
+    <div class="fl-rt clearfix login-btn">
+        
+        <div class="fl-lt bd-rt userinfo userinfoWidth">
+            <a class="wrap-top-div clearfix wrap-top-divBorder"   onclick="showdiv()">
+                <span id="username" class="username fl-lt"> <#if laaUserName??>${laaUserName}<#else>未登录</#if></span>
+                <input type="hidden" id="userid_global"  value="${laaUserUid!0}"/>
+                <input type="hidden" id="audit_tips_flag" value="${auditTipsFlag!}"  />
+                <input type="hidden" id="auditTipsCount" value="${auditTipsCount!}"  />
+                 <input type="hidden" id="userlevel_global" value="${rolelevel!1}"  />
+            </a>
+            <div id="info" style="display: none" class="infoZ">
+                <a  onclick="toChangePWD()">
+                    修改密码
+                    </a>
+                <#if supsession??>
+                 <a onclick="editSupInfo('${supsession.id}')">
+                    用户消息
+                    </a>
+                </#if>
+            </div>
+        </div>
+    <#if rolelevel??>
+    <#if rolelevel !=1>
+        <div class="fl-lt bd-rt ht-100pct cloud-digit-src">
+            <a class="wrap-top-div clearfix" onclick="toYun()">
+                <span class="cloud-digit-tip fl-lt">云数字资源中心</span>
+            </a>
+        </div>
+    </#if>
+    </#if>
+        <div class="fl-lt bd-rt ht-100pct about">
+            <a class="wrap-top-div clearfix" onclick="toReviewCompany()" style="width:75%">
+               <span id="textlink"  class="fl-lt">关于</span>
+            </a>
+        </div>
+        <div class="fl-lt logout">
+            <div class="wrap-top-div clearfix"><a onclick="logout()"  class="logoutbtn fl-lt">退出</a></div>
+        </div>
+    </div>
+    <div class="ht-100pct bd-rt search form-group form-group-search">
+        <span class="glyphicon glyphicon-search icon-search" id="search-icon"></span>
+        <input id="searchTxt" type="text" placeholder="搜索我的资源" onkeydown="entersearch()"  class="form-control"/>
+    </div>
+</div>
+<script src="${RESOURCE}/bootstrap/jslib/tbox/tbox.js" type="text/javascript"></script>
+<link rel="stylesheet" href="${RESOURCE}/bootstrap/jslib/tbox/tbox.css" type="text/css" />
+<#include "/bootstrap/include/boxjs.html" />
+<script src="${RESOURCE}/bootstrap/js/menu/topbanner.js" type="text/javascript"></script>
+ <script>
+      var APP_PATH="${APP_PATH}";
+          function entersearch(){
+         //alert(dd);
+        var event = window.event || arguments.callee.caller.arguments[0];
+        if (event.keyCode == 13)
+        {
+            search();
+        }
+    } 
+    function search(){
+        var txt = $.trim($("#searchTxt").val());
+        if (!txt || txt == "输入资源名称"){
+            layer.msg("请输入检索内容");
+            return;
+        }
+        window.location.href ="${PATH}/app/myitem/search/1?action=2&name="+txt;
+    }
+    $(function(){
+        $("#search-icon").click(function(){
+            search();
+        });
+    });
+ </script>
+
+

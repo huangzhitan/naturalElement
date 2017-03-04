@@ -1,0 +1,182 @@
+<html class="clear-min-width">﻿    
+<#include "/bootstrap/include/static.html"/>
+<#include "/bootstrap/include/boxjs.html"/>
+<#import "/bootstrap/baseui/UIE.html" as forms />
+<link href="${RESOURCE}/bootstrap/css/1.3plus/supplier_ym.css" rel="stylesheet">
+<link href="${RESOURCE}/bootstrap/css/ymcss/user.css" rel="stylesheet">
+<body>
+<style>
+.box-table-font{
+    font-size:14px!important;
+}
+</style>
+<form class="form-horizontal form-horizontal-bg" style="font-size: 33px;">
+    <input type="hidden" id="supId" value=${sup.id!} />
+    <div class="form-group show-clear-margin">
+        <label class="col-sm-2 control-label control-source1" onclick="test()">登录账号</label>
+        <div class="col-sm-10 control-display1">
+            <p class="form-control-static ">${sup.supLoginName!}</p>
+        </div>
+    </div>
+    <!--                <div class="form-group">
+                      <label class="col-sm-2 control-label control-source1">账户名称：</label>
+                      <div class="col-sm-10 control-display1">
+                        <p class="form-control-static">${sup.supName!}</p>
+                      </div>
+                    </div>-->
+    <div class="form-group show-clear-margin">
+        <label class="col-sm-2 control-label control-source1">公司名称</label>
+        <div class="col-sm-10 control-display1">
+            <p class="form-control-static">${sup.supName!}</p>
+        </div>
+    </div>
+    <div class="form-group show-clear-margin">
+        <label class="col-sm-2 control-label control-source1">注册地</label>
+        <div class="col-sm-10 control-display1">
+            <p class="form-control-static">${sup.supAddress!}</p>
+        </div>
+    </div>
+    <div class="form-group show-clear-margin">
+        <label class="col-sm-2 control-label control-source1">法人代表</label>
+        <div class="col-sm-10 control-display1">
+            <p class="form-control-static">${sup.supLegal!}</p>
+        </div>
+    </div>
+    <div class="form-group show-clear-margin">
+        <label class="col-sm-2 control-label control-source1">注册资金(单位:万元)</label>
+        <div class="col-sm-10 control-display1">
+            <p class="form-control-static">${sup.supMoney!}</p>
+        </div>
+    </div>
+    <div class="form-group show-clear-margin">
+        <label class="col-sm-2 control-label control-source1">代理商或厂商</label>
+        <div class="col-sm-10 control-display1">
+            <p class="form-control-static">   
+                <#if sup.supType == 0>国内厂商</#if>
+                <#if sup.supType == 1>国外厂商</#if>
+                <#if sup.supType == 2>代理商</#if>
+            </p>
+        </div>
+    </div>
+
+    <div id="part1">
+        <div class="form-group show-clear-margin">
+            <label class="col-sm-2 control-label control-source1">营业执照</label>
+            <div class="col-sm-10 control-display1">
+                <p class="form-control-static">
+                    <#if sup.supLicense!="">
+                    <img  src="/upload/${sup.supLicense!}" width="50px" height="50px" onclick="auditRegister.showPic('${sup.supLicense!}')"/>
+                    <#else>
+                    <img  src="${RESOURCE}/bootstrap/images/noimg.jpg_100x100.jpg" width="50px" height="50px" />
+                    </#if>
+                </p>
+
+            </div>
+        </div>
+        <div class="form-group show-clear-margin">
+            <label class="col-sm-2 control-label control-source1">出版物经营许可证</label>
+            <div class="col-sm-10 control-display1">
+                <p class="form-control-static">
+                    <#if sup.supClicense!="">
+                    <img  src="/upload/${sup.supClicense!}" width="50px" height="50px" onclick="auditRegister.showPic('${sup.supClicense!}')"/>
+                    <#else>
+                    <img  src="${RESOURCE}/bootstrap/images/noimg.jpg_100x100.jpg" width="50px" height="50px" />
+                    </#if>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="part2">
+        <div class="form-group show-clear-margin">
+            <label class="col-sm-2 control-label control-source1">授权委托书</label>
+            <div class="col-sm-10 control-display1">
+                <p class="form-control-static">
+                    <#if sup.supConsign!="">
+                    <img  src="/upload/${sup.supConsign!}" width="50px" height="50px"  onclick="auditRegister.showPic('${sup.supConsign!}')"/>
+                    <#else>
+                    <img  src="${RESOURCE}/bootstrap/images/noimg.jpg_100x100.jpg" width="50px" height="50px" />
+                    </#if>
+                </p>
+            </div>
+        </div>
+        <div class="form-group show-clear-margin">
+            <label class="col-sm-2 control-label control-source1">授权人身份证</label>
+            <div class="col-sm-10 control-display1">
+                <p class="form-control-static" >
+                    <#if sup.supConsigner!="">
+                    <img  src="/upload/${sup.supConsigner!}"  width="50px" height="50px"  onclick="auditRegister.showPic('${sup.supConsigner!}')"/>
+                    <#else>
+                    <img  src="${RESOURCE}/bootstrap/images/noimg.jpg_100x100.jpg"  width="50px" height="50px" />
+                    </#if>
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group show-clear-margin">
+            <label class="col-sm-2 control-label control-source1">其他信息</label>
+            <div class="col-sm-10 control-display1">
+                <#if sup.remark!="">
+                <img  src="/upload/${sup.remark!}"  width="50px" height="50px"  onclick="auditRegister.showPic('${sup.remark!}')"/>
+                <#else>
+                <img  src="${RESOURCE}/bootstrap/images/noimg.jpg_100x100.jpg" width="50px" height="50px" />
+                </#if>
+            </div>
+        </div>
+    </div>
+    <div id="part3">
+        <div class="form-group show-clear-margin">
+            <div class="panel">
+          <div class="panel-body audit-register-table">
+            <table class="table table-hover table-u table-u-hover">
+                <thead>
+                    <tr>
+                        <th class="box-table-font">联系人</th>
+                        <th class="box-table-font">电话</th>
+                        <th class="box-table-font">邮件地址</th>
+                        <th class="box-table-font">服务客户对象</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align:center">
+                    <#list  sup.contacts as con>
+                    <tr>
+                        <td>${con.contact!}</td>
+                        <td>${con.phone!}</td>
+                        <td>${con.email!}</td>
+                        <td>${con.client!}</td>
+                    </tr>
+                    </#list>
+                </tbody>
+            </table>
+          </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+</body>
+    <script src="${RESOURCE}/bootstrap/js/user/auditRegister.js" type="text/javascript"></script>
+
+<script>
+    $(document).ready(function(){  
+        var t=${sup.supType!};
+        if(t==0){
+          $("#part1").show();
+          $("#part2").hide();
+          $("#part3").show();
+
+
+        }
+        if(t==1){//国外
+          $("#part1").hide();
+          $("#part2").hide();
+          $("#part3").show();
+        }
+        if(t==2){
+          $("#part1").show();
+          $("#part2").show();
+          $("#part3").show();
+        }
+    });
+    
+</script>
+</html>

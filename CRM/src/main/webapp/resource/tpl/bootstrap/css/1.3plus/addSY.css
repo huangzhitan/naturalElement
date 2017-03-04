@@ -1,0 +1,18 @@
+.labels{
+	padding-top: 8px !important;
+}
+.labelss{
+	padding-top: 1px!important;
+}
+/*#selTrialSource01{
+	width: 80%;
+}
+#rtialStartTime01{
+	width: 66%;
+}
+#rtialEndTime01{
+	width: 66%;
+}*/
+#inputName1,#inputName3,#inputTrialReason03,#inputTrialReason01,#inputselDatabase{
+	width: 100% !important;
+}

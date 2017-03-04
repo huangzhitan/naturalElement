@@ -1,0 +1,61 @@
+.mianban{
+    margin: 0px 30px 0px 30px
+}
+.mianban2{
+    margin: 30px 30px 0px 30px
+}
+.panel-u .panel-heading h3{
+    // color: #049CDB;
+    font-weight: bold;
+}
+.img-u .media .media-body h4{
+    font-size: 18px;
+    margin-top: 30px;
+    color: #049CDB;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+.media-body p{
+    margin-bottom: 8px;
+}
+.span2{
+    padding-right: 44px;
+}
+.span3{
+    padding-right: 32px; 
+}
+.span4{
+    padding-right: 20px;
+}
+.span5{
+    padding-right: 9px;
+}
+.span2y{
+    padding-right: 50px; 
+}
+.span4y{
+    padding-right: 42px;
+}
+.media1{
+    width: 30% !important;
+}
+.media2{
+    width: 50% !important;
+    padding-top: 70px;
+}
+.panelamianban2 a{
+    display: inline-block;
+    margin: 20px 20px 0px 20px;
+}
+.list4{
+    list-style: outside none none;
+    margin: 5px 0px
+}
+
+.list4 li {
+    background: rgba(0, 0, 0, 0) ;
+    border-bottom: 1px solid #e4e4e4;
+    float: left;
+    padding-left: 15px;
+    width: 100px;
+}

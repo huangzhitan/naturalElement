@@ -1,0 +1,419 @@
+* {
+    border: none;
+    margin: 0;
+    padding: 0;
+    font-family: "microsoft yahei";font-size :12 px;
+}
+
+ul, li {
+    list-style: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: url('../images/background.png');
+    min-width: 800px;
+    min-height: 800px;
+}
+
+.wrapper {
+    width: 92%;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.header {
+    height: 85px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.logo {
+    height: 60px;
+}
+
+.title {
+    color: #fff;
+    font-size: 30px;
+    vertical-align: 17px;
+    margin-left: 25px;
+}
+
+.content-wrap {
+    height: 48%;
+    margin-top: 10px;
+}
+
+.height-control {
+    height: 34%;
+}
+
+.content-item {
+    float: left;
+    position: relative;
+}
+
+.two-devide-small {
+    width: 45%;
+}
+
+.two-devide-big {
+    width: 55%;
+}
+
+.three-devide {
+    width: 33%;
+}
+
+.three-devide-big {
+    width: 34%;
+}
+
+.circle {
+    display: table;
+    position: absolute;
+    opacity: 0.8;
+}
+
+.circleEdit {
+    color: #FFF;
+    font-size: 13px;
+    vertical-align: middle;
+    text-align: center;
+    display: table-cell;
+    overflow: hidden;
+}
+
+#circleOne {
+    width: 160px;
+    height: 160px;
+    background-color: #2D84C9;
+    border-radius: 80px;
+    top: 150px;
+}
+
+#circleEdit1 {
+    width: 120px;
+    padding: 0 20px;
+}
+
+#circleTwo {
+    width: 120px;
+    height: 120px;
+    background-color: #4391BF;
+    border-radius: 60px;
+    top: 280px;
+    left: 90px;
+}
+
+#circleEdit2 {
+    width: 90px;
+    padding: 0 10px;
+}
+
+#circleThree {
+    width: 150px;
+    height: 150px;
+    background-color: #21A4B8;
+    border-radius: 75px;
+    top: 100px;
+    left: 180px;
+}
+
+#circleEdit3 {
+    width: 110px;
+    padding: 0 20px;
+}
+
+#circleFour {
+    width: 100px;
+    height: 100px;
+    background-color: #D3AB39;
+    border-radius: 50px;
+    top: 280px;
+    left: 330px;
+}
+
+#circleEdit4 {
+    width: 80px;
+    padding: 0 10px;
+}
+
+#circleFive {
+    width: 110px;
+    height: 110px;
+    background-color: #2057B1;
+    border-radius: 55px;
+    top: 200px;
+    left: 260px;
+}
+
+#circleEdit5 {
+    width: 90px;
+    padding: 0 10px;
+}
+
+#circleSix {
+    width: 80px;
+    height: 80px;
+    background-color: #1D82C8;
+    border-radius: 40px;
+    top: 290px;
+    left: 230px;
+}
+
+#circleEdit6 {
+    width: 70px;
+    padding: 0 5px;
+}
+
+#circleSeven {
+    width: 180px;
+    height: 180px;
+    background-color: #1CAB8F;
+    border-radius: 90px;
+    top: 100px;
+    left: 380px;
+}
+
+#circleEdit7 {
+    width: 140px;
+    padding: 0 20px;
+}
+
+#circleEight {
+    width: 150px;
+    height: 150px;
+    background-color: #0C8CE7;
+    border-radius: 75px;
+    top: 260px;
+    left: 428px;
+    z-index: 10;
+}
+
+#circleEdit8 {
+    width: 110px;
+    padding: 0 20px;
+}
+
+#circleNine {
+    width: 120px;
+    height: 120px;
+    background-color: #0379D0;
+    border-radius: 60px;
+    top: 120px;
+    left: 550px;
+}
+
+#circleEdit9 {
+    width: 80px;
+    padding: 0 20px;
+}
+
+#circleTen {
+    width: 130px;
+    height: 130px;
+    border-radius: 65px;
+    background-color: #1E3CBE;
+    top: 300px;
+    left: 565px;
+}
+
+#circleEdit10 {
+    width: 90px;
+    padding: 0 20px;
+}
+
+#circleAdorn1 {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #07A5E4;
+    top: 400px;
+    left: 220px;
+}
+
+#circleAdorn2 {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #244ACF;
+    top: 275px;
+    left: 640px;
+}
+
+.article-wrap {
+    position: relative;
+}
+
+.article-rank-logo {
+    height: 386px;
+    background: url('../images/articleRank.png') no-repeat;
+}
+
+.article-name-wrap {
+    display: table;
+    position: absolute;
+}
+
+.article-name-wrap > p {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 12px;
+    color: #fff;
+    height: 70px;
+    width: 160px;
+    overflow: hidden;
+}
+
+.article-rank-first {
+    top: 110px;
+    left: 115px;
+}
+
+.article-rank-second {
+    top: 260px;
+    left: 180px;
+}
+
+.article-rank-third {
+    top: 25px;
+    left: 60px;
+    text-align: right;
+}
+
+.article-rank-forth {
+    top: 100px;
+    left: 350px;
+}
+
+.article-rank-fifth {
+    top: 230px;
+    left: 430px;
+}
+
+.article-rank-sixth {
+    top: 115px;
+    left: 555px;
+}
+
+.article-rank-seventh {
+    top: 300px;
+    left: 400px;
+    text-align: right;
+}
+
+.article-rank-eighth {
+    top: 240px;
+    left: 695px;
+}
+
+.article-rank-nineth {
+    top: 20px;
+    left: 510px;
+    text-align: right;
+}
+
+.article-rank-tenth {
+    top: 110px;
+    left: 810px;
+}
+
+.content-item h2 p {
+    display: inline-block;
+    border: 1px solid #fff;
+    color: #fff;
+    font-weight: normal;
+    padding: 5px;
+    vertical-align: 8px;
+    font-size: 23px;
+    margin-left: 10px;
+    border-radius: 3px;
+}
+h2 p.vertical-align-ctrl{
+    vertical-align: 13px;
+}
+
+.rank-list {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.rank-list li {
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.rank-list li > p {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    padding-left: 10px;
+}
+
+.dis-table {
+    display: table;
+}
+
+.content-p {
+    display: table-cell;
+    width: 90%;
+    padding: 0 10px;
+    color: #fff;
+    vertical-align: middle;
+    height: 40px;
+    overflow: hidden;
+}
+
+.rank-list .NO1 {
+    background-color: #1EA692;
+    width: 45%;
+}
+
+.rank-list .NO2 {
+    background-color: #2B7BB6;
+    width: 38%;
+}
+
+.rank-list .NO3 {
+    background-color: #1F59AD;
+    width: 31%;
+}
+
+.rank-list .NO4 {
+    background-color: #E1B530;
+    width: 26%;
+}
+
+.rank-list .NO5 {
+    background-color: #5AADCF;
+    width: 21%;
+}
+
+.rank-list .NO1Comple {
+    width: 50%;
+}
+
+.rank-list .NO2Comple {
+    width: 57%;
+}
+
+.rank-list .NO3Comple {
+    width: 64%;
+}
+
+.rank-list .NO4Comple {
+    width: 70%;
+}
+
+.rank-list .NO5Comple {
+    width: 75%;
+}
+

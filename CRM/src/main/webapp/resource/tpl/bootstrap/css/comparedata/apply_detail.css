@@ -1,0 +1,129 @@
+.mianban{
+    margin: 0px 30px 0px 30px
+}
+.panel-u .panel-heading h3{
+    // color: #049CDB;
+    font-weight: bold;
+}
+.img-u .media .media-body h4{
+    font-size: 18px;
+}
+.panel-u-lines{
+    border: none;
+    border-top: 2px solid #1197fe;
+    border-radius: 0;
+}
+.spxqDiv_inp h3{
+    color: #666666;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 36px;
+    margin-bottom: 1px;
+    padding: 0 15px;
+}
+.inner{
+    margin-left: 2%;
+}
+.inner a {
+    color: #666666; 
+}
+.inner span{
+    font-weight:normal; 
+}
+.title-div{
+    height: 40px;
+    border-bottom:1px solid #fff;
+    display: block;
+    width: 100%;
+    padding-top: 5px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.left-titlefyy{
+    height: 100%;
+    background: #fff;
+    border-right: 1px solid #fff;
+    width: 15.6%;
+    display: inline-block;
+}
+.linehead{
+    display: inline;
+    font-size: 12px;
+    color: #000;
+    line-height: 30px
+}
+.btn-success{
+    padding: 6px 12px;
+}
+.panel-u .panel-heading h3 span{
+    font-size: 18px;
+}
+.nexts{
+    padding-bottom: 30px;
+    padding-top: 30px;
+    text-align: center;
+}
+.media-body p{
+    margin-bottom: 4px;
+}
+.mt30{
+    margin-top: 30px;
+}
+.table-u thead tr th{
+    font-size: 14px;
+}
+.content .table tr td{
+    font-size: 12px;
+}
+.nav-tabs > li > a{
+    font-size: 14px;
+}
+.padbotten{
+    padding-bottom: 30px;
+}
+.tab-u .nav-tabs{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.tablepx{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.tfoot-div{
+    border: none;
+}
+.lifestyle div span.time-line-tip{
+    font-size: 12px;
+}
+.lifestyle div .outO{
+    width: 15px;
+    height: 15px;
+    background: #a5a5a5;
+    border-radius: 10px;
+    float: left;
+    margin-left: 20px;
+    text-align: center;
+    padding: 5px;
+}
+.lifestyle div .outI{
+    width: 5px;
+    height: 5px;
+    background: #fff;
+    border-radius: 5px;
+}
+.lifestyle div .outO-c{
+    background: #227DCE;
+}
+.lifestyle div .gun{
+    width: 200px;
+}
+@media screen and (max-width:1024px){
+    .lifestyle div .gun{
+    width: 100px;
+}
+}
+.time-line-ma ul{
+    width: 1040px;
+    margin: 0 auto;
+}

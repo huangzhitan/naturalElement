@@ -1,0 +1,420 @@
+.table {
+	table-layout: fixed;
+}
+#content #breadcrumb a {
+	font-size:12px;
+}
+
+.widget-title a h5 {
+	font-weight:normal;
+}
+
+.fc-button.fc-state-active {
+	border-bottom: 1px solid #f9f9f9;
+	font-weight: bold;
+}
+
+.fc-button {
+	font-size:12px;
+	color: #666666;
+}
+
+h5.normal {
+	font-weight:normal;
+	color: #666666;
+	margin: 0 0 15px 0;
+}
+
+.xuanze {
+	z-index:90;
+        margin-top: 10px;
+	padding: 0 20px;
+	border-radius:10px;
+	background:#ffffff;
+	cursor:default;
+	font-size: 12px;
+	font-weight: normal;
+        float: left;
+}
+
+.xuanze .ziku_xuanxiang, .xuanze .zongku_xuanxiang {
+	display:inline-block;
+	margin-left:20px;
+	border:2px solid #ffffff;
+	float:left;
+	padding: 3px;
+	cursor:pointer;
+	border-radius: 5px;
+        min-width: 350px
+}
+
+.xuanze .ziku_xuanxiang:hover, .xuanze .zongku_xuanxiang:hover {
+	background-color: #d6d6d6;
+}
+
+
+td.middle {
+	text-align: center;
+	vertical-align: middle;
+}
+
+table td strong {
+	white-space: pre-wrap;
+}
+
+table td.space {
+	white-space: normal;
+	word-break: normal;
+}
+
+.clear:after {
+	clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.selector {
+	color: #737373;
+    line-height: 20px;
+    padding: 20px 10px 10px 0;
+}
+
+.selector .new_clear {
+	padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.selector strong {
+	float: left;
+    text-align: left;
+    width: 80px;
+	line-height: 27px;
+}
+
+.selector p {
+	padding-left: 100px;
+}
+
+.selector p a {
+	color: #737373;
+    display: block;
+    float: left;
+    height: 27px;
+    line-height: 27px;
+    min-width: 10px;
+    padding: 0 12px;
+}
+
+.selector p a:hover {
+	color: #00a0e9;
+	text-decoration: underline;
+}
+.selected div {
+	padding-left: 100px;
+}
+.selector .selected span {
+	border: 1px solid #ccc;
+    display: inline-block;
+    font-size: 12px;
+    height: 22px;
+    line-height: 22px;
+    margin: 0 5px 3px 5px;
+    padding: 0 26px 0 4px;
+    position: relative;
+    vertical-align: top;
+}
+
+.selector .selected span b {
+	color: #666666;
+	font-weight: bold;
+}
+
+.selector .selected span em {
+	color: #666666;
+	font-style: normal;
+	font-weight: normal;
+}
+
+.selector .selected span i {
+    background: url("../images/glyphicons-halflings.png") no-repeat scroll -305px 1px rgba(0, 0, 0, 0);
+    display: block;
+    height: 22px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 25px;
+    cursor: pointer;
+	opacity: 0.5;
+}
+
+.selector .selected span i:hover {
+	opacity: 1;
+}
+
+input.text_40 {
+    width: 40px;
+	text-align: center;
+}
+
+td select {
+	width: 90px;
+}
+
+.LAA_details_top {
+    overflow: hidden;
+    padding: 10px;
+}
+
+.detailsTxe h3{
+    font-size: 15px;
+    line-height: 30px;
+    margin: 0 0 10px 0;
+	color: #555555;
+}
+
+.CJ_pro {
+	background-color: #FFFFFF;
+	margin-top:20px;
+}
+
+.CJ_pro_menu ul {
+	height: 42px;
+	margin: 0;
+	overflow: hidden;
+}
+
+.CJ_pro_menu ul li {
+    
+    color: #666666;
+    cursor: pointer;
+    float: left;
+    font-size: 12px;
+    height:43px;
+    line-height: 43px;
+    text-align: center;
+    width: 112px;
+}
+
+.CJ_pro_menu ul li.active {
+	background-color: #049CDB;
+	font-weight: bold;
+    border-bottom: 1px solid #f8f8f8;
+    border-radius: 4px;
+}
+.CJ_pro_menu ul li:hover{background-color: #049CDB;font-weight: bold;
+    border-bottom: 1px solid #f8f8f8;
+    border-radius: 4px;}
+.CJ_pro_menu ul li.active  a,.CJ_pro_menu ul li:hover  a{color: #fff;}
+ul {
+	list-style: outside none none;
+}
+
+.spxqDiv {
+    min-height: 400px;
+}
+
+.CJ_pro_mdiv {
+    color: #666;
+    font-size: 14px;
+    padding: 20px;
+}
+
+.spxqDiv h3 {
+    background-color: #ffffff;
+	color: #333333;
+	font-size: 14px;
+    font-weight: normal;
+    line-height: 36px;
+    margin-bottom: 1px;
+    padding: 0 15px;
+}
+
+.spxqDiv .spxqDiv_inp p {
+    float: left;
+    line-height: 22px;
+    margin: 5px 0;
+    width: 95%;
+    padding-left:50px;
+}
+
+input[readonly] {
+	cursor: pointer;
+}
+
+
+.CJ_pro_menu a {
+    color: #27a9e3;
+    font-size: 14px;
+}
+
+.zhankai,.shouqi {
+    color: #27a9e3;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 36px;
+    opacity: 1;
+	float:right;
+	cursor: pointer;
+}
+
+.inner span {
+    color: #666666;
+    font-weight: bold;
+}
+
+.CJ_pro_mdiv .time .setTime {
+    display: inline-block;
+	margin-right: 100px;
+}
+
+
+.CJ_pro_mdiv .time span {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.CJ_pro_mdiv .btn-info {
+	background-color: #f5f5f5;
+    background-image: -moz-linear-gradient(center top , #ffffff, #e6e6e6);
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    border-style: solid;
+    border-width: 1px;
+    color: #333333;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 18px;
+    margin-right: 0;
+    padding: 4px 10px !important;
+    text-shadow: 0 1px 0 #ffffff;
+}
+
+#tab3.CJ_pro_mdiv .time .setTime {
+    display: inline-block;
+	margin-right: 50px;
+	margin-bottom: 20px;
+}
+
+
+.CJ_pro_mdiv .greade {
+    display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+	margin-top: 20px;
+}
+
+.CJ_pro_mdiv .greade label {
+	display: inline-block;
+	margin: 0 0 0 20px;
+}
+
+.CJ_pro_mdiv .greade input[type="checkbox"] {
+	margin:0;
+}
+
+.shiyong,.guancha {
+	background: #fff;
+	padding: 0 0 0px 10px;
+        position: absolute;
+}
+.linkbtn{
+    font-size: 14px;
+    line-height: 16px;
+    cursor: pointer;
+    padding: 2px 2px;
+}
+table.table td.th {
+	background-image: -moz-linear-gradient(center top , #fdfdfd 0%, #eaeaea 100%);
+	font-size: 12px;
+	color: #666666;
+	font-weight: bold;
+	text-align: center;
+}
+
+.btn_scbg {
+	float: right;
+	color: #737373;
+	line-height: 27px;
+	font-size: 14px;
+	margin-right: 80px;
+}
+
+.btn_scbg:hover {
+	text-decoration: underline;
+}
+
+
+.LAA_page a.disabled {
+    border: 1px solid #f2f2f2;
+    color: #ccc;
+    cursor: default;
+}
+.pagetool{
+    padding: 5px 5px;
+    float: right;
+}
+div#footer{
+    padding-top: 20px;
+    color: #ffffff;
+    float: left;
+    text-align: center;
+    width: 100%;
+    background: #363E46;
+}
+.center{text-align:center;}
+/*我的资源  详细页面补充2015年2月28日17:57:02*/
+.none,hides{display:none}
+.inner a:hover,.detailsTxe a{cursor: pointer}
+#input_zongku{width: 250px}
+#input_ziku{width: 250px;}
+.deMore{color: #27a9e3}
+.fr{float: right}
+.input_tx{width: 100px;height: 25px;}
+.shiyong span{line-height: 20px;display: block;padding-bottom: 5px;}
+.intro{float: left;line-height:20px;width: 550px;padding:5px 0px 0 10px;position: relative;overflow: hidden;word-wrap: break-word;word-break: normal; }
+
+/* 时间轴部分css*/
+.widget-content{font-size: 14px;}
+.widget-content .title{padding: 2px 0px 10px 2px;font-size: 16px}
+.widget-content .content{padding: 2px 0px 5px 5px}
+.widget-content .content a:hover{color: #e4393c}
+.editshiyong{ float: left;padding: 25px 25px;width: 500px;}
+.editshiyong span{float: left;width: 100px}
+.editshiyong  textArea{padding-left: 10px;width: 450px;}
+.yinjin {float: left;}
+.yinjin .rowline{padding-top: 10px;width:100%;float: left;height: 30px}
+.yinjin .rowline span{width: 75px;display: block;float: left;text-align: left;}
+.yinjin .rowline label{float: left;vertical-align: middle;}
+.yinjin .mrg-top-15{margin-top:15px;}
+
+/*统计分析样式*/
+.stat{}
+.padding_b0{padding-bottom: 0px !important}
+.stat .queryConition{float: left;width: 100%;padding-bottom: 15px;}
+.stat .queryConition a{ padding-right:15px;display: block;float: left;width: 80px} 
+.stat .queryConition .active{color: #e4393c}
+table .number{text-align: right}
+table .rowtitle{text-align: left}
+/**资源总览报告*/
+em{font-weight: bold;color: #E3563A;font-style: normal;padding: 0px 2px}
+#addzytotal,#xdzetotal,#addzetotal,#xdzytotal,#zscount,#zszxje{background: url(../img/load.gif) no-repeat 1px}
+.ajaxloading{height: 20px;width: 100%;line-height: 20px;vertical-align: middle;margin:0 auto;text-align: center}
+.ajaxloading span{padding: 0px 20px;background: url(../img/load.gif) no-repeat 90px}
+.report_loading{padding: 0px 20px;background: url(../img/load.gif) no-repeat 175px}
+#myModalProgress{padding: 20px 20px}
+/**数字资源表格**/
+.dtable{ float: left;}
+.dtable ul{float: left;}
+.autocut {  
+    width:200px;  
+    overflow:hidden;  
+    white-space:nowrap;  
+    text-overflow:ellipsis;  
+    -o-text-overflow:ellipsis;  
+    -icab-text-overflow: ellipsis;  
+    -khtml-text-overflow: ellipsis;  
+    -moz-text-overflow: ellipsis;  
+    -webkit-text-overflow: ellipsis;  
+}

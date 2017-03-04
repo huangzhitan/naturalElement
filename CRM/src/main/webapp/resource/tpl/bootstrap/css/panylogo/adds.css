@@ -1,0 +1,63 @@
+.intextdiv{
+    margin: 20px 0px 20px 30px;  
+} 
+.intextdivs{
+    margin: 20px 0px 20px 8px;  
+} 
+.intextdivss{
+    margin: 20px 0px 20px -5px;  
+}
+.intextdivsss{
+    margin: 20px 0px 20px 52px;  
+}
+.intextdiv input[type="text"]{
+    width: 80%;
+    margin-left: 20px;
+    height: 30px;
+}
+.intextdivs input[type="text"]{
+    width: 76.95%;
+    margin-left: 18px;
+    height: 30px;
+}
+.intextdivss input[type="text"]{
+    width: 75.4%;
+    margin-left: 19px;
+    height: 30px;;
+}
+.intextdivsss input[type="text"]{
+    width: 83.4%;
+    margin-left: 22px;
+    height: 30px;
+}
+.intextdivs input[type="radio"]{
+    position: absolute;
+    margin-left: -20px;
+    margin-top: 1px;
+}
+.radiodiv{
+    display: inline-block;
+    margin-left: 35px;
+}
+.radiodivs{
+    display: inline-block;
+    margin-left: 40px;
+}
+.selectdivs{
+    display: inline-block;
+    margin-left: 15px;
+    width: 82%;
+}
+.selclass {
+    width: 100%;
+    height: 30px;
+}
+.strongdivs{
+    display: inline-block;
+}
+.strongdiv{
+    display: inline-block;
+}
+.formss{
+    padding-left: 15px;
+}

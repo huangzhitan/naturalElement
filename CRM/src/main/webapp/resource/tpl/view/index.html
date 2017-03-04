@@ -1,0 +1,43 @@
+
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <#include "/bootstrap/include/include.html" /> 
+    <#import "/bootstrap/uiform/UIE.html" as forms />
+    <style>
+        #b-layout{
+            background: none repeat scroll 0 0 #F0F0F0;
+        }
+        #b-layout-header{
+            padding-top: 10px;
+            min-height: 100px;
+        }
+        #b-layout-main{
+            min-height: 400px;
+            background-color: #0099FF
+        }
+        #b-layout-footer{
+            min-height: 100px;
+            background-color: yellowgreen
+        }
+        .logo{
+            float: left;
+        }
+        .navbar{
+            float: left;
+        }
+
+    </style>
+    <body>
+         <@forms.ButtonSet ABC />  
+          <#list  list  as l>
+            ${l}
+        </#list>
+         <script>
+             $('#form_radioset').buttonset();
+         </script>
+    </body>
+</html>

@@ -1,0 +1,86 @@
+.container{background: #f0f4fd}
+
+.form-group-search{position: relative;}
+.form-group-search .icon-search{position: absolute;right: 10px;top: 23px}
+
+.panel-u{border: 2px solid #dcdcdc;}
+.panel-u .panel-heading{background-color: #fff;border: none;padding-top: 20px}
+.panel-u .panel-heading h3{font-size: 20px;color: #8d8c8c;font-family: "微软雅黑";display: inline-block;}
+.panel-u .panel-heading a{float: right;margin-top: 15px;margin-right: 8px;color: #8D8C8C;}
+.panel-u .panel-heading h3 span{color: #fcc070;display: inline-block;padding: 0 10px;font-size: 32px}
+
+.panel-u-line{border: none;border-top: 5px solid #1197fe;border-radius: 0;}
+
+.table-u{text-align: center;}
+.table-u thead tr th{text-align: center;font-size: 20px;color: #5e5d5d;background:#f0f4fd;border-bottom: none;font-weight: 400}
+.table-u tbody tr td{font-size: 16px;color: #9e9e9e;border-top: 0;}
+.table-u tr td a{color: #00a0e9;}
+.table-u-hover>tbody>tr:hover{background: #f0f4fd;}
+
+.tfoot-div div a{border: 1px solid #ccc;background: #fff;color: #000;margin-left: 8px;padding: 5px 10px;}
+.tfoot-div div span b{display: inline-block;padding: 0 5px}
+.tfoot-div div a:hover {background: #049cdb;border: 1px solid #049cdb;color: #fff;text-decoration: none}
+.tfoot-div div input{width: 50px;margin-left: 20px;text-align: center}
+
+.btn-success{;background: #049cdb;border-color:#049cdb;padding: 6px 22px; }
+.btn-success:hover{background: #13BAFF;border-color:#13BAFF;}
+
+.btn-next{background: #fff;padding: 6px 22px;}
+.btn-next:hover{background: #13BAFF;border-color:#13BAFF;color: #fff;}
+
+.mt20{margin-top: 20px;}
+.breadcrumb{background: #fff}
+
+.tab-u{background: #fff;}
+.tab-u .nav-tabs>li>a{color: #000}
+.tab-u .nav>li>a:focus,.tab-u .nav>li>a:hover{background: #049CDB;color: #fff;border-bottom:1px solid #049CDB;}
+.tab-u .nav-tabs>li.active>a,.tab-u .nav-tabs>li.active>a:focus,.tab-u .nav-tabs>li.active>a:hover{background: #049CDB;color: #fff;border: 1px solid #049CDB;}
+.tab-u .nav-tabs{border-bottom: 2px solid #049CDB;}
+
+.badge-u{background: #fcc070;}
+
+.form-horizontal-bg{background: #fff;padding: 10px 0;}
+.link-font{color: #00a0e9}
+.link-font:hover{color: #049CDB}
+
+
+.img-u .media .media-left img{width: 200px;height: 200px;margin-top: 20px;margin-left: 20px;}
+.img-u .media .media-body{margin-left: 20px;width: 100%;}
+.img-u .media .media-body h4{margin-top: 40px;font-size: 28px;color: #049CDB;font-weight: 800;margin-bottom: 10px;}
+.img-u .media .media-body h4,.img-u .media .media-body p{margin-left: 40px;}
+.img-u .media .media-body p{line-height: 25px;}
+.photo-u{background: #fff;}
+
+.layui-layer-btn{text-align: center!important;}
+
+.home-money{height: 100px;line-height: 100px;width: 100%;background: #2fa5ff;}
+.home-money-title{display: inline-block;font-size: 16px;color: #fff;text-align: center;width: 30%;float: left;background: #1197fe;height: 100px;padding-top: 30px}
+.home-money-title>span{display: block;height: 20px;line-height: 20px;}
+.home-money-body{display: inline-block;font-size: 36px;color: #fff;text-align: center;float: right;width: 70%}
+.home-money-o .home-money-title{background: #fba81e;}
+.home-money-o{background: #ffb53e;}
+@media screen and  (max-width: 1024px){
+    .home-money-body{font-size: 24px;}
+    .home-money-title>span{font-size: 12px;}
+}
+.btn-success.focus, .btn-success:focus{
+    background: #049cdb;
+    border-color: #049cdb;
+}
+
+.table-parren{background: #fff}
+.table-parren.table>thead>tr>th{border-top: none;border-bottom: none;text-align: center;}
+.table-parren.table>thead>tr>th:nth-child(2n),.table-parren>tbody>tr>td:nth-child(2n){text-align: left}
+/*.table-parren.table>thead>tr>th:last-child{border-right: none;}*/
+.table-parren.table-parren>thead>tr.first-col>th{border-bottom: none;}
+.table-parren.table>thead:first-child>tr:first-child>th{}
+.table-parren>tbody>tr>td{text-align: center;}
+.table-parren>tbody>tr>td:nth-child(2n+1){color: #333;}
+.table-parren>tbody>tr>td:last-child{border-right: none;}
+.table-parren .checkbox{width: 50%;float: left;}
+.table-parren .checkbox+.checkbox{margin-top: 10px}
+.table-parren .form-control{width: 80%}
+.table-parren .label-success{margin-bottom: 10px;display: inline-block;}
+.table-parren .glyphicon {left: 4px;color: #ff9f03}
+.table-parren .checkbox label{float: left}
+

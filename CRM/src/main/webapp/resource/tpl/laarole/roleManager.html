@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>角色管理</title>
+        <#include "/bootstrap/include/static.html"/>
+        <#import "/bootstrap/baseui/UIE.html" as forms />
+        <link href="${RESOURCE}/bootstrap/css/ymcss/common.css" rel="stylesheet">
+    </head>
+    <body>
+        <!-- 总结构是上下结构：wrapcontent和footer，wrapcontent里是左右结构：sidebar和contentdiv，contentdiv可以分为多个类似的内容块 -->
+        <div id="wrapcontent" class="clearfix content">
+            <!-- 左边侧边栏-->
+            <div id="sidebar" class="sidebar clearfix">
+                <!-- 系统logo-->
+                <div id="applogo" class="fl-lt"></div>
+                <div class="bardiv fl-lt clearfix"></div>
+                <#include "/bootstrap/include/sidebar.html" />
+            </div>
+            <div id="contentdiv" class="content">
+                <#include "/bootstrap/include/topbanner.html" />
+    <div class="panel  panel-u panel-u-line alltable-panel">
+          <div class="panel-heading">
+              <h3 class="panel-title">角色管理</h3>
+          </div>
+          <div class="panel-body">
+                        <div  class="role-or">
+                            <p class="clearfix">
+                                <a class="btn btn-default btn-success common-btn-margin" href="javascript:" onclick="roleManager.refresh()" >刷新</a>
+                                <a class="btn btn-default btn-success common-btn-margin" onclick="roleManager.addRole()" >添加</a>
+                            </p>
+                        </div>
+                        <table class="table table-hover table-u table-u-hover">
+                            <thead>
+                                <tr>
+                                    <th> 角色名称</th>
+                                    <th>角色描述</th>
+                                    <th>权限</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                                <#if roles??>
+                                <#list roles as  role > 
+                                <tr>                                    
+                                    <td>${role.name}</td>
+                                    <td>${role.desc}</td>
+                                    <td>
+                                        <#if role.navis??>
+                                        <#list role.navis as navi>
+                                        ${navi.naviName!},
+                                        </#list>
+                                        
+                                        </#if></td>   
+                                    <td style="text-align: center" >
+                                        <a href="javascript:"  onclick="roleManager.editRole('${role.roleId}')">编辑</a>
+                                        <a href="javascript:"  onclick="roleManager.del('${role.name}','${role.roleId}')">删除</a>
+                                    </td>
+                                </tr>
+                                </#list>
+                                </#if>    
+                            </tbody>
+                        </table>
+                        <@forms.pagination  pagearr=pagearr/>
+          </div>
+    </div>
+
+            </div>
+        </div>
+        <#include "/bootstrap/include/footer.html" />
+        <script src="${RESOURCE}/bootstrap/jslib/jalert/jalert.js" type="text/javascript"></script>
+        <script src="${RESOURCE}/bootstrap/jslib/tbox/tbox.js" type="text/javascript"></script>
+       <script src="${RESOURCE}/bootstrap/js/laarole/laarole.js" type="text/javascript"></script>
+        <script>
+          var APP_PATH="${APP_PATH}";
+        </script>
+    </body>
+</html>

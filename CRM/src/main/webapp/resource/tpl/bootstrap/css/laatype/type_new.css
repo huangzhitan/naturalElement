@@ -1,0 +1,16 @@
+.divinput{
+    margin: 20px 0px 20px 20px;  
+} 
+.divinput input{
+    width: 70%;
+    height: 30px;
+    margin-left: 20px;
+}
+.divinputs{
+    margin: 10px 0px 20px 33px;  
+} 
+.divinputs input{
+    width: 72%;
+    height: 30px;
+    margin-left: 20px;
+}

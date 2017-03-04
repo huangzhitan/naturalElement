@@ -1,0 +1,84 @@
+.zimu_class p span{
+    color: #737373;
+    display: block;
+    float: left;
+    height: 27px;
+    line-height: 27px;
+    min-width: 10px;
+    width: 90px;
+    padding: 0 12px;
+}
+.table tbody tr td{
+    width: 100%;
+}
+.newActive {
+    color: red !important;
+
+}
+
+
+.mianban{
+    margin: 0px 30px 0px 30px
+}
+.panel-u .panel-heading h3{
+    // color: #049CDB;
+    font-weight: bold;
+}
+.padbotten{
+    padding-bottom: 30px;
+}
+.divsconent{
+    width: 100% !important;
+}
+
+.table-u thead tr th{
+    font-size: 14px;
+}
+.content .table tr td{
+    font-size: 12px;
+}
+.wenzhi{
+    margin-left: 46%;
+    margin-bottom: 20px;
+}
+.panelss{
+    border: none;
+}
+
+.lifestyle div span.time-line-tip{
+    font-size: 12px;
+}
+.lifestyle div .outO{
+    width: 15px;
+    height: 15px;
+    background: #a5a5a5;
+    border-radius: 10px;
+    float: left;
+    margin-left: 20px;
+    text-align: center;
+    padding: 5px;
+}
+.lifestyle div .outI{
+    width: 5px;
+    height: 5px;
+    background: #fff;
+    border-radius: 5px;
+}
+.lifestyle div .outO-c{
+    background: #227DCE;
+}
+.lifestyle div .gun{
+    width: 200px;
+}
+@media screen and (max-width:1024px){
+    .lifestyle div .gun{
+    width: 100px;
+}
+}
+.time-line-ma ul{
+    width: 1040px;
+    margin: 0 auto;
+}
+.selector{
+    padding: 20px 10px 10px 25px;
+}

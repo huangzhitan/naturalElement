@@ -1,0 +1,23 @@
+#span_Ti{
+font-weight: bold;
+padding: 2px 0px 10px 2px;
+font-size: 14px;
+}
+#spans_Con{
+padding: 2px 0px 10px 2px;
+position: absolute;
+left: 10%;
+}
+
+#span_Tis{
+font-weight: bold;
+padding: 0px 0px 10px 2px;
+font-size: 14px;
+position: absolute;
+left: 30%;
+}
+#spans_Cons{
+padding: 2px 0px 10px 2px;
+position: absolute;
+left: 40%;
+}

@@ -1,0 +1,35 @@
+
+<form action="#" method="get" class="form-horizontal">
+  <fieldset class="ui-helper-reset">
+    <label for="tab_title">原密码</label>
+    <input type="password" id='oldpass' name="oldpass" style="height: 25px;width: 300px" value="" >
+    <label for="tab_title">新密码</label>
+    <input type="password" id='pass1' name="pass1" value=""  style="height: 25px;width: 300px" >
+    <label for="tab_title">新密码确认</label>
+    <input type="password" id='pass2' name="pass2" value=""  style="height: 25px;width: 300px">
+  </fieldset>
+</form>
+<script>
+    function modifiypass(){
+        var oldpass = $("#oldpass").val();
+        var pass1 = $("#pass1").val();
+        var pass2 = $("#pass2").val();
+        if(!oldpass){
+            jAlert("原始密码不能为空");return;
+        }
+        if(!pass1){
+            jAlert("新密码能为空");return;
+        }
+        if(pass1!=pass2){
+            jAlert("两次输入密码不一致");return;
+        }
+        $.post("<!--{url('index','user','setpwd')}-->",{pass:oldpass,pass2:pass1,oldpass:oldpass},function(data){
+                if(data.ret == "success"){
+                    jAlert("修改成功");
+                }else{
+                    jAlert(data.msg);
+                }
+        },"json");
+
+    }
+</script>

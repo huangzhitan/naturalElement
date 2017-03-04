@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+       
+    </style>
+    <head>
+        <title>供应商</title>
+        <#include "/bootstrap/include/static.html"/>
+        <#import "/bootstrap/baseui/UIE.html" as forms />
+    </head>
+    <body>
+        <!-- 总结构是上下结构：wrapcontent和footer，wrapcontent里是左右结构：sidebar和contentdiv，contentdiv可以分为多个类似的内容块 -->
+        <div id="wrapcontent" class="clearfix content">
+            <!-- 左边侧边栏-->
+            <div id="sidebar" class="sidebar clearfix">
+                <!-- 系统logo-->
+                <div id="applogo" class="fl-lt"></div>
+                <div class="bardiv fl-lt clearfix"></div>
+                <#include "/bootstrap/include/sidebar.html" />
+            </div>
+            <div id="contentdiv" class="content">
+                <#include "/bootstrap/include/topbanner.html" />
+                
+                <div class="panel  panel-u panel-u-line alltable-panel">
+                    <div class="panel-heading">
+            <h3 class="panel-title">公司列表</h3>
+          </div>
+                <div class="panel-body">
+                        <div >
+                            <div class="table-filter " style="text-align:left;padding-left:33px">
+                                <span>公司数量：<strong>${companyCount!0}</strong></span>
+                                <input type="text" id="queryWord" placeholder="输入公司名称进行搜索" onblur="searchSupplier(1)" style="margin-left:10px"/><a class="btn" onclick="searchSupplier(1)">查询</a>
+                            </div>
+                        </div>
+                        <table class="table" cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <td >用户账号</td>
+                                    <td >公司名称</td>
+                                    <td >注册地</td>
+                                    <td >法人代表</td>
+                                    <td>注册资金</td>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                               
+                            </tbody>
+                        </table>
+                                <div  class="tfoot-div">  
+                                    <div id="pageindex"> 
+                                    </div>                     
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <#include "/bootstrap/include/footer.html" />
+<script type="text/javascript" src="${RESOURCE}/bootstrap/jslib/util/util.js"></script>
+        <script>
+          
+             $(document).ready(function(){     
+                searchSupplier(1);
+            });
+            
+            function searchSupplier(page){
+                var tbody=$("#tbody");
+                var pageindex=$("#pageindex");
+                var queryName =$("#queryWord").val();
+                $.ajax({
+                     type:"post",
+                     url:"${APP_PATH}/queryRegisterList/",
+                     data:{page:page,status:1,cname:queryName},
+                     success:function(data){
+                        var htmldata =[];
+                        if(data.pageList.length>0){
+                            for(var i=0; i<data.pageList.length;i++){
+                                var temp = data.pageList[i];
+                                htmldata.push("<tr>");
+                                htmldata.push("<td>"+temp.supLoginName+"</td>");
+                                htmldata.push("<td>"+temp.supName+"</td>");
+                                htmldata.push("<td>"+temp.supAddress+"</td>");
+                                htmldata.push("<td>"+temp.supLegal+"</td>");
+                                htmldata.push("<td>"+temp.supMoney+"</td>");                            
+                                htmldata.push("</tr>");                               
+                            }   
+                        }
+                        tbody.html("");
+                        tbody.html(htmldata.join(""));
+                        pageding(pageindex,"searchSupplier",data);                                               
+                     }
+                     
+                 });
+            }
+           
+        </script>
+    </body>
+</html>

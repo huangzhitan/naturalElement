@@ -1,0 +1,29 @@
+.mianban{
+    margin: 0px 30px 0px 30px
+}
+.panel-u .panel-heading h3{
+    // color: #049CDB;
+    font-weight: bold;
+}
+.padbotten{
+    padding-bottom: 30px;
+}
+.panel-u-liness{
+    border: none;
+    border-radius: 0;
+}
+.weizhi{
+    float: right;
+}
+.mt30{
+    margin-top: 30px;
+}
+.table-u thead tr th{
+    font-size: 14px;
+}
+.content .table tr td{
+    font-size: 12px;
+}
+.tfoot-div{
+    border: none;
+}

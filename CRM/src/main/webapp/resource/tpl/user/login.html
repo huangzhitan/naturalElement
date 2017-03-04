@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>用户登录</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="${RESOURCE}/bootstrap/css/unicorn.login.new.css" />
+</head>
+<body>
+<div id="content">
+    <div id="wrapper">
+        <!-- logo-->
+        <div class="header">
+        <#if companys ??>
+           <a href="${companys.cgswz}" class="logo"  target="_blank" id="a1">
+               <#if companys.cimagesrc=="">
+                <img  class="img-circle" style="width: 187px;height: 45px;"  src="/LAA/resource/tpl/bootstrap/images/logo.png"  />   
+               <#else>
+                <img  class="img-circle"   style="width: 187px;height: 45px;" src="/upload/${companys.cimagesrc}"  onerror="javascript:this.src='/LAA/resource/tpl/bootstrap/images/logo.png'"/>
+               </#if>
+            </a> 
+        <#else>
+            <a href="http://www.leosys.com.cn/" class="logo"  target="_blank" id="a1">
+             <img  class="img-circle"   style="width: 187px;height: 45px;;"  src="/LAA/resource/tpl/bootstrap/images/logo.png" />
+            </a>
+        </#if>
+            
+        </div>
+        <form id="loginfrm" class="loginForm">
+            <!-- 登录名和密码-->
+            <div>
+                <input name="uname"  id="uname" placeholder="用户名" type="text" /><input name="pass"  id="pass"  placeholder="登录密码" type="password" />
+            </div>
+            <!-- 验证码-->
+            <div id="seccodeDiv">
+                <input  type="text" name="seccode"  id="seccode"  placeholder="验证码" /><div id="imgWrap" ><img id="seccodeimg"  src="/LAA/app/getCheckCode" width="95" height="35"/></div>
+            </div>
+
+            <!-- 登录按钮-->
+            <div>
+                <div name="dologin" id="dologin">登录</div>
+                <p id="validateText"></p>
+            </div>
+             <div>
+                 <a style="float: right;color: #fff;text-decoration: none;margin-left: 10px;" href="/LAA/app/index/verify">忘记密码</a>
+                 <a style="float: right;color: #fff;text-decoration: none" href="/LAA/app/index/register">厂商注册</a>
+                 
+            </div>
+        </form>
+    </div>
+</div>
+<div id="footer">
+    <#if companys ??>
+    <p>${companys.ccpmcname}</p><p>${companys.clogindec}</p><p>${companys.cloginqita}</p>
+    <#else>
+    <p>数字资源管理分析数据库</p><p>leosys Powered By leosys Co.,Ltd</p><p>浏览器最低要求IE8.0,推荐使用IE9.0,FireFox,Chrome</p>
+    </#if>
+</div>
+
+<script src="${RESOURCE}/bootstrap/js/jquery-1.9.0.min.js"></script>
+<script src="${RESOURCE}/bootstrap/jslib/placeholder/placeholder.js"></script>
+<script src="${RESOURCE}/bootstrap/jslib/jalert/jalert.js" type="text/javascript"></script>
+<script type="text/javascript" src="${RESOURCE}/bootstrap/jslib/util/util.js"></script>
+<script src="${RESOURCE}/bootstrap/jslib/util/jquery.base64.js"></script>
+<script src="${RESOURCE}/bootstrap/jslib/util/jquery.cookie.js"></script>
+<script src="${RESOURCE}/bootstrap/jslib/login/login.js"></script>
+<script type="text/javascript">
+
+
+</script>
+</body>
+</html>

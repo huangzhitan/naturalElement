@@ -1,0 +1,57 @@
+ .mianban{
+    margin: 0px 30px 0px 30px
+}
+.panel-u .panel-heading h3{
+    // color: #049CDB;
+    font-weight: bold;
+}
+.padbotten{
+    padding-bottom: 30px;
+}
+.table-u thead tr th{
+    font-size: 14px;
+}
+.content .table tr td{
+    font-size: 12px;
+   // cursor: pointer;
+}
+.tfoot-div{
+    border: none;
+}
+img{
+    width: 100px;
+    height: 100px;
+}
+.tablesborder{
+    border: none;
+}
+.selector{
+    padding: 10px 10px 10px 16px;
+}
+.displaynoneqk{
+    display: none;
+}
+.asaa{
+    background: #03A9F4;
+color: #fff;
+padding: 3px 30px;
+}
+.weizhi{
+    float: right;
+    margin-bottom: 5px;
+}
+.selectsx{
+    width: 60px;height:25px;float: left;margin-left: 10px;font-size:12px;margin-top: -3px;
+}
+.ino{
+   width:80px;height:26px; 
+}
+#itemchart{
+    width:100%;height:300px;
+}
+.divxs{
+  margin-left: 15px;float: left;margin-top: 20px;margin-bottom: 20px;  
+}
+.chx{
+    margin-top: -3px;padding: 3px 22px;
+}

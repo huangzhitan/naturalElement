@@ -1,0 +1,97 @@
+
+<!--
+ 该文件定义了系统可用的样式组件，请不需要修改freeMarker内置变量
+ freeMarker 中的组件的属性 顺序必须和java 对于的对象属性属性保持一致，否则可能会导致出错
+ authr sam.zheng 二〇一三年十月十六日 13:54:28
+--> 
+
+<#macro button  expand>
+    <#if expand??>
+    <div id="btn${expand.fieldExpId}" class="btn"  ${expand.htmlProperty} width ="${expand.width}"
+           height ="${expand.height}" >btn</div>
+    </#if>
+</#macro>
+
+<#macro datepicker > 
+<input type="text"  id="datepicker"/>
+<script src="/resource/lib/jquery-ui/i18n/jquery.ui.datepicker-zh-CN.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function() {
+        $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+        $('#datepicker').datepicker(
+                {
+                    inline: true
+                });
+    });
+    function getCurrentDateText() {
+        return  $('#datepicker').val();
+    }
+</script>  
+</#macro>
+
+<#macro spinner width="50px">
+<input id="spinner" readonly style="width:${width};height:10px\9;margin-bottom:4px\9;margin-top:4px\9" name="value" />
+<script>
+    var spinner = null;
+    $(document).ready(function() {
+        spinner = $("#spinner").spinner();
+    });
+    function setSpinnerEnable(b) {
+        if (b) {
+            spinner.spinner("enable")
+        } else {
+            spinner.spinner("disable");
+        }
+    }
+    function getSpinnerValue() {
+        return spinner.spinner("value");
+    }
+    function setSpinnerValue(value) {
+        spinner.spinner("value", value);
+    }
+</script>
+</#macro>
+
+<#macro text expand>
+    <input type="text"  id="txt${expand.fieldExpId}"  name="txt${expand.fieldExpId}" ${expand.htmlProperty}  value="${expand.dataProperty}" />
+</#macro>
+
+<#macro select expand>
+ <#if expand??>
+    <select id="sel${expand.fieldExpId}" name="sel${expand.fieldExpId}" ${expand.htmlProperty}  width = "${expand.width}">
+         <#list expand.dataProperty?split("|") as x> 
+            <#assign arr = x ? split(":")>
+            <option  value ="${arr[0]}">${arr[1]}</option>
+         </#list>
+       
+
+    </select>
+  </#if>  
+</#macro>
+
+<#macro password expand>
+    <input type="password" id="pwd${expand.fieldExpId}"  name="pwd${expand.fieldExpId}" ${expand.htmlProperty}  value="${expand.dataProperty}" />
+</#macro>
+
+<#macro checkBox expand>
+    <label class="checkbox"><input type="checkbox" id="cbx${expand.fieldExpId}" name="cbx${expand.fieldExpId}" value="${expand.dataProperty}">checkbox</label>
+</#macro>
+
+<#macro radio expand>
+    <label class="radio"><input type="radio" id="rad${expand.fieldExpId}" name="rad${expand.fieldExpId}" value="${expand.dataProperty}">radio</label>
+</#macro>
+
+<#macro parse results>
+<#if results?is_enumerable>
+[<#list results as result><@parse results=result/><#if result_has_next>,</#if></#list>]
+<#elseif results?is_hash_ex>
+{<#list results?keys as key>"${key?j_string}":<@parse results=results[key]/><#if key_has_next>,</#if></#list>}
+<#elseif results?is_date>"${results?string("yyyy-MM-dd")}"
+<#elseif results?is_boolean>"${results?string}"
+<#elseif results?is_number>"${results?c}"
+<#elseif results?is_string>"${results?j_string}"
+</#if>
+</#macro>
+
+
+

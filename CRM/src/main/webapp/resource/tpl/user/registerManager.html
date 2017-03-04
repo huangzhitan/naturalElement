@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <title>供应商</title>
+        <#include "/bootstrap/include/static.html"/>
+        <#import "/bootstrap/baseui/UIE.html" as forms />
+    </head>
+<link href="${RESOURCE}/bootstrap/css/ymcss/user.css" rel="stylesheet">
+    <body>
+        <div id="wrapcontent" class="clearfix content">
+            <!-- 左边侧边栏-->
+            <div id="sidebar" class="sidebar clearfix">
+                <!-- 系统logo-->
+                <div id="applogo" class="fl-lt"></div>
+                <div class="bardiv fl-lt clearfix"></div>
+                <#include "/bootstrap/include/sidebar.html" />
+            </div>
+            <div id="contentdiv" class="content">
+                <#include "/bootstrap/include/topbanner.html" />
+                 <div class="panel  panel-u panel-u-line alltable-panel">
+                   <div class="panel-heading">
+                    <h3 class="panel-title">供应商列表</h3>
+                  </div>
+                  <div class="panel-body">
+                      <div class="mt20">
+                          <div class="tab-u">
+                              <!-- Nav tabs -->
+                              <ul class="nav nav-tabs" role="tablist">
+                                   <input type="hidden" id="regStatus_p" value="0"/>
+                                  <li class="active"><a  role="tab" data-toggle="tab" onclick="searchSupplier(1,0)">待审核</a></li>
+                                  <li><a role="tab" data-toggle="tab" onclick="searchSupplier(1,1)">已通过</a></li>
+                                  <li><a role="tab" data-toggle="tab" onclick="searchSupplier(1,2)">已驳回</a></li>
+                              </ul>
+                          </div>
+
+                      </div>
+                        <div >
+                            <table class="table table-hover table-u table-u-hover" >
+                                <thead>
+                                    <tr>
+                                        <th >用户账号</th>
+                                        <th >公司名称</th>
+                                        <th >注册地</th>
+                                        <th >法人代表</th>
+                                        <th>注册资金</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody">
+
+                                </tbody>
+                            </table>
+                            <div  class="tfoot-div">  
+                                <div id="pageindex"> 
+                                </div>                     
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+               <#include "/bootstrap/include/footer.html" /> 
+<script type="text/javascript" src="${RESOURCE}/bootstrap/jslib/util/util.js"></script>
+<script type="text/javascript" src="${RESOURCE}/bootstrap/js/layer/extend/layer.ext.js"></script>
+<script type="text/javascript" src="${RESOURCE}/bootstrap/js/user/registerManager.js"></script>
+    
+ </body>
+ </html>

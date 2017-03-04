@@ -1,0 +1,18 @@
+.xuanze .zongku_xuanxiang{
+    text-align: center;
+} 
+.tfoot-div div > span{
+    font-size: 12px;
+}
+.xuanze{
+    border: none;
+}
+.tfoot-div{
+    margin-top: 20px;
+    border: none;
+    padding-right: 20px;
+}
+#divxuanz{
+    text-align: left;
+    height: 208px;
+}

@@ -1,0 +1,18 @@
+ <#include "/bootstrap/include/static.html"/>
+  <#import "/bootstrap/baseui/UIE.html" as forms />
+<form action="#" name="frmMain"  class="clearfix" style="padding-top:20px;">
+   <input id="uId" value="${uId}"  type="hidden">
+   <div class="frow">
+        <span ><strong>旧密码</strong></span>
+        <input  class="input" id='oldPass' name="oldPass"  type="password"  style="color:#999999;"/>
+    </div>
+    <div class="frow">
+        <span ><strong>新密码</strong></span>
+        <input  class="input" id='newPass' name="newPass"  type="password"  style="color:#999999;"/>
+    </div>
+    <div class="frow">
+        <span ><strong>确认新密码</strong></span>
+        <input  class="input" id='reNewPass' name="reNewPass"  type="password"  style="color:#999999;"/>
+    </div>
+</form>
+

@@ -1,0 +1,59 @@
+.common-clear-margin{
+    margin:0 0 0 0!important;
+}
+.common-clear-padding{
+    padding:0 0 0 0!important;
+}
+
+.common-btn-margin{
+    margin:0px 0px 10px 10px;
+}
+.commom-float-right{
+    float:right!important;
+}
+.commom-float-left{
+    float:left!important;
+}
+.commom-display-inline{
+    display: inline-block!important;
+}
+.common-display-inline{
+    display: inline-block!important;
+}
+.common-margin-top{
+    margin-top:15px;
+}
+.common-margin-bottom{
+    margin-bttom:15px;
+}
+.common-margin-left{
+    margin-left:15px!important;
+}
+.common-margin-right{
+    margin-right:15px;
+}
+.common-form-control-width{
+    width: 20%;
+}
+.common-font{
+    font-size:14px;
+}
+.common-clear{
+    clear:both;
+}
+
+.common-padding-left{
+    padding-left:15px!important;
+}
+.common-algin-right{
+    text-align: right;
+}
+.common-algin-left{
+    text-align: left;
+}
+.form-group label{
+    text-align: right;
+}
+.common-text-algin{
+    text-align:center;
+}

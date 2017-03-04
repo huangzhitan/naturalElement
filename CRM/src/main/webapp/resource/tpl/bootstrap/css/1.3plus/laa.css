@@ -1,0 +1,42 @@
+
+body, div, p, button, input{
+	font-family:'微软雅黑';
+}
+/*申请单处理结果页面*/
+.result-body,.panel-reuse{margin-top: 20px;margin-bottom: 20px;}
+.panel-reuse .panel-heading .panel-title{color: #ccc;}
+.result-body .panel-heading .panel-title{color: #fff;font-size: 18px;}
+.result-body .panel-body .table>tbody>tr>td{text-align: center;vertical-align:middle;}
+.result-body .panel-body table tr th{text-align: center;}
+.result-body .panel-body .data-port span{display: block;margin-top: 5px;}
+.result-body .panel-body .data-port span a{cursor: pointer;}
+.result-body .panel-body .table>tbody>tr>td.data-opinion{width: 300px;word-break:break-all;text-indent: 2em;text-align: left;}
+
+/*编辑单元*/
+.edit .edit-title{font-size: 25px;}
+.edit .edit-title span{display: inline-block;margin-right:30px;}
+.edit .edit-title span{margin-left: none;color: #0272d1;}
+.edit .edit-title span i{text-transform: none;}
+/*.edit .panel-tip {border-bottom: 1px solid #a4aeb9;}*/
+.edit .panel-tip span{display: inline-block;padding: 10px 15px;background: #a4aeb9;color: #fff;font-size: 20px; }
+.edit .panel-heading .panel-title{color: #ccc;font-size: 18px;}
+.edit .panel-body .table>tbody>tr>td{text-align: center;vertical-align:middle;}
+.edit .panel-body table tr th{text-align: center;}
+.edit .panel-body .table>tbody>tr>td.handle{}
+.edit .panel-body .table>tbody>tr>td.handle span{display: inline-block;padding: 0 5px;}
+.dataSubmit{text-align: center;}
+.dataSubmit .btn-default:hover{background:#049cdb;border: 1px solid #049cdb;color: #fff;}
+
+/*编辑*/
+.data-table .table>tbody>tr>td,.data-table table tr th{text-align: center;vertical-align:middle;}
+
+
+.shenmingcheng strong{
+	font-size: 12px;
+}
+.panel-body .table>tbody>tr>td{border: none;}
+.panel-body table.table{border: none;}
+
+.panel-reuse .panel-body table tr th，table tr th{font-size: 16px;font-family: '微软雅黑'}
+.panel-reuse .panel-body .table>tbody>tr>td,.table>tbody>tr>td{font-size: 14px;font-family: '微软雅黑'}
+

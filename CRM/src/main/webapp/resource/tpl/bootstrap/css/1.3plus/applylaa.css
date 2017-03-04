@@ -1,0 +1,399 @@
+.Left {
+    float: left;
+    width: 15%;
+    position: relative;
+     background: #f6f6f6  none repeat scroll 0 0;
+    /*border: 1px solid #ddd;*/
+    margin-left: 70px;
+    margin-top: 10px;
+    min-height: 800px
+  
+}
+
+.LeftPic {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ddd;
+    margin: 10px auto;
+    padding: 8px;
+    position: relative;
+    width: 190px;
+    min-height: 220px;
+    height: auto
+}
+.hotpic {
+    margin: 0 auto;
+    padding-top: 8px;
+}
+
+.hotpic .pic {
+    margin: 0 auto;
+    width: 190px;
+}
+
+.LeftPic .duJia {
+    left: 160px;
+    top: -5px;
+}
+.leftInfo{
+    padding-left: 15px
+        
+    
+}
+
+.cola {
+    background: #f6f6f6 none repeat scroll 0 0;
+    /*border: 1px solid #dcdcdc;*/
+    line-height: 22px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.rightTop{
+    border-bottom: 1px solid #0099FF
+    
+}
+.contentBorder{
+    border-top: 1px solid #ddd
+}
+.subcolo{
+     background: #fff none repeat scroll 0 0;
+     min-height: 60px;
+     
+         
+}
+.subcolo a{
+    font-size: 15px;
+    padding-left: 0px;
+    
+    
+}
+.contentSub{
+    min-height: 600px
+    
+}
+
+.right-right{
+     float: right;
+   background: #fff none repeat scroll 0 0;
+    width: 88%;
+    height: 600px;
+    display: block
+    
+    
+}
+.list4{
+    list-style: outside none none;
+    margin: 5px 0px
+}
+
+    .list4 li {
+    background: rgba(0, 0, 0, 0) url("../../images/gb/arrow5.gif") no-repeat scroll 5px 8px;
+    border-bottom: 1px solid #e4e4e4;
+    float: left;
+    padding-left: 15px;
+    width: 100px;
+}
+.content-boxfyy{
+  padding: 35px 20px 10px 35px;
+
+
+
+}
+.rightfyy{
+
+    float: right;width: 75%;margin-right: 70px;margin-top: 10px;
+   /* border-top: solid 3px #cdcdcd;*/
+}
+.right-topfyy{
+    
+    background: #fff ;
+    padding: 1px;
+
+}  
+.title-div{
+height: 40px;
+border-bottom:1px solid #fff;
+display: block;
+width: 100%;
+min-width: 1000px;
+/*border-top:3px solid #d8d8bf;*/
+padding-top: 5px;
+text-align: center;
+}
+.left-titlefyy{
+height: 100%;
+background: #fff;
+border-right: 1px solid #fff;
+width: 49%;
+display: inline-block;
+min-width: 500px;
+
+}
+.right-titlefyy{
+height: 100%;
+background: #fff;
+width: 50%;
+display: inline-block;
+min-width: 500px;
+/*float: right;*/
+
+
+}
+/*.tablefyy{
+width: 100%;
+
+border-bottom: 1px solid #cdcdcd;
+background: #fff;
+
+}*/
+.rightfyy .tablefyy th{
+background: #fff;
+height: 35px;
+font-weight: bold;
+color: #000000;
+font-size: 14px;
+
+}
+.tablefyy td{
+    border-right:solid 1px #cdcdcd ;
+    height:32px;
+    text-align: center;
+}
+.table-div{
+    min-height: 400px;
+    background: #fff;
+    border-bottom: solid 2px #cdcdcd;
+}
+/*分页css*/
+.footfyy-div{height: 30px;line-height: 20px;margin-top: 10px;text-align: right;width: 100%;}
+.footfyy-div div > a{background: #049cdb none repeat scroll 0 0;color: #fff;font-size: 12px;margin-left: 8px;padding: 1px 5px;}
+.footfyy-div div > a:hover{background: #4CACF9;text-decoration: none;}
+.footfyy-div .footfyy-total,.footfyy-div .footfyy-now{display: inline-block;padding-right: 10px;}
+.footfyy-div .footfyy-wrap>a{display: inline-block;padding: 3px 15px;}
+.button-div{
+    margin-bottom: 10px;
+    text-align: right;
+    line-height: 40px;
+    /*width: 60%;*/
+    bottom: 0;
+}
+.button-div div > a{
+    background: #049cdb none repeat scroll 0 0;
+    color: #fff;
+    font-size: 14px;
+    padding: 4px 25px;
+    width: 40px;
+   
+    /*border: 1px solid #ccc;*/
+}
+.button-div div{
+    text-align: center;
+}
+.button-div-right{
+    margin-top: 100px;
+    text-align: center;
+    line-height: 40px;
+    width: 100%;
+     bottom: 0;
+}
+.button-div-right div > a{
+    background: #fff none repeat scroll 0 0;
+    color: #000;
+    font-size: 16px;
+    padding: 15px 40px;
+    width: 40px;
+    border: 1px solid #ccc;
+}
+.button-div-right div > a:hover{
+    background: #049cdb;
+    border: 1px solid #049cdb;
+    color: #fff;
+}
+.panelfyyhead{
+line-height: 35px;
+
+}
+.th {
+
+border-bottom: 0 none;
+    color: #666666;
+    font-size: 12px;
+    height: 35px;
+    background: #fff;
+   
+    text-align: center;
+
+}
+.paneltitle{
+/*padding-left: 10px;*/
+padding-right: 10px;
+display: inline-block;
+
+}
+.paneltitlecenter{
+display: inline-block;
+}
+.paneltitlerighr{
+display: inline-block;
+float:right;
+padding-right: 10px;
+font-size: 14px;
+
+}
+.linehead{
+display: inline;
+padding-left: 15px;
+font-size: 14px;
+color: #000;
+line-height: 30px
+
+
+}
+.boxfyy{
+   padding: 10px 30px 5px 30px;
+}
+.content .table th{
+/*background: #fff;
+color: #000000;
+font-size: 14px;*/
+
+
+
+}
+.content .container{
+    width: 100%;
+}
+
+
+
+.centerfyy{
+     width: 100%;
+     text-align: center;
+    /* padding:10px 30px 10px 30px;*/
+     min-height: 750px;
+    }
+    .topfyy{
+        min-height: 200px;
+        border-bottom: solid 3px #cdcdcd;   
+    }
+    .topfyy .hotpic{
+float: left;
+//margin:10px 0px 10px 10px;
+    }
+    .topfyy .duJia{
+
+float: left;
+padding:  10px;
+overflow-y:auto;
+height:  180px;
+width: 70%;
+text-align: left;
+
+
+
+
+    }
+    .shuxincontent{
+      text-align: left;
+      margin-bottom: 20px;
+
+      
+
+    }
+    .headfyy{
+background: #ddd;
+padding:5px;
+border-radius: 3px;
+color: #fff;
+/*border-bottom: solid 2px #5d5d5d;*/
+
+
+    }
+    .headfyy h5{
+
+        padding-left: 5px;
+    }
+    .shuxinsub{
+
+        margin-top: 5px;
+        margin-left: 10px;
+
+    }
+    .shuxinsub div{
+        display: inline-block;
+        width: 100%;
+        line-height: 35px;
+        padding-right: 3px;
+
+
+
+
+
+    }
+    #tdInfo{
+padding:0px;
+
+
+    }
+	.shenhe1{
+        width: 100%;
+        min-height: 500px;
+
+       }
+       .bodyshenhe{
+        background: #fff;
+       }
+       .formshow{
+        display: block;
+
+       }
+       .formhidden{
+
+        display: none;
+       }
+       .contentfyy{
+
+
+        padding:10px 20px 0px 20px;
+        text-align: left;
+        vertical-align: center;
+
+       }
+       .contentfyy span{
+
+        display: inline-block;
+        line-height: 45px;
+        font-size: 14px;
+        padding-right: 5px;
+        font-weight: bold;
+        width: 100%;
+       }
+       .contentfyy span select{
+        font-size: 12px;
+        height: 30px;
+        padding: 2px;
+        width: 465px;
+        margin-left: 61px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+       }
+       .centerout{
+        margin: 0 1%;
+        text-align: center;
+       }
+       .contentfyy span textarea{
+        font-size: 12px;
+   
+        padding: 2px;
+        width: 450px;
+
+
+
+
+       }
+       .contentfyy span p{
+        font-size: 12px;
+        padding: 2px;
+        color: red;
+        font-weight: none;
+       }

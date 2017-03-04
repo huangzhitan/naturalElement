@@ -1,0 +1,9 @@
+.table-descripe tr th,.table-descripe tr td{text-align: center;vertical-align: middle;}
+.table-descripe .tr-descripe .add-btn{padding: 0 5px;}
+#myModalDes .des-content{min-height: 300px;}
+#myModalDes .des-content textarea{width: 100%;}
+
+.des-content  select.form-control,.des-content  input.form-control{width: 60%;}
+.des-content .form-control{display: inline-block;}
+.des-content .form-group{display: inline-block;width: 30%;margin-right: 5px;}
+.des-content .form-group-first{margin-left: 5px}

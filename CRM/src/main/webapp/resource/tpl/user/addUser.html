@@ -1,0 +1,47 @@
+
+<#include "/bootstrap/include/static.html"/>
+<#import "/bootstrap/baseui/UIE.html" as forms />
+ <#include "/bootstrap/include/boxjs.html" />  
+<link href="${RESOURCE}/bootstrap/css/ymcss/user.css" rel="stylesheet">
+<form action="#" name="frmMain" class="form-horizontal form-horizontal-bg">
+    <div class="frow form-group show-clear-padding show-margin-top">
+        <span ><strong>用户名</strong></span>
+        <input  class="input" id='uname' name="uname"  type="text"  placeholder="用户名"/>
+    </div>
+    <div class="frow form-group show-clear-padding">
+        <span ><strong>密码</strong></span>
+        <input  class="input" id='pass1' name="pass1"  type="password" />
+    </div>
+    <div class="frow form-group show-clear-padding">
+        <span ><strong>确认密码</strong></span>
+        <input  class="input" id='pass2' name="pass2"  type="password" />
+    </div>
+    <div class="frow form-group show-clear-padding">
+        <span ><strong>姓名</strong></span>
+        <input  class="input" id='name' name="name"  type="text" />
+    </div>
+    <div class="frow form-group show-clear-padding">
+        <span ><strong>性别</strong></span>
+        <select id="sex" class="input" >
+            <option value="0">男</option>
+            <option value="1">女</option>
+        </select>
+    </div>
+    <div class="frow form-group show-clear-padding">
+        <span ><strong>所属角色</strong></span>
+        <select id="roleId" class="input" >
+           <#if roles??>
+           <#list roles as role>
+           <#if role.roleId != 16>
+           <option value="${role.roleId}">${role.name}</option>
+           </#if>
+           </#list>
+           </#if>
+        </select>
+    </div>
+    <div class="frow form-group show-clear-padding">
+        <span ><strong>Email</strong></span>
+        <input  class="input" id='email' name="email"  type="email"  />
+    </div>
+</form>
+

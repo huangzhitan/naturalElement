@@ -1,0 +1,65 @@
+
+ <#include "/bootstrap/include/static.html"/>
+  <#import "/bootstrap/baseui/UIE.html" as forms />
+  <link href="${RESOURCE}/bootstrap/css/ymcss/about.css" rel="stylesheet">
+  <form class="form-horizontal form-horizontal-bg clearfix">
+       <#if companys??> 
+        <div class="frow frow-menu">
+          <label class="col-sm-2 control-label">产品名称：</label>
+          <div class="col-sm-10">
+            <p class="form-control-static form-control-static-menu">${companys.ccpbbname!}</p>
+          </div>
+        </div>
+        <div class="frow frow-menu">
+          <label class="col-sm-2 control-label">开发商：</label>
+          <div class="col-sm-10">
+            <p class="form-control-static form-control-static-menu"><a style="color: #0088cc" href="${companys.cgswz!}" target="_blank">${companys.cgsqcname!}</a></p>
+          </div>
+        </div>
+        <div class="frow frow-menu">
+             <label class="col-sm-2 control-label">技术支持：</label>
+          <div class="col-sm-10">
+            <p class="form-control-static form-control-static-menu">${companys.cjszc!}</p>
+          </div>
+        </div>
+       <div class="frow frow-menu">
+             <label class="col-sm-2 control-label">电话：</label>
+          <div class="col-sm-10">
+            <p class="form-control-static form-control-static-menu">${companys.cphone!}</p>
+          </div>
+        </div>
+         <#else>
+         <div class="frow frow-menu">
+          <label class="col-sm-2 control-label">产品名称：</label>
+          <div class="col-sm-10">
+            <p class="form-control-static">数字资源管理评估数据库v1.0</p>
+          </div>
+        </div>
+        <div class="frow frow-menu">
+          <label class="col-sm-2 control-label">开发商：</label>
+          <div class="col-sm-10">
+            <p class="form-control-static"><a style="color: #0088cc" href="http://www.leodisk.com/" target="_blank">利昂软件有限公司</a></p>
+          </div>
+        </div>
+        <div class="frow frow-menu">
+          <div class="col-sm-10  show-text-center">
+            <p class="form-control-static">技术支持：QQ2991953510&nbsp;&nbsp;&nbsp;&nbsp;电话：153-3028-5591</p>
+          </div>
+        </div>
+         </#if>
+ </form>
+<!--<div style="float: left;width: 100%;padding: 10px 10px 10px 10px;">
+ <#if companys??> 
+<p class="huis">产品名称：${companys.ccpbbname!}</p>
+<p class="huis">开发商：<a style="color: #0088cc" href="${companys.cgswz!}" target="_blank">${companys.cgsqcname!}</a></p>
+<p class="huis">技术支持：${companys.cjszc!}&nbsp;&nbsp;&nbsp;&nbsp;电话：${companys.cphone!}</p>
+  <#else>
+<p class="huis">产品名称：数字资源管理评估数据库v1.0</p>
+<p class="huis">开发商：<a style="color: #0088cc" href="http://www.leodisk.com/" target="_blank">利昂软件有限公司</a></p>
+<p class="huis">技术支持：QQ2991953510&nbsp;&nbsp;&nbsp;&nbsp;电话：153-3028-5591</p>
+</#if>
+
+</div>-->
+<!--<div class="modal-footer">
+        <a href="#" class="btn btn-info" onclick="$.tbox.close()">关闭</a>
+</div>-->

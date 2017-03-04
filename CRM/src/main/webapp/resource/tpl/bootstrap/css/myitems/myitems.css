@@ -1,0 +1,40 @@
+
+    .label-has{margin-right: 10px;float: left;background: #fff;color: #404040;margin-top: 8px;font-size: 14px;}
+    .nav-title{margin-top: 10px;}
+    .btn-sure{padding: 0px 10px;cursor: pointer;float: left;margin-top: 8px;}
+    .mt30{margin-top: 30px;}
+    .subject{padding-left: 30px;}
+    #qitaXKID div:nth-child(8) .subject{min-height: 400px;}
+    #qitaXKID div:nth-child(9) .subject{min-height: 400px;}
+    .subject h4{font-size: 16px;font-weight: 600;}
+    .hasSel{background: #fff;color: #FD4C05;}
+/*    @media screen and (min-width: 1024px){
+      .navbar-wrapper{width: 780px;}
+    }
+    @media screen and (min-width: 1366px){
+      .navbar-wrapper{width: 1110px;}
+    }
+    @media screen and (min-width: 1440px){
+      .navbar-wrapper{width: 82%;}
+    }
+    @media screen and (min-width: 1550px){
+      .navbar-wrapper{width: 100%;}
+    }*/
+    .navbar-wrapper{background: #fff;width: 100%}
+    .isStuck{background: #525252;}
+    .isStuck.navbar-wrapper{z-index: 1000;padding: 10px 0;padding-top: 0px}
+    .isStuck.navbar-wrapper .nav-title{margin-top: 10px}
+    .isStuck.navbar-wrapper .hasSel{color: #fff;margin-top: 20px;background:#525252 }
+    .isStuck.navbar-wrapper .label-has{color: #fff;margin-top: 10px;background: #525252}
+    .isStuck.navbar-wrapper.navbar-wrapper-tip{margin-top: 10px}
+    .isStuck.navbar-wrapper .navbar-nei{margin-top: -10px;}
+     .hasSel{color: #000;}
+
+
+.doindexsdiv{
+    display: inline-block;
+    width: 85%;
+}
+.selected div{
+    padding-top: 2px;
+}

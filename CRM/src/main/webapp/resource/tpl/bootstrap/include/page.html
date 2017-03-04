@@ -1,0 +1,17 @@
+<!--{if $pagearr}-->
+<span>共有<b><!--{$pagearr.pagetotal}--></b>页</span>
+<span>当前<!--{$pagearr.page}-->/<!--{$pagearr.pagetotal}--></span>
+<a href="<!--{$pagearr.pageurl}-->&page=1" class="first ui-corner-tl ui-corner-bl fg-button ui-button ui-state-default">首页</a>
+<!--{if $pagearr.page == 1}-->
+<a  class="disabled previous fg-button ui-button ui-state-default">上一页</a>
+<!--{else}-->
+<a href="<!--{$pagearr.pageurl}-->&page=<!--{$pagearr.page-1}-->" class="lastPage previous fg-button ui-button ui-state-default">上一页</a>
+<!--{/if}-->
+<!--{if $pagearr.page == $pagearr.nextpage}-->
+<a  class="disabled next fg-button ui-button ui-state-default">下一页</a>
+<!--{else}-->
+<a href="<!--{$pagearr.pageurl}-->&page=<!--{$pagearr.page+1}-->" class="nextPage next fg-button ui-button ui-state-default">下一页</a>
+<!--{/if}-->
+<a href="<!--{$pagearr.pageurl}-->&page=<!--{$pagearr.pagetotal}-->" class="last ui-corner-tr ui-corner-br fg-button ui-button ui-state-default">末页</a>
+<!--{/if}-->
+

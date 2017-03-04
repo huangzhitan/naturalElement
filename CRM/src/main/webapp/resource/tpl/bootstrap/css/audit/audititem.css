@@ -1,0 +1,54 @@
+ .panel-search .zimu_class a{
+                margin-right: 8px;
+                margin-top: 0px;
+                float: none;
+                 color: #00a0e9
+               
+                
+            } 
+              .panel-search .table-filter a{
+                margin-left: 8px;
+                margin-top: 0px;
+                float: none;
+                color: #00a0e9
+                
+                
+            }
+             .panel-search .searchConditon a{
+                margin-left: 8px;
+                margin-top: 0px;
+                float: none;
+                color: #00a0e9
+                
+                
+            }
+            
+            
+            
+            .havepadding{
+                padding-left: 10px;
+            }
+            .content .title-div{
+                text-align: left
+            }
+            .alltable-panel .panel-heading .breadcrumb a{
+                
+/*                 margin-left: 8px;
+                margin-top: 0px;*/
+                float: none;
+                color: #00a0e9
+            }
+              .alltable-panel .panel-heading .title-div a{
+                
+/*                 margin-left: 8px;
+                margin-top: 0px;*/
+                float: none;
+                color: #00a0e9
+            }
+            
+             .panel .panel-heading .table-filter-center{
+ float: none;
+ text-align: center;
+ margin-top: 10px;
+    
+}

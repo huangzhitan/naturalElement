@@ -1,0 +1,149 @@
+.list-banner{
+    height:24px;
+
+}
+.selRadio{
+    float:left;
+   // margin-top: 30px;
+    //margin-bottom: -30px;
+}
+.colPicParent{
+    float:left;
+    position: relative;
+    margin:20px 50px 20px 35px;
+    display: inline;
+    width:180px;
+   // padding-left: 50px;
+}
+.colPicChild{
+    background: #eee;
+    padding:5px;
+    width:162px;
+}
+.dotline{
+    line-height:1px;
+    font-size: 1px;
+    clear:both;
+    height:1px;
+}
+.selOrder{
+    width:100px;
+    height:23px;
+    line-height: 23px;
+    font-size:12px;
+    border:1px solid #DDD;
+}
+.show-left{
+    margin-left:10px;
+}
+/*            .selYear{
+    width:65px;
+    height:13px !important;
+    line-height: 13px!important;
+    font-size:12px!important;
+    border:1px solid #DDD!important;
+}*/
+
+
+.Left {
+    float: left;
+    width: 15%;
+    position: relative;
+     background: #f6f6f6  none repeat scroll 0 0;
+    /*border: 1px solid #ddd;*/
+    margin-left: 70px;
+    margin-top: 30px;
+    min-height: 800px
+  
+}
+
+.LeftPic {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ddd;
+    margin: 10px auto;
+    padding: 8px;
+    position: relative;
+    height: auto
+}
+.hotpic {
+    margin: 0 auto;
+    padding-top: 5px;
+}
+
+.hotpic .pic {
+    margin: 0 auto;
+ 
+}
+/*.leftInfo{
+    padding-left: 15px
+        
+    
+}*/
+
+/*.cola {
+    background: #f6f6f6 none repeat scroll 0 0;
+    border: 1px solid #dcdcdc;
+    line-height: 22px;
+    margin-bottom: 10px;
+    padding: 10px;
+}*/
+
+
+.right-left{
+    margin-left: 10px;
+    //width:100px;
+    display: block
+}
+.right-right{
+    background: #fff none repeat scroll 0 0;
+    width: 100%;
+    min-height: 645px;
+    display: block;
+    height: auto;
+}
+
+
+.contentSub{
+    min-height:564px!important;
+}
+.queryConition a{
+    width: 80px;height: 40px;text-align: center;
+} 
+.contentBorder .left{
+    width: 260px;
+}
+.contentBorder .qikanDetailRight{
+    min-height:860px;
+    float: left;
+    width: 72%;
+    margin-left: 2%;
+    margin-top: 30px;
+    height: auto;
+}  
+.contentBorder .qikanDetailLeft{
+    float: left;
+    width: 15%;
+    position: relative;
+    background: #f6f6f6  none repeat scroll 0 0;
+    margin-left: 70px;
+    margin-top: 30px;
+    min-height: 860px;
+}
+.right-right .list4 li{
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+.right-right .list4{
+    margin-left: 20px;
+    padding-top: 20px;
+}
+
+.show-display{
+    display:block;
+}
+.show-width-top{
+    width:50%!important;
+}
+.show-margin-top{
+    margin-top: 40px;
+}

@@ -1,0 +1,87 @@
+.mianban{
+    margin: 0px 30px 0px 30px
+}
+.panel-u .panel-heading h3{
+    // color: #049CDB;
+    font-weight: bold;
+}
+.contentfyys{
+    padding-left: 18%;
+}
+textarea{
+    width: 580px;
+height: 150px;
+}
+.contentfyy span p{
+    color: #666666;
+    margin-left: -20px;
+}
+.contentfyy span{
+    display: inline-block;
+    line-height: 45px;
+    font-size: 14px;
+    padding-right: 5px;
+    font-weight: normal;
+    width: 100%;
+}
+.contentfyy span{
+    padding-left: 20px;
+}
+.contentfyy input[type="radio"]{
+    margin-left: -20px;
+    position: absolute;
+    margin-top: 16px;
+}
+.spans{
+    color: #737373;
+}
+#chosedItemId{
+    width: 582px;
+    margin-left: 0px;
+    color: #737373;
+}
+.magins{
+    margin-left: 13.5%;
+}
+.padbotten{
+    padding-bottom: 30px;
+}
+.lifestyle div span.time-line-tip{
+    font-size: 12px;
+}
+.lifestyle div .outO{
+    width: 15px;
+    height: 15px;
+    background: #a5a5a5;
+    border-radius: 10px;
+    float: left;
+    margin-left: 20px;
+    text-align: center;
+    padding: 5px;
+}
+.lifestyle div .outI{
+    width: 5px;
+    height: 5px;
+    background: #fff;
+    border-radius: 5px;
+}
+.lifestyle div .outO-c{
+    background: #227DCE;
+}
+
+.lifestyle div .gun{
+    width: 200px;
+}
+@media screen and (max-width:1024px){
+    .lifestyle div .gun{
+    width: 100px;
+}
+}
+.time-line-ma ul{
+    width: 1040px;
+    margin: 0 auto;
+}
+.mt30{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}

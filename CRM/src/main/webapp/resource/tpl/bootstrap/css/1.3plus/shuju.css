@@ -1,0 +1,376 @@
+
+.mains{                 /*主体开始*/
+margin:0;
+border: 0;
+width: 100%;
+}
+.headdiv{              /*标题*/
+min-height: 30px;
+margin:0;
+border: 0;
+width: 100%;
+}
+.contentdiv{          /*内容开始*/
+//background-color: red;
+margin:0;
+border: 0;
+width: 100%;
+}
+
+.duibuxiangdiv{      
+margin:0;
+border: 0;
+width: 100%;
+}
+.duitopdiv{
+margin:0;
+border: 0;
+width: 100%;
+//color: gray;
+
+}
+.duibottomdiv{
+margin:0;
+border: 0;
+width: 100%;
+clear:both;
+padding-top: 2%;
+}
+
+.shenhediv{
+	margin:0;
+	border: 0;
+	width: 37%;
+	float:left;
+	//background-color: yellow;
+}
+.shenmingcheng{
+	margin:0;
+	border: 0;
+	/*width: 25%;*/
+	float: left;
+	text-align: right;
+}
+
+.shenshuju{
+	margin:0;
+	border: 0;
+	width: 70%;
+	float: right;
+}
+
+select{
+	width: 90%;
+	min-height: 32px;
+	display: block;
+}
+
+#shenheselectid{
+	margin-top: 13px;
+}
+#shenheselectids{
+	margin-top: 13px;
+}
+
+#shenheselectidss{
+	margin-top: 10px;
+}
+
+.textareashenhe{
+	width: 85%;
+	min-height: 60px;
+
+}
+.checkboxs{
+	vertical-align: sub; margin-top:-2px;
+}
+
+.bendidiv{
+	margin:0;
+	border: 0;
+	float: left;
+	//background-color: gray;
+	width: 37%;
+}
+.bendidivss{
+	//margin-top: 14px;
+	border: 0;
+	width: 70%;
+	float: right;
+       
+}
+
+.qitadiv{
+	margin:0;
+	border: 0;
+	float: right;
+	width: 24%;
+	padding-top: 3px;
+}
+.qita{
+	margin-left: 8%;
+	border: 0;
+	width: 45%;
+	
+        margin-top: -5%;
+}
+
+
+
+.footerdiv{
+clear:both;
+//background-color: blue;
+margin:0;
+border: 0;
+width: 100%;
+min-height: 30%;
+}
+.itemdevChartsy{
+	height: 300px;
+	float: left;
+        width: 100%;
+}
+.itemdevChartss{
+	height: 300px;
+	float: left;
+        width: 100%;
+}
+.itemdevChartsss{
+	height: 300px;
+	float: left;
+        width: 100%;
+}
+
+a.daochua{
+	float: right;
+}
+a.qingkonga{
+margin-left: 30%;
+}
+a.duibia{
+margin-right: 35%;
+float: right;
+}
+
+.spands{
+margin-top: 20px;
+clear:both;
+}
+.spandd{
+	float: right;
+	margin-right: 0px;
+}
+.spand{
+display: inline-block;
+font-weight:bold;
+font-size:14px;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+color:#FFFFFF;
+background-color:#a4aeb9;
+text-align:center;
+padding:4px;
+
+}
+/*a.daochua:link, a.qingkonga:link, a.duibia:link,
+a.daochua:visited,a.qingkonga:visited, a.duibia:visited
+{
+display:inline-block;
+font-weight:bold;
+font-size:14px;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+color:#FFFFFF;
+background-color:#a4aeb9;
+width:100px;
+text-align:center;
+padding:4px;
+text-decoration:none;
+}*/
+
+a.daochua:hover, a.qingkonga:hover, a.duibia:hover,
+a.daochua:active,a.qingkonga:active, a.duibia:active
+{
+background-color:#049cdb;
+color: #fff;
+border: 1px solid #049cdb;
+}
+.footerdiv .container{
+	width: 100%;
+}
+
+
+ table thead{
+	background: #A4AEB9 none repeat scroll 0%;
+}
+
+#tables{
+	width: 100%;
+	line-height: 40px;
+	border-bottom: 10px ;
+	text-align: center;
+}
+#tables th{
+	text-align: center;
+	border-top: 1px solid #DDD;
+}
+#tables td{
+	text-align: center;
+	border-top: 1px solid #DDD;
+}
+
+/*数据比对样式*/
+.mains .panel-data-exel{
+    margin-top: 0px;
+    padding-top: 20px;
+    margin-bottom: 0;
+}
+.mains .panel-data-exel .panel{
+	margin-bottom: 0;
+}
+.mains{
+    margin: 0 auto;
+	background: #f3f3f4;
+}
+.mains .data-body{
+	width: 98%;
+	margin: 0 auto;
+	min-width: 1400px;
+}
+
+.headdiv .data-cmp{
+	font-size: 20px;
+	color: #a4aeb9;
+}
+.headdiv a.daochua{
+	border-radius: 5px;
+	padding: 10px 30px;
+	border: 1px solid #ccc;
+	text-align:center;
+	text-decoration:none;
+	color: #000;
+}
+.headdiv a.daochua:hover{
+	background: #4EACF7;
+        color: #fff;
+        border: 1px solid #049cdb;
+}
+
+.panel-reuse .panel-tip span{display: inline-block;padding: 10px 15px;background: #9FA5AD;color: #fff;font-size: 18px; }
+.shenmingcheng strong{
+	font-size: 18px;
+
+}
+.shenshuju strong{
+	font-size: 18px;
+	color: #a4aeb9;
+}
+.spanTitle{
+    font-size: 14px;
+    color: #9E9E9E;
+    display: inline-block;
+    margin-top: 15px;
+    float: right;
+}
+.spanDIVS{
+    height: 50px;
+    border-bottom: 2px solid #A4AEB9;
+    clear: both;
+}
+.hiddens{
+    visibility: hidden;
+}
+.visibles{
+   visibility: visible;
+}
+
+.data-tips{
+	margin-top: -10px;
+}
+.data-tips span{
+	padding: 5px 10px;
+	display: inline-block;
+	margin-top: 10px;
+	background: #9FA5AD;
+	margin-right: 2px;
+}
+.data-tipst{
+	margin-top: 32px;
+}
+.data-tipst span{
+	padding: 5px 10px;
+	display: inline-block;
+	margin-top: 10px;
+	background: #9FA5AD;
+	margin-right: 2px;
+}
+.qita{
+	font-size: 16px;
+}
+.duibottomdiv .qingkonga,.duibottomdiv .duibia{
+	padding: 10px 50px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	text-align:center;
+	text-decoration:none;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 18px;
+        color: #000;
+}
+
+.footerdiv .footer-table01 table{
+	padding: 15px;
+	border: 0 none;
+	border-radius: 4px;
+	box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.footer-table01 .table>tbody>tr>td{
+	height: 40px;
+	line-height: 40px;
+	border: 0 none;
+}
+.footer-table01 .table>tbody>tr:nth-child(2n){
+	background: #F3F9FD;
+}
+.footer-table01 .table{
+	border: 0 none;
+}
+.footer-table01 .table>thead>tr>th{
+	border: 0 none;
+}
+.footer-table01 .table>thead>tr>th{
+	background: #9FA5AD;
+	color: #fff;
+}
+.spands{
+	margin-bottom: 10px;
+}
+.spands .spand{
+	padding: 10px 15px;
+	display: inline-block;
+	font-size: 18px;
+}
+.spands .spandd{
+	font-size: 18px;
+	color: #9E9E9E;
+	display: inline-block;
+	margin-top: 15px;
+}
+.shenhediv,.bendidiv{
+	padding-right: 70px;
+	background: url(../../images/icon-vs.png) no-repeat right center;
+	min-height: 250px;
+
+}
+a.qingkonga{
+    background: #fff;
+}
+.shenheOption #Opinion{
+    width:85%;
+}
+.shenheOption label{
+    display: inline-block;
+    height: 46px;
+    float:left;
+}
+
+html{overflow: auto;min-width: 1400px;}
