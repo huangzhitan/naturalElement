@@ -15,6 +15,7 @@
     <context:component-scan base-package="com.leosys.app.laanavi.controller"/>
     <context:component-scan base-package="com.leosys.app.type.controller"/>
     <context:component-scan base-package="com.leosys.app.item.controller"/>
+    <context:component-scan base-package="com.leosys.app.comment.controller"/>
  
        
     

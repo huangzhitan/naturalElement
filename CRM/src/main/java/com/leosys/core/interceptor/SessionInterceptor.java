@@ -60,7 +60,8 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
         }
         String loginUrl = "/CRM/app/";
         String checkCode = "getCheckCode";
-        if (!uri.contains(loginUrl) && !uri.contains(checkCode) && !uri.contains("login")) {
+         String comment = "comment";
+        if (!uri.contains(loginUrl) && !uri.contains(checkCode) && !uri.contains("login")&&!uri.contains("comment")) {
             Object obj = request.getSession().getAttribute(Property.SESSION_KEY);
             if (null == obj) {
                 response.sendRedirect(loginUrl);

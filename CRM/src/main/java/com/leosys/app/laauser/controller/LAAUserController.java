@@ -9,7 +9,7 @@ import com.leosys.app.laarole.entity.LAARole;
 import com.leosys.app.laarole.service.LAARoleService;
 import com.leosys.app.laauser.entity.LAAUser;
 import com.leosys.app.laauser.service.LAAUserService;
-import com.leosys.app.report.util.PageAjax;
+
 
 import com.leosys.core.ajax.AjaxReturn;
 import com.leosys.core.common.QueryType;
