@@ -25,4 +25,6 @@ public class LAAItemServiceImpl extends BaseServiceImplement<LAAItem> implements
         return query.getResultList();
      
      }
+     
+     
 }

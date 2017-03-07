@@ -6,6 +6,13 @@
 package com.leosys.app.comment.controller;
 
 
+import com.leosys.app.item.entity.LAAItem;
+import com.leosys.app.item.entity.LAAItemFavo;
+import com.leosys.app.item.entity.LAAItemImg;
+import com.leosys.app.item.favo.service.LAAItemFavoService;
+import com.leosys.app.item.img.service.LAAItemImgService;
+import com.leosys.app.item.service.LAAItemService;
+import com.leosys.core.ajax.AjaxReturn;
 import com.leosys.core.utils.PageAjax;
 import com.leosys.core.utils.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.leosys.core.utils.StringUtils;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -25,6 +36,14 @@ import com.leosys.core.utils.StringUtils;
 public class CommentController {
     @Autowired
     JdbcTemplate jdbcTemplate;
+    
+    @Autowired
+    LAAItemService laaItemService;
+     @Autowired
+    LAAItemImgService laaItemImgService;
+     @Autowired
+     LAAItemFavoService laaItemFavoService;
+    
     /**
      * 我的订单
      * @param userId用户id
@@ -67,10 +86,18 @@ public class CommentController {
     return pagelist.$pageAjax;
     }
     
-    
-      @RequestMapping(value = "/queryMyItem", method = RequestMethod.GET)
+    /**查询我的资源
+     * 
+     * @param page
+     * @param pageSize
+     * @param status
+     * @param itemName
+     * @param types
+     * @return 
+     */
+    @RequestMapping(value = "/queryMyItem", method = RequestMethod.GET)
     @ResponseBody
-    public PageAjax queryMyItem(Integer page,Integer pageSize,Integer status,String itemName){
+    public PageAjax queryMyItem(Integer page,Integer pageSize,Integer status,String itemName,String types){
     String sql ="select t.* from leosys_item t where 1=1 ";
     if(status!=null){
     sql+=" and t.status="+status;
@@ -79,8 +106,42 @@ public class CommentController {
      if(itemName!=null&&!"".equals(itemName)){
      sql+=" and t1.itemname like '%"+itemName+"%'";
      }
+      if(types!=null&&!"".equals(types)){
+     sql+=" and t1.types like '%"+types+"%'";
+     }
      sql+=" order by t.activetime desc";
     PageList pagelist=new PageList(jdbcTemplate,sql, page, pageSize);
     return pagelist.$pageAjax;
+    }
+    /**
+     * 查看产品详情
+     * @return 
+     */
+    @RequestMapping(value = "/queryItemDetailById", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> queryItemDetailById(Long itemId){
+    Map<String,Object> result= new HashMap();    
+    LAAItem item = (LAAItem)laaItemService.querySingleEntity(LAAItem.class, itemId);
+    List<LAAItemImg> imgs=laaItemImgService.queryImgsByItemId(itemId);
+    result.put("item", item);
+    result.put("imgs", imgs);
+    return result;
+    }
+    /**
+     * 添加收藏
+     * @param itemId
+     * @param userId
+     * @return 
+     */
+     @RequestMapping(value = "/saveFavo", method = RequestMethod.GET)
+    @ResponseBody
+     public AjaxReturn saveFavo(Long itemId,Long userId){
+         LAAItemFavo favo = new LAAItemFavo();
+         favo.setCreateTime(new Date());
+         favo.setIsDel((byte)0);
+         favo.setItemId(itemId);
+         favo.setUserId(userId);
+         return new AjaxReturn(laaItemFavoService.add(favo));
+   
     }
 }

@@ -7,11 +7,13 @@ package com.leosys.app.item.img.service;
 
 import com.leosys.app.item.entity.LAAItemImg;
 import com.leosys.core.service.BaseService;
+import java.util.List;
 
 /**
  *
  * @author fanyouyong
  */
 public interface LAAItemImgService extends  BaseService<LAAItemImg>{
+    public List<LAAItemImg> queryImgsByItemId(Long itemId);
     
 }

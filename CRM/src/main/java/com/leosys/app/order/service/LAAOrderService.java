@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.leosys.app.item.service;
+package com.leosys.app.order.service;
 
-import com.leosys.app.item.entity.LAAItem;
+import com.leosys.app.item.entity.LAAOrder;
 import com.leosys.core.service.BaseService;
-import java.util.List;
 
 /**
  *
  * @author fanyouyong
  */
-public interface LAAItemService extends BaseService<LAAItem>{
-    public List findAllItems(); 
-   
+public interface  LAAOrderService extends  BaseService<LAAOrder>{
+    
 }

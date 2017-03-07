@@ -238,6 +238,12 @@
             <version>2.4</version>
             <classifier>jdk15</classifier>
         </dependency>
+        
+        <dependency>
+    <groupId>commons-httpclient</groupId>
+    <artifactId>commons-httpclient</artifactId>
+    <version>3.0.1</version>
+</dependency>
     </dependencies>
 
     <build>

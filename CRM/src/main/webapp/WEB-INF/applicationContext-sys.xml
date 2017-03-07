@@ -23,6 +23,10 @@
   <context:component-scan base-package="com.leosys.app.type.service"/>
     <context:component-scan base-package="com.leosys.app.common.service"/>
     <context:component-scan base-package="com.leosys.app.item.service"/>
+     <context:component-scan base-package="com.leosys.app.item.img.service"/>
+     <context:component-scan base-package="com.leosys.app.item.favo.service"/>
+     <context:component-scan base-package="com.leosys.app.order.service"/>
+     <context:component-scan base-package="com.leosys.app.mess.service"/>
 
      
 </beans>

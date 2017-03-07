@@ -79,7 +79,7 @@ public class LAATypeController {
         
         model.addAttribute("pagearr",arr);
         model.addAttribute("types",arr.getPageList());
-        return "type/typeManager";
+        return "type/typeMannger";
     }
 
     /**
