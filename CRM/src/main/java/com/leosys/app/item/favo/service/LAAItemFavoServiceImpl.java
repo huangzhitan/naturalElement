@@ -7,9 +7,10 @@ package com.leosys.app.item.favo.service;
 
 import com.leosys.app.item.entity.LAAItemFavo;
 import com.leosys.core.service.BaseServiceImplement;
-import javax.transaction.Transactional;
-import static org.apache.avalon.framework.container.ContainerUtil.service;
+
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *

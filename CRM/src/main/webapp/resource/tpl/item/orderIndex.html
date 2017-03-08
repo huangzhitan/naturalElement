@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>供应商数字资源</title>
+        <#include "/bootstrap/include/static.html" />
+        <#import "/bootstrap/baseui/UIE.html" as forms />
+        <link href="${RESOURCE}/bootstrap/css/ymcss/supplier.css" rel="stylesheet">
+        <link href="${RESOURCE}/bootstrap/css/ymcss/common.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <div id="wrapcontent" class="clearfix content">
+            <!-- 左边侧边栏-->
+            <div id="sidebar" class="sidebar clearfix">
+                <!-- 系统logo-->
+                <div id="applogo" class="fl-lt"></div>
+                <div class="bardiv fl-lt clearfix"></div>
+                <#include "/bootstrap/include/sidebar.html" />
+            </div>
+            <div id="contentdiv" class="content">
+                <#include "/bootstrap/include/topbanner.html" />
+                <div class="panel  panel-u panel-u-line alltable-panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">订单列表</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+            <li role="presentation" class="active"><a href="#home" onclick="setValue(this, '')" aria-controls="home" role="tab" data-toggle="tab" id="fistClick">全部</a></li>
+            <li role="presentation"><a href="#profile" onclick="setValue(this, 0)" aria-controls="profile" role="tab" data-toggle="tab">待支付</a></li>
+            <li role="presentation"><a href="#messages" onclick="setValue(this, 1)" aria-controls="messages" role="tab" data-toggle="tab">待收</a></li>
+            <li role="presentation"><a href="#settings" onclick="setValue(this, 2)" aria-controls="settings" role="tab" data-toggle="tab">已收</a></li>
+            <li role="presentation"><a href="#profile" onclick="setValue(this, 3)" aria-controls="profile" role="tab" data-toggle="tab">支付失败</a></li>
+            
+          </ul>
+
+                        <table class="table table-hover table-u table-u-hover" >
+                            <thead>
+                                <tr>
+                                   <th>产品名称</th>
+                                    <th>单号</th>
+                                    <th>购买数量</th>
+                                    <th>价格</th>
+                                    <th>数量</th>
+                                    <th>状态</th>
+                                   
+                                    
+                                </tr>
+                            </thead>
+                            <tbody id="orderList">
+                              
+                        </tbody>
+                    </table>
+ <div class="tfoot-div">
+     <div id="pagearr">
+         
+         
+     </div>
+     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <#include "/bootstrap/include/footer.html" />
+    <script>
+        var status='';
+        function setValue(th, val){
+            $(".nav-tabs li").removeClass("active");
+            $(th).parent().addClass("active");
+            status=val;
+            queryOrderList(1);
+        }
+        
+        function  queryOrderList (page){
+           
+            $.ajax({
+                type:"post",
+                url:"/CRM/app/comment/queryMyOrder",
+               
+                data:{status:status,isCancel:0,page:page,pageSize:10},
+                success:function(data){
+                      var shows=data.pageList;
+                      var html=[];
+                      $.each(shows, function (index) {
+                            html.push('<tr>');
+                            html.push('<td  class="middle" style="text-align:left;white-space:pre-line;" valign="middle"><a >'); 
+                             html.push('<img style="float: left;padding: 0 10px;margin-top:3px;" id="itemimg"  src="/upload/'+shows[index].pubimg+'" width="100" height="100" style="width:110px"/>'); 
+                              html.push('<div style="margin-left:120px;margin-top: 10px"> <strong style="display:table-cell;">'+shows[index].itemname+'</strong> </div></a></td>'); 
+                              html.push('<td>'+shows[index].orderno+'</td>');
+                              html.push('<td>'+shows[index].paynum+'</td>');
+                              html.push('<td>'+shows[index].payprice+'</td>');
+                              var statusText='待付款';
+                              if(shows[index].status==1)
+                                  statusText='待收货';
+                               if(shows[index].status==2)
+                                  statusText='已收货';
+                               if(shows[index].status==3)
+                                  statusText='支付失败';
+                               html.push('<td>'+statusText+'</td>');           
+                            
+                           html.push('</tr>');
+
+
+                    });
+                     $("#orderList").html(html.join("")); 
+                     var pagearr= $("#pagearr");
+                     pageding(pagearr, "queryOrderList", data);
+                   
+            }
+        });
+    }
+    $(function(){
+        $("#fistClick").click();
+        
+        
+    })
+    </script>
+</body>
+</html>

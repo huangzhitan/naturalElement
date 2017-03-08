@@ -9,9 +9,11 @@ package com.leosys.app.comment.controller;
 import com.leosys.app.item.entity.LAAItem;
 import com.leosys.app.item.entity.LAAItemFavo;
 import com.leosys.app.item.entity.LAAItemImg;
+import com.leosys.app.item.entity.LAAOrder;
 import com.leosys.app.item.favo.service.LAAItemFavoService;
 import com.leosys.app.item.img.service.LAAItemImgService;
 import com.leosys.app.item.service.LAAItemService;
+import com.leosys.app.order.service.LAAOrderService;
 import com.leosys.core.ajax.AjaxReturn;
 import com.leosys.core.utils.PageAjax;
 import com.leosys.core.utils.PageList;
@@ -43,9 +45,11 @@ public class CommentController {
     LAAItemImgService laaItemImgService;
      @Autowired
      LAAItemFavoService laaItemFavoService;
+      @Autowired
+    LAAOrderService laaOrderService;
     
     /**
-     * 我的订单
+     * 我的收藏
      * @param userId用户id
      * @param page当前页数
      * @param pageSize页面大小
@@ -68,12 +72,15 @@ public class CommentController {
      * @return 
      */
     
-     @RequestMapping(value = "/queryMyOrder", method = RequestMethod.GET)
+     @RequestMapping(value = "/queryMyOrder", method = RequestMethod.POST)
     @ResponseBody
-    public PageAjax queryMyOrder(Integer userId ,Integer page,Integer pageSize,Integer status,String itemName){
+    public PageAjax queryMyOrder(Integer userId ,Integer page,Integer pageSize,Integer status,String itemName,Integer isCancel){
     String sql ="select t.*,t1.itemname,t1.pubimg,t1.fprice,t1.sprice,t1.tprice from leosys_order t join leosys_item t1 on(t.itemid= t1.itemid) where t.iscancel=0";
     if(status!=null){
     sql+=" and t.status="+status;
+    }
+    if(isCancel!=null){
+    sql+=" and t.iscancel="+isCancel;
     }
      if(userId!=null){
     sql+=" and t.userid="+userId;
@@ -144,4 +151,52 @@ public class CommentController {
          return new AjaxReturn(laaItemFavoService.add(favo));
    
     }
+     /**
+      * 添加订单
+      * @param itemId 产品id
+      * @param userId 用户id
+      * @param payNum 购买数量
+      * @param payPrice 价格
+      * @return 
+      */
+      @RequestMapping(value = "/saveOrder", method = RequestMethod.GET)
+    @ResponseBody
+     public AjaxReturn saveOrder(Long itemId,Long userId,Integer payNum,Double payPrice){
+         AjaxReturn ar =new AjaxReturn();
+         LAAOrder order = new LAAOrder();
+         order.setItemId(itemId);
+         order.setUserId(userId);
+         order.setPayNum(payNum);
+         order.setPayPrice(payPrice);
+         order.setActiveTime(new Date());
+         order.setOrderNo("smsj"+ new Date().getTime()+userId);
+         boolean isSuccess=laaOrderService.add(order);
+         Map<String,Object> params =new HashMap();
+         params.put("orderId", order.getOrderId());
+         ar.setStatus(isSuccess);
+         ar.setParams(params);
+         return ar;
+   
+    }
+     /**
+      * 我的消息接口
+      * @param userId用户id
+      * @param page
+      * @param pageSize
+      * @param messType消息类别  0 系统消息 1取消订单消息
+      * @return 
+      */
+      @RequestMapping(value = "/queryMyMess", method = RequestMethod.POST)
+    @ResponseBody
+    public PageAjax queryMyMess(Integer userId ,Integer page,Integer pageSize,Integer messType){
+    String sql ="select t.* from leosys_mess t where t.reciverid= "+userId+" and t.messtype=0";
+    if(messType==1){
+    sql="select t2.content,t.*,t1.itemname,t1.pubimg,t1.fprice,t1.sprice,t1.tprice from leosys_order t join leosys_item t1 on(t.itemid= t1.itemid) join leosys_mess t2 on(t.orderid=t2.orderid) where  t2.messtype=1 and t2.reciverid="+userId;
+    }
+   
+     sql+=" order by t2.createtime desc";
+    PageList pagelist=new PageList(jdbcTemplate,sql, page, pageSize);
+    return pagelist.$pageAjax;
+    }
+     
 }

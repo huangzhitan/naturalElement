@@ -46,4 +46,8 @@ public class LAAItemController {
         model.addAttribute("items",arr.getPageList());
         return "item/index";
     }
+     @RequestMapping(value = "/getOrders", method = RequestMethod.GET)
+    public String getAllOrders(Model model) throws Exception {
+        return "item/orderIndex";
+    }
 }

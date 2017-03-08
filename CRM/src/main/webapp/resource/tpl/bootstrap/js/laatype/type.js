@@ -31,7 +31,7 @@ var typeManager={
                 shade: 0.3,
                 skin: 'layer-seat',
                 area: ['600px', '400px'],
-                content: APP_PATH+"/goAddNavi/",
+                content: APP_PATH+"/goAddType/",
                 btn: ['确定', '取消'],
                 yes: function (index) {
                     var typeName = layer.getChildFrame("#naviName").val();
@@ -65,7 +65,7 @@ var typeManager={
                                 url :APP_PATH+ "/addType/",
                                 type : "POST",
                                 data : {
-                                        'naviName':typeName,
+                                        'typeName':typeName,
                                         'orderNo':orderNo,
                                         
                                         'isParent':isParent,
@@ -95,7 +95,7 @@ var typeManager={
                 shade: 0.3,
                 skin: 'layer-seat',
                 area: ['600px', '475px'],
-                content: APP_PATH+"/getSingleNavi/"+nid,
+                content: APP_PATH+"/getSingleType/"+nid,
                 btn: ['确定', '取消'],
                 yes: function (index) {
                     var naviName = layer.getChildFrame("#naviName").val();

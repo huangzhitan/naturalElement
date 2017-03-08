@@ -7,8 +7,9 @@ package com.leosys.app.mess.service;
 
 import com.leosys.app.item.entity.LAAMess;
 import com.leosys.core.service.BaseServiceImplement;
-import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
