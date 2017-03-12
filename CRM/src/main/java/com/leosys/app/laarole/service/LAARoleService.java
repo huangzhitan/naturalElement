@@ -28,5 +28,10 @@ public interface LAARoleService  extends BaseService<LAARole>{
      * @return 
      */
 //    public boolean moveRoleToRecycle(long roleId);
+     /**
+     * 查询所有角色
+     * @return 
+     */
+    public List findAllRolesByLevel(int level);
     
 }

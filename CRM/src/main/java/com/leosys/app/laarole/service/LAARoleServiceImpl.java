@@ -41,4 +41,9 @@ public class LAARoleServiceImpl extends BaseServiceImplement<LAARole> implements
 //                && laaRecycleService.delResource(role.getRoleId(), "roleid", "LAARole", role.getName(), "系统角色", 10));
 //        return rs;
 //    }
+    
+     public List findAllRolesByLevel(int level){
+       Query query = getJPAQuery(QueryType.JPQL, "select t from LAARole t where t.isDel = 0 and t.level="+level+"  order by t.name");
+        return query.getResultList();
+     }
 }

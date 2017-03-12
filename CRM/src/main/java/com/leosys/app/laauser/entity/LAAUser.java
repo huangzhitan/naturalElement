@@ -73,6 +73,13 @@ public class LAAUser implements Serializable {
     private byte isDel = 0;
     @Column(name="status",nullable=false)
     private int status=0;//
+     @Column(name="phoneno",nullable=false)
+    private String phoneNo;//电话号码
+      @Column(name="isyan",nullable=false)
+     private Integer isYan=0;
+      @Column(name="yancode",nullable=false)
+     private String yanCode;
+      
     @ManyToMany()
     @JoinTable(name = "leosys_user_leosys_role",
             joinColumns = {@JoinColumn(name = "LAAUser_uid",referencedColumnName = "uid")},
@@ -158,6 +165,30 @@ public class LAAUser implements Serializable {
 
     public void setRoles(List<LAARole> roles) {
         this.roles = roles;
+    }
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo; 
+    }
+
+    public Integer getIsYan() {
+        return isYan;
+    }
+
+    public void setIsYan(Integer isYan) {
+        this.isYan = isYan;
+    }
+
+    public String getYanCode() {
+        return yanCode;
+    }
+
+    public void setYanCode(String yanCode) {
+        this.yanCode = yanCode;
     }
 
     

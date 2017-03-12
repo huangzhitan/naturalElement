@@ -71,6 +71,18 @@ public class LAAUserServiceImpl extends BaseServiceImplement<LAAUser> implements
         return user;
 
     }
+      @Override
+    public LAAUser getSingleUserByPhone(String phoneNo) {
+        Query query = getJPAQuery(QueryType.JPQL, "select t from LAAUser t where t.isDel = 0 and t.phoneNo = '" + phoneNo + "'");
+        LAAUser user;
+        try {
+            user = (LAAUser) query.getSingleResult();
+        } catch (NoResultException e) {
+            user = null;
+        }
+        return user;
+
+    }
 
 //    @Override
 //    public boolean moveToRecycle(long userId, long uId) {

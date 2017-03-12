@@ -24,5 +24,7 @@ public interface LAAUserService extends BaseService<LAAUser> {
     
     public LAAUser getSingleUserByUname(String uName);
     
+    public LAAUser getSingleUserByPhone(String phone);
+    
 //    public boolean moveToRecycle(long userId, long uId);
 }
