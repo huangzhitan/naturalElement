@@ -48,7 +48,7 @@ public class LAAOrder implements Serializable {
 	 private  byte payType=0;//0支付宝，1微信，2线下
 	 
 	 @Column(name="status")
-	 private  byte status=0;//0待支付，1待收，2已收，3支付失败，4退款
+	 private  byte status=0;//0待支付，1待发，2，待收3已收，4支付失败，5退款
 	 
 	 @Column(name="paytime")
 	 @Temporal(TemporalType.TIMESTAMP)
@@ -56,6 +56,8 @@ public class LAAOrder implements Serializable {
 	 
 	 @Column(name="iscancel")
 	 private  byte isCancel=0;//0未取消1已取消
+         
+          
 	 
 	 @Column(name = "payno")
 	 private  String payNo="";//支付宝微信返回的单号
@@ -163,6 +165,8 @@ public class LAAOrder implements Serializable {
 	public void setPayNo(String payNo) {
 		this.payNo = payNo;
 	}
+
+  
 	 
 	 
 	 

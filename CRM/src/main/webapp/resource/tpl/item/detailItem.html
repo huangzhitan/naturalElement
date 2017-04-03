@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<html >
+    <head>
+        <title>修改商品</title>
+        <#include "/bootstrap/include/static.html"/>
+      <link rel="stylesheet" type="text/css" href="${RESOURCE}/bootstrap/jslib/diyUpload/css/webuploader.css" >
+<link rel="stylesheet" type="text/css" href="${RESOURCE}/bootstrap/jslib/diyUpload/css/diyUpload.css">   
+<link rel="stylesheet" type="text/css" href="${RESOURCE}/bootstrap/css/zTreeStyle.css">  
+    </head>
+    <body>
+        <!-- 总结构是上下结构：wrapcontent和footer，wrapcontent里是左右结构：sidebar和contentdiv，contentdiv可以分为多个类似的内容块 -->
+        <div  class="clearfix content">
+            <!-- 左边侧边栏-->
+            <div id="sidebar" class="sidebar clearfix">
+                <!-- 系统logo-->
+                <div id="applogo" class="fl-lt"></div>
+                <div class="bardiv fl-lt clearfix"></div>
+                <#include "/bootstrap/include/sidebar.html" />
+            </div>
+            <div id="contentdiv" class="content">
+                <#include "/bootstrap/include/topbanner.html" />
+                <div class="container">
+   <div>
+        <div class="col-md-12">
+          <div class="panel panel-default panel-u panel-u-line mt30">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+               修改产品
+              </h3>
+               
+            </div>
+            <div class="panel-body">
+                <div id="firstPanel">
+              <form class="form-horizontal" enctype="multipart/form-data"
+                id="zikuform" name="myitem">
+                
+                <div class="form-group" >
+                  <label for="inputName1"  class="labels col-sm-2 control-label"><span class="red">*</span> 产品名称：</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="itemName" placeholder="" name="itemName" value="${item.itemName!}"/>
+                  <input type="hidden" class="form-control" id="itemId"  name="itemId" value="${item.itemId!}"/>
+                  </div>
+                   
+                    
+                </div>
+                  <div class="form-group" >
+                  <label for="inputName1"  class="labels col-sm-2 control-label"><span class="red">*</span>是否置顶：</label>
+                  <div class="col-sm-6">
+                     <select class="form-control" id="isImp" name="isImp" >
+                         <option value="0" <#if item.isImp==0>selected</#if>>否 </option>
+                         <option value="1" <#if item.isImp==1>selected</#if>>是 </option>
+                  </select>
+                  </div>
+                </div>
+                <div  >
+                
+                <div class="form-group"  id="xuanzhe">
+                  <label for="selDatabase"  class="labels col-sm-2 control-label"><span class="red">*</span> 所属类别：</label>
+                  <div class="col-sm-6">
+                  <ul id="tree" class="ztree" style="width:260px; overflow:auto;"></ul>
+                  <input  class="form-control" id="types" name="types" value="${item.types!}"   type="hidden" />
+                  </div>
+                </div>
+                <div class="form-group"  id="yixuan">
+                  <label for="inputselDatabase"  class="labels col-sm-2 control-label"><span class="red">*</span>封面：</label>
+                  <div class="col-sm-6">
+                       <div class="localUpload_wrap">
+
+                                <div class="localUpload" style="min-height:230px;background:#fff">
+                                    <div id="imgUpload">
+
+                                    </div>
+                                </div>
+                            </div>
+                      <input  class="form-control" id="pubimg" name="pubimg" value="${item.pubimg!}"   type="hidden" />
+                  </div>
+                  
+                </div>
+                </div>
+                
+                   <div class="form-group"  >
+                  <label for="inputName1"  class="labels col-sm-2 control-label" >长x宽x高（cm）：</label>
+                  <div class="col-sm-2">
+                    <input type="text" value="${item.longs!'0'}"  class="form-control" id="longs" placeholder="" name='longs'/>
+                  </div>
+                  <div class="col-sm-2">
+                    <input type="text" value="${item.weidth!'0'}" class="form-control" id="weidth" placeholder="" name='weidth'/>
+                  </div>
+                  <div class="col-sm-2">
+                    <input type="text" value="${item.height!'0'}" class="form-control" id="height" placeholder="" name='height'/>
+                  </div>
+                </div>
+                   <div class="form-group"  >
+                  <label for="inputName1"  class="labels col-sm-2 control-label" >数量：</label>
+                  <div class="col-sm-6">
+                      <input type="text" value="${item.nums!'0'}" class="form-control" id="nums" placeholder="" name='nums'/>
+                  </div>
+                </div>
+                   <div class="form-group"  >
+                  <label for="inputName1"  class="labels col-sm-2 control-label" >一级代理价格：</label>
+                  <div class="col-sm-6">
+                    <input type="text" value="${item.fprice!'0'}" class="form-control" id="fprice" placeholder="" name='fprice'/>
+                  </div>
+                </div>
+                  <div class="form-group"  >
+                  <label for="inputName1"  class="labels col-sm-2 control-label" >二级代理价格：</label>
+                  <div class="col-sm-6">
+                    <input type="text" value="${item.sprice!'0'}" class="form-control" id="sprice" placeholder="" name='sprice'/>
+                  </div>
+                </div>
+                  <div class="form-group"  >
+                  <label for="inputName1"  class="labels col-sm-2 control-label" >三级代理价格：</label>
+                  <div class="col-sm-6">
+                    <input type="text" value="${item.tprice!'0'}" class="form-control" id="tprice" placeholder="" name='tprice'/>
+                  </div>
+                </div>
+                   <div class="form-group">
+                  <label for="inputTrialReason01"  class="labels col-sm-2 control-label">详细：</label>
+                  <div class="col-sm-6">
+                    <textarea class="form-control" rows="3" id="detail" name='detail'>${item.detail!}</textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-offset-3 col-md-6 dataSubmit text-c">
+                    <!-- <button type="submit" class="btn btn-default" onclick="btnfun">提 交</button> -->
+                      <input type="button" class="btn btn-default" onclick="subimtBtn()" value="完成">
+                  </div>
+                </div>
+              </form>
+              </div>
+                
+                <div id="secondtPanel" style="display:none">
+                    <div class="form-group">
+                  <label for="inputTrialReason01"  class="labels col-sm-2 control-label">图片：</label>
+                  <div class="col-sm-6">
+                    <div class="upload">
+                            <div class="localUpload_wrap">
+
+                                <div class="localUpload" style="min-height:230px;background:#fff">
+                                    <div id="imgUpload1">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                  </div>
+                </div>
+                    
+                     <div class="form-group">
+                  <div class="col-md-offset-3 col-md-6 dataSubmit text-c">
+                    <!-- <button type="submit" class="btn btn-default" onclick="btnfun">提 交</button> -->
+                      <input type="button" class="btn btn-default" onclick="subimtBtn2()" value="提 交">
+                  </div>
+                </div>
+                    </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+                
+            </div>
+        </div>
+        <#include "/bootstrap/include/footer.html" />
+<script type="text/javascript" src="${RESOURCE}/bootstrap/jslib/diyUpload/js/webuploader.html5only.min.js"></script>
+<script type="text/javascript" src="${RESOURCE}/bootstrap/jslib/diyUpload/js/diyUpload.js"></script>
+
+ <script type="text/javascript" src="${RESOURCE}/bootstrap/js/jquery.ztree.core.js"></script>
+    
+    <script type="text/javascript">
+        var imgs=[];
+        var itemId="-1";
+        var ids=[];
+        var zNodes=[];
+        <#list types as type>
+        var nodet = {id:"${type.typeId}", pId:"${type.parentId}", name:"${type.typeName}"};
+zNodes.push(nodet);
+        </#list>
+
+var setting = {
+		view: {
+			dblClickExpand: false,
+			showLine: true,
+			selectedMulti: false
+		},
+		data: {
+			simpleData: {
+				enable:true,
+				idKey: "id",
+				pIdKey: "pId",
+				rootPId: ""
+			}
+		},
+		callback: {
+			onClick: function(e,treeId, treeNode) {
+                            console.log(treeNode);
+				if(treeNode.pId!="0"&&treeNode.pId!=0){
+                                    ids=[];
+                                    ids.push(treeNode.pId);
+                                    ids.push(treeNode.id);
+                                    $("#types").val(ids.join(","));
+                                }
+			}
+		}
+	};
+$(function(){
+      $.fn.zTree.init($("#tree"), setting, zNodes);
+    
+    
+})
+      
+        $('#imgUpload').diyUpload({
+	url:'/CRM/app/upload/uploadImg',
+	success:function( data ) {
+		if(data.status){
+                 urls=data.params.fileUrl;
+                 $("#pubimg").val(urls);
+                }
+	},
+	error:function( err ) {
+            alert(err);
+		//console.info( err );	
+	},
+	buttonText : '选择文件',
+	chunked:true,
+	// 分片大小
+
+	//最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
+	fileNumLimit:6,
+	fileSizeLimit:5000000 * 1024,
+	fileSingleSizeLimit:500000 * 10240,
+	accept: {}
+});
+        
+         function check(){
+             if($("#itemName").val()==""){
+                 alert("请填写产品名称");
+                 return false;
+             }
+             return true;
+             
+         } 
+        
+        function subimtBtn() { 
+        if(!check()){
+            return;
+            
+        }
+        var isim=$("#isImp option:selected").val();
+     var item={
+         itemId:$("#itemId").val(),
+         detail:$("#detail").val(),
+
+fprice:	$("#fprice").val(),
+
+height:	$("#height").val(),
+isImp:isim	,
+itemName:$("#itemName").val(),
+longs:$("#longs").val(),
+nums:	$("#nums").val(),
+pubimg:	$("#pubimg").val(),
+sprice:	$("#sprice").val(),
+
+tprice:	$("#tprice").val(),
+types:	$("#types").val(),
+weidth:$("#weidth").val()
+         
+     };
+          var url="${APP_PATH}/updateItems";
+       
+        var loadIndex =layer.load();
+        $.ajax({    
+            url:url,    
+            type:'POST', 
+            data:item,
+             dataType:'json',
+            success:function(data){
+                layer.close(loadIndex);
+                if(data.status){
+                 window.location.href="${APP_PATH}/getAll/1";
+                
+           }else{
+                  layer.msg(data.content);
+           }
+            }    
+        });   
+         
+        
+    }
+    
+    $('#imgUpload1').diyUpload({
+	url:'/CRM/app/upload/uploadImg',
+	success:function( data ) {
+		if(data.status){
+                 urls=data.params.fileUrl;
+                 imgs.push(urls);
+                }
+	},
+	error:function( err ) {
+            alert(err);
+		//console.info( err );	
+	},
+	buttonText : '选择文件',
+	chunked:true,
+	// 分片大小
+
+	//最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
+	fileNumLimit:6,
+	fileSizeLimit:5000000 * 1024,
+	fileSingleSizeLimit:500000 * 10240,
+	accept: {}
+});
+
+ function subimtBtn2() {
+     var urls =imgs.join(",");
+     $.ajax({
+         type:"POST",
+         data:{
+           itemId:itemId,
+           urls:urls
+         },
+         dataType:"json",
+         url:"${APP_PATH}/saveImgs",
+         success:function(data){
+             if(data.status)
+                 location.href="${APP_PATH}/getAll/1";
+             else
+                 alert("图片失败");
+             
+         }
+         
+     })
+     
+ }
+    
+</script>
+    </body>
+    </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

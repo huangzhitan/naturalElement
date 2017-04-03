@@ -92,4 +92,11 @@ public class LAAUserServiceImpl extends BaseServiceImplement<LAAUser> implements
 //        return (update(laaUser) && laaRecycleService.delResource(laaUser.getuId(), "uId", "LAAUser", laaUser.getName(), "系统用户", uId));
 //    }
 
+    @Override
+    public List<LAAUser> getUsersByLevel(Integer level) {
+         Query query = getJPAQuery(QueryType.NavtionSQL, "select t.*  from  leosys_user t join leosys_user_leosys_role t1 on(t.uid = t1.LAAUser_uid) join leosys_role t2 on(t1.roles_roleid=t2.roleid)");
+        List<LAAUser> users =query.getResultList();
+        return users;
+    }
+
 }

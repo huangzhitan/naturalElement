@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html >
+    <head>
+        <title>修改商品</title>
+        <#include "/bootstrap/include/static.html"/>
+      <link rel="stylesheet" type="text/css" href="${RESOURCE}/bootstrap/jslib/diyUpload/css/webuploader.css" >
+<link rel="stylesheet" type="text/css" href="${RESOURCE}/bootstrap/jslib/diyUpload/css/diyUpload.css">   
+<link rel="stylesheet" type="text/css" href="${RESOURCE}/bootstrap/css/zTreeStyle.css">  
+    </head>
+    <body>
+        <!-- 总结构是上下结构：wrapcontent和footer，wrapcontent里是左右结构：sidebar和contentdiv，contentdiv可以分为多个类似的内容块 -->
+        <div id="secondtPanel">
+                    <div class="form-group">
+                  <label for="inputTrialReason01"  class="labels col-sm-2 control-label">图片：</label>
+                  <div class="col-sm-6">
+                    <div class="upload">
+                            <div class="localUpload_wrap">
+
+                                <div class="localUpload" style="min-height:230px;background:#fff">
+                                    <div id="imgUpload1">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                  </div>
+                </div>
+                    
+                     
+                    </div>
+        <#include "/bootstrap/include/footer.html" />
+<script type="text/javascript" src="${RESOURCE}/bootstrap/jslib/diyUpload/js/webuploader.html5only.min.js"></script>
+<script type="text/javascript" src="${RESOURCE}/bootstrap/jslib/diyUpload/js/diyUpload.js"></script>
+
+ 
+    
+    <script type="text/javascript">
+    
+    $('#imgUpload1').diyUpload({
+	url:'/CRM/app/upload/uploadImg',
+	success:function( data ) {
+		if(data.status){
+                 urls=data.params.fileUrl;
+                 parent.imgs.push(urls);
+                }
+	},
+	error:function( err ) {
+            alert(err);
+		//console.info( err );	
+	},
+	buttonText : '选择文件',
+	chunked:true,
+	// 分片大小
+
+	//最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
+	fileNumLimit:6,
+	fileSizeLimit:5000000 * 1024,
+	fileSingleSizeLimit:500000 * 10240,
+	accept: {}
+});
+
+ 
+    
+</script>
+    </body>
+    </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

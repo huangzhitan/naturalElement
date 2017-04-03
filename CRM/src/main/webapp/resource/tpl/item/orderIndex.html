@@ -29,9 +29,10 @@
                             
             <li role="presentation" class="active"><a href="#home" onclick="setValue(this, '')" aria-controls="home" role="tab" data-toggle="tab" id="fistClick">全部</a></li>
             <li role="presentation"><a href="#profile" onclick="setValue(this, 0)" aria-controls="profile" role="tab" data-toggle="tab">待支付</a></li>
-            <li role="presentation"><a href="#messages" onclick="setValue(this, 1)" aria-controls="messages" role="tab" data-toggle="tab">待收</a></li>
-            <li role="presentation"><a href="#settings" onclick="setValue(this, 2)" aria-controls="settings" role="tab" data-toggle="tab">已收</a></li>
-            <li role="presentation"><a href="#profile" onclick="setValue(this, 3)" aria-controls="profile" role="tab" data-toggle="tab">支付失败</a></li>
+            <li role="presentation"><a href="#profile" onclick="setValue(this, 1)" aria-controls="profile" role="tab" data-toggle="tab">待发</a></li>
+            <li role="presentation"><a href="#messages" onclick="setValue(this, 2)" aria-controls="messages" role="tab" data-toggle="tab">待收</a></li>
+            <li role="presentation"><a href="#settings" onclick="setValue(this, 3)" aria-controls="settings" role="tab" data-toggle="tab">已收</a></li>
+            <li role="presentation"><a href="#profile" onclick="setValue(this, 4)" aria-controls="profile" role="tab" data-toggle="tab">支付失败</a></li>
             
           </ul>
 
@@ -92,10 +93,12 @@
                               html.push('<td>'+shows[index].payprice+'</td>');
                               var statusText='待付款';
                               if(shows[index].status==1)
+                                  statusText='待发货';
+                              if(shows[index].status==2)
                                   statusText='待收货';
-                               if(shows[index].status==2)
-                                  statusText='已收货';
                                if(shows[index].status==3)
+                                  statusText='已收货';
+                               if(shows[index].status==4)
                                   statusText='支付失败';
                                html.push('<td>'+statusText+'</td>');           
                             

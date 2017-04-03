@@ -9,6 +9,7 @@ package com.leosys.app.comment.controller;
 import com.leosys.app.item.entity.LAAItem;
 import com.leosys.app.item.entity.LAAItemFavo;
 import com.leosys.app.item.entity.LAAItemImg;
+import com.leosys.app.item.entity.LAAMess;
 import com.leosys.app.item.entity.LAAOrder;
 import com.leosys.app.item.favo.service.LAAItemFavoService;
 import com.leosys.app.item.img.service.LAAItemImgService;
@@ -17,6 +18,7 @@ import com.leosys.app.laarole.entity.LAARole;
 import com.leosys.app.laarole.service.LAARoleService;
 import com.leosys.app.laauser.entity.LAAUser;
 import com.leosys.app.laauser.service.LAAUserService;
+import com.leosys.app.mess.service.LAAMessService;
 import com.leosys.app.order.service.LAAOrderService;
 import com.leosys.core.ajax.AjaxReturn;
 import com.leosys.core.utils.DESUtil;
@@ -58,6 +60,8 @@ public class CommentController {
     private LAAUserService laaUserService;
     @Autowired
     private LAARoleService laaRoleService;
+    @Autowired
+    private LAAMessService laaMessService;
     
     /**
      * 我的收藏
@@ -80,7 +84,7 @@ public class CommentController {
      * @param pageSize
      * @param status状态
      * @param itemName产品名称
-     * @return 
+     * @return  status;//0待支付，1待发，2，待收3已收，4支付失败，5退款
      */
     
      @RequestMapping(value = "/queryMyOrder", method = RequestMethod.GET)
@@ -118,7 +122,7 @@ public class CommentController {
     public PageAjax queryMyItem(Integer page,Integer pageSize,Integer status,String itemName,String types){
     String sql ="select t.* from leosys_item t where 1=1 ";
     if(status!=null){
-    sql+=" and t.status="+status;
+    sql+=" and t.isdel="+status;
     }
     
      if(itemName!=null&&!"".equals(itemName)){
@@ -127,7 +131,7 @@ public class CommentController {
       if(types!=null&&!"".equals(types)){
      sql+=" and t1.types like '%"+types+"%'";
      }
-     sql+=" order by t.activetime desc";
+     sql+=" order by t.createtime desc";
     PageList pagelist=new PageList(jdbcTemplate,sql, page, pageSize);
     return pagelist.$pageAjax;
     }
@@ -190,6 +194,93 @@ public class CommentController {
    
     }
      /**
+      * 根据id获取订单
+      * 订单id不是单号
+      * @return 返回订单
+      */
+    @RequestMapping(value = "/queryOrderById", method = RequestMethod.GET)
+    @ResponseBody
+     public LAAOrder queryOrderById(Long orderId){
+       LAAOrder order = (LAAOrder)laaOrderService.querySingleEntity(LAAOrder.class, orderId);
+       return order;
+    }
+     /**
+      * 线下支付
+      * @param orderId 订单id
+      * 
+      * @return 
+      */
+      @RequestMapping(value = "/payUnderLine", method = RequestMethod.GET)
+    @ResponseBody
+     public AjaxReturn payUnderLine(Long orderId){
+         AjaxReturn ar  = new AjaxReturn(false);
+       LAAOrder order = (LAAOrder)laaOrderService.querySingleEntity(LAAOrder.class, orderId);
+       order.setPayTime(new Date());
+       order.setPayType((byte)2);
+       order.setStatus((byte)1);
+       boolean issuccess = laaOrderService.update(order);
+       ar.setStatus(issuccess);
+       try{
+       payOfter(order);
+       }catch(Exception e){
+       e.printStackTrace();
+       }
+       return ar;
+    }
+     /**
+      * 支付前验证
+      * @param order
+      * @return
+      * @throws Exception 
+      */
+       @RequestMapping(value = "/payBefore", method = RequestMethod.GET)
+    @ResponseBody
+      public AjaxReturn payBefore(Long  orderId) throws Exception{
+           AjaxReturn ar  = new AjaxReturn(false);
+          LAAOrder order = (LAAOrder)laaOrderService.querySingleEntity(LAAOrder.class, orderId);
+          if(order==null){
+              ar.setContent("订单不存在！！！");
+              return ar;
+          }
+          if(order.getIsCancel()==1){
+          ar.setContent("订单过期！！！");
+              return ar;
+          }
+          LAAItem item = laaItemService.querySingleEntity(LAAItem.class, order.getItemId());
+          if(item==null||item.getNums()<1){
+           ar.setContent("产品售罄，联系卖家补货！！！");
+              return ar;
+          }
+        ar.setStatus(true);
+        return ar;
+     }
+     /**
+      * 支付完成后的动作
+      * @param order 
+      */
+     private void payOfter(LAAOrder order) throws Exception{
+         String zfqudao="线下支付";
+         if(order.getPayType()==0)
+             zfqudao="支付宝";
+         if(order.getPayType()==1)
+             zfqudao="微信";
+         Long itemId = order.getItemId();
+         LAAItem item = laaItemService.querySingleEntity(LAAItem.class, itemId);
+         String content="有一笔："+item.getItemName()+"的订单支付完成，支付渠道："+zfqudao+"请注意查收并及时发货";
+        
+         List<Map<String,Object>> users = jdbcTemplate.queryForList("select t.*  from  leosys_user t join leosys_user_leosys_role t1 on(t.uid = t1.LAAUser_uid) join leosys_role t2 on(t1.roles_roleid=t2.roleid)");
+         for(Map<String,Object> map:users){
+          LAAMess mess  = new LAAMess();
+         mess.setContent(content);
+         mess.setMessTitle("系统信息，交易提醒");
+         mess.setSenderId(-1l);
+         mess.setReciverId(Long.parseLong(map.get("uid").toString()));
+         mess.setMessType((byte)0);
+         laaMessService.add(mess);
+         }
+     
+     }
+     /**
       * 我的消息接口
       * @param userId用户id
       * @param page
@@ -200,15 +291,27 @@ public class CommentController {
       @RequestMapping(value = "/queryMyMess", method = RequestMethod.GET)
     @ResponseBody
     public PageAjax queryMyMess(Integer userId ,Integer page,Integer pageSize,Integer messType){
-    String sql ="select t.* from leosys_mess t where t.reciverid= "+userId+" and t.messtype=0";
+    String sql ="select t2.* from leosys_mess t2 where t2.reciverid= "+userId+" and t2.messtype=0 and t2.isdel=0";
     if(messType==1){
-    sql="select t2.content,t.*,t1.itemname,t1.pubimg,t1.fprice,t1.sprice,t1.tprice from leosys_order t join leosys_item t1 on(t.itemid= t1.itemid) join leosys_mess t2 on(t.orderid=t2.orderid) where  t2.messtype=1 and t2.reciverid="+userId;
+    sql="select t2.content,t.*,t1.itemname,t1.pubimg,t1.fprice,t1.sprice,t1.tprice from leosys_order t join leosys_item t1 on(t.itemid= t1.itemid) join leosys_mess t2 on(t.orderid=t2.orderid) where  t2.messtype=1 and t2.isdel=0 and t2.reciverid="+userId;
     }
    
      sql+=" order by t2.createtime desc";
     PageList pagelist=new PageList(jdbcTemplate,sql, page, pageSize);
     return pagelist.$pageAjax;
     }
+    /**
+     * 标记成已读的信息
+     * @param messId
+     * @return 
+     */
+    public AjaxReturn isRead(Long messId){
+    LAAMess mess = (LAAMess)laaMessService.querySingleEntity(LAAMess.class, messId);
+    mess.setIsRead((byte)1);
+    return new AjaxReturn(laaMessService.update(mess));
+    }
+    
+    
     /**
      * 邀请好友
      * @param userId自己的id
@@ -435,5 +538,31 @@ public class CommentController {
        }
    
    }
-     
+     /**
+      * 回滚订单
+      * @param messid 消息id
+      * @param orderId 订单id
+      * @return 
+      */
+      @RequestMapping(value = "/rollbackOrder", method = RequestMethod.GET)
+     @ResponseBody
+     public AjaxReturn rollbackOrder(Long messId ,Long orderId){
+      AjaxReturn ar = new AjaxReturn(false); 
+       Map<String,Object> params = new HashMap();
+       try{
+       LAAOrder order = laaOrderService.querySingleEntity(LAAOrder.class, orderId);
+       order.setActiveTime(new Date());
+       order.setIsCancel((byte)0);
+       ar.setStatus(laaOrderService.update(order));
+       LAAMess mess =laaMessService.querySingleEntity(LAAMess.class, messId);
+       mess.setIsDel((byte)1);
+       laaMessService.update(mess);
+        return ar;
+       }catch(Exception e){
+       e.printStackTrace();
+       ar.setContent("异常："+e.getMessage());
+       return ar;
+       }
+   
+   }
 }

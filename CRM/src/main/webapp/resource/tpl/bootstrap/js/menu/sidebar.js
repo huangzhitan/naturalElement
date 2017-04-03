@@ -35,7 +35,7 @@ function getMeun(){
             var isParent = true;
             //当访问的是子菜单：
             $.each(childNavis, function (i) {
-                if(childNavis[i].naviUrl.indexOf(URL) >= 0) {
+                if(childNavis[i].naviUrl.indexOf(urls) >= 0) {
                     isParent = false;
                     $("#p" + childNavis[i].parentNaviId).addClass('open');
                     //当前的父菜单
@@ -48,7 +48,7 @@ function getMeun(){
 //                    if((URL.indexOf("LAA/app/myitem")>=0)||(URL.indexOf("LAA/app/laaSup")>=0)){
 //                      if((childNavis[i].naviUrl.indexOf("/LAA/app/laaSup/toHomePage/")>=0)){
                           isParent = false;
-                    if(URL.indexOf("LAA/app/myitem/"))    
+                    if(urls.indexOf("LAA/app/myitem/"))    
                     $("#p" + childNavis[i].parentNaviId).addClass('open');
                     //当前的父菜单
                     var pmenu = $("#p" + childNavis[i].parentNaviId);
@@ -64,7 +64,7 @@ function getMeun(){
             //当访问的是父菜单：
             if(isParent){
                 $.each(parentNavis, function (index) {
-                    if(parentNavis[index].naviUrl.indexOf(URL) >= 0) {
+                    if(parentNavis[index].naviUrl.indexOf(urls) >= 0) {
                         //当前的父菜单
                         var pmenu = $("#p" + parentNavis[index].naviId);
                         pmenu.addClass('active');
@@ -72,7 +72,7 @@ function getMeun(){
                 });
             };
             if(!isParent){
-              var url=URL;
+              var url=urls;
            
             }
             $(".submenu>a").on("click", function (e) {

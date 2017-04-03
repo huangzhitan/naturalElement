@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class LAAItemImgServiceImpl extends BaseServiceImplement<LAAItemImg> implements  LAAItemImgService{
      public List<LAAItemImg> queryImgsByItemId(Long itemId){
-      Query query = getJPAQuery(QueryType.JPQL, "select t from LAAItemImg t where t.itemid="+itemId+"    order by t.createTime, t.orderNo");
+      Query query = getJPAQuery(QueryType.JPQL, "select t from LAAItemImg t where t.itemId="+itemId);
         return query.getResultList();
      }
     

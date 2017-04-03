@@ -41,8 +41,8 @@ public class LAAMess implements Serializable {
 	 @Column(name = "messtype", nullable = false)
 	 private byte messType = 0;//0系统消息，1订单消息，2求货消息,3上货消息
 	 
-	 @Column(name = "imgcontent", length = 10, nullable = false)
-	 private String imgcontent;//图文消息图片路径
+	 @Column(name = "imgcontent", length = 200, nullable = false)
+	 private String imgcontent="";//图文消息图片路径
 	 
 	 @Column(name = "isread", nullable = false)
 	 private byte isRead = 0;
