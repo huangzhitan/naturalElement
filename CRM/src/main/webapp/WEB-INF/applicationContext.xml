@@ -42,9 +42,9 @@
     </bean> 
     <bean id ="dataSource" 
 	class="org.apache.commons.dbcp.BasicDataSource">
-	<property name="url" value="jdbc:mysql://localhost:3306/laa?zeroDateTimeBehavior=convertToNull"></property>	
+	<property name="url" value="jdbc:mysql://112.74.36.199:3306/laa?zeroDateTimeBehavior=convertToNull"></property>	
 	<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>	
-	<property name="username" value="root"></property>
+	<property name="username" value="fanyy"></property>
 	<property name="password" value="123456"></property>
 	<property name="initialSize" value="2"></property>
 	<property name="maxActive" value="12"></property>

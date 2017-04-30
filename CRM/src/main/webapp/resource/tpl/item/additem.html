@@ -118,6 +118,9 @@
                     <textarea class="form-control" rows="3" id="detail" name='detail'></textarea>
                   </div>
                 </div>
+                  <div id="attrs">
+                     
+                      </div>
                 <div class="form-group">
                   <div class="col-md-offset-3 col-md-6 dataSubmit text-c">
                     <!-- <button type="submit" class="btn btn-default" onclick="btnfun">提 交</button> -->
@@ -170,9 +173,15 @@
         var itemId="-1";
         var ids=[];
         var zNodes=[];
+        var attrs=[];
         <#list types as type>
         var nodet = {id:"${type.typeId}", pId:"${type.parentId}", name:"${type.typeName}"};
 zNodes.push(nodet);
+        </#list>
+
+   <#list attrs as attr>
+        var attr = {attrId:"${attr.attrId}", attrName:"${attr.attrName}", typeId:"${attr.typeId}"};
+attrs.push(attr);
         </#list>
 
 var setting = {
@@ -197,6 +206,21 @@ var setting = {
                                     ids.push(treeNode.pId);
                                     ids.push(treeNode.id);
                                     $("#types").val(ids.join(","));
+                                   
+                                   var insertHtml=[];
+                                      
+                  
+        $.each(attrs,function(index,value){
+            if(treeNode.pId==value.typeId){
+                insertHtml.push('<div class="form-group"  ><label for="inputName1"  class="labels col-sm-2 control-label" >'+value.attrName+'</label>');
+                 insertHtml.push('<div class="col-sm-6"> <input type="text" value="" class="form-control" id="'+value.attrId+'" placeholder="" /> </div></div>');
+                
+            }
+            
+        });
+        $("#attrs").html(insertHtml.join(""));
+         
+                                    
                                 }
 			}
 		}
@@ -263,20 +287,50 @@ types:	$("#types").val(),
 weidth:$("#weidth").val()
          
      };
+     var attrss=[];
+     $("#attrs .form-group").each(function(){
+         var arrtName=$(this).find('label').text();
+         var attrId=$(this).find('input').attr('id');
+         var value=$(this).find('input').val();
+         var temp={itemId:"",attrName:arrtName,attrId:attrId,value:value};
+         attrss.push(temp);
+         
+     })
           var url="${APP_PATH}/saveItems";
        
         var loadIndex =layer.load();
         $.ajax({    
             url:url,    
             type:'POST', 
+             
             data:item,
              dataType:'json',
             success:function(data){
-                layer.close(loadIndex);
+               
+                
+                
+              
                 if(data.status){
                  itemId=data.params.itemId;  
-                 $("#secondtPanel").show();
+                 
+                  if(attrss.length>0){
+                      $.each(attrss,function(index,value){
+                          value.itemId=itemId;
+                      });
+                $.ajax({
+                     url:'${APP_PATH}/saveItemAttrs',    
+            type:'POST', 
+             contentType : 'application/json;charset=utf-8', 
+            data: JSON.stringify(attrss),
+             dataType:'json',
+             success:function(data){
+                  layer.close(loadIndex);
+                  $("#secondtPanel").show();
                  $("#firstPanel").hide();
+             }
+                    
+                })}
+                 
            }else{
                   layer.msg(data.content);
            }

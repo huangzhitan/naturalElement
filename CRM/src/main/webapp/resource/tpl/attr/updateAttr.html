@@ -1,0 +1,38 @@
+<#include "/bootstrap/include/static.html"/>
+<#import "/bootstrap/baseui/UIE.html" as forms />
+ <#include "/bootstrap/include/boxjs.html" />  
+<link href="${RESOURCE}/bootstrap/css/ymcss/user.css" rel="stylesheet">
+<form action="#" name="frmMain" class="form-horizontal form-horizontal-bg">
+    <div class="frow">
+        <span ><strong>属性ID</strong></span>
+        <input  readonly="readonly" class="input" id='naviId' name="naviId"  type="text"   value="${navi.attrId}" />
+    </div>
+    <div class="frow">
+        <span ><strong>属性名称</strong></span>
+        <input  class="input" id='naviName' name="naviName"  type="text"   value="${navi.attrName}" />
+    </div>
+    <div class="frow">
+        <span ><strong>排序编号</strong></span>
+        <input  class="input" id='orderNo' name="orderNo"  type="text"   value="${navi.orderNo}" />
+    </div>
+    
+ 
+    <div class="frow">
+        <span ><strong>所属大类</strong></span>
+        <select class="input" id='parentNaviId' name="parentNaviId" >
+            
+            <#if parentNavis ??>
+            <#list parentNavis as parentNavi>
+            <option value ="${parentNavi.typeId}" <#if parentNavi.typeId ==navi.typeId> selected</#if>>${parentNavi.typeName}</option>
+            </#list>
+            </#if>
+        </select>
+    </div>
+ 
+</form>
+    
+<script>
+    //默认非父节点
+    $("#radio"+'${navi.isParent}').attr("checked","checked");
+    $("#parentNaviId").val('${navi.parentId}');
+</script>

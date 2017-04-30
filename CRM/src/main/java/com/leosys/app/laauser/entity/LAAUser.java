@@ -79,6 +79,8 @@ public class LAAUser implements Serializable {
      private Integer isYan=0;
       @Column(name="yancode",nullable=false)
      private String yanCode;
+      @Column(name="address",nullable=false)
+     private String address="";
       
     @ManyToMany()
     @JoinTable(name = "leosys_user_leosys_role",
@@ -189,6 +191,14 @@ public class LAAUser implements Serializable {
 
     public void setYanCode(String yanCode) {
         this.yanCode = yanCode;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     

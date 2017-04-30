@@ -61,7 +61,13 @@ public class LAAOrder implements Serializable {
 	 
 	 @Column(name = "payno")
 	 private  String payNo="";//支付宝微信返回的单号
-
+       @Column(name = "address")
+	 private  String address="";
+       
+       @Column(name = "phoneno")
+	 private  String phoneNo="";
+         @Column(name = "lxrname")
+	 private  String lxrName="";
 	public Long getOrderId() {
 		return orderId;
 	}
@@ -165,6 +171,30 @@ public class LAAOrder implements Serializable {
 	public void setPayNo(String payNo) {
 		this.payNo = payNo;
 	}
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
+    public String getLxrName() {
+        return lxrName;
+    }
+
+    public void setLxrName(String lxrName) {
+        this.lxrName = lxrName;
+    }
 
   
 	 

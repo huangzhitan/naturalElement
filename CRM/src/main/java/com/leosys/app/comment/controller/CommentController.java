@@ -6,7 +6,9 @@
 package com.leosys.app.comment.controller;
 
 
+import com.leosys.app.item.attr.service.LAAItemAttrService;
 import com.leosys.app.item.entity.LAAItem;
+import com.leosys.app.item.entity.LAAItemAttr;
 import com.leosys.app.item.entity.LAAItemFavo;
 import com.leosys.app.item.entity.LAAItemImg;
 import com.leosys.app.item.entity.LAAMess;
@@ -62,6 +64,8 @@ public class CommentController {
     private LAARoleService laaRoleService;
     @Autowired
     private LAAMessService laaMessService;
+    @Autowired
+    private LAAItemAttrService laaItemAttrService;
     
     /**
      * 我的收藏
@@ -145,10 +149,27 @@ public class CommentController {
     Map<String,Object> result= new HashMap();    
     LAAItem item = (LAAItem)laaItemService.querySingleEntity(LAAItem.class, itemId);
     List<LAAItemImg> imgs=laaItemImgService.queryImgsByItemId(itemId);
-    result.put("item", item);
+     List<LAAItemAttr> attrs =laaItemAttrService.queryAttrsByItemId(itemId);
+     List<Map<String,Object>> typeList = jdbcTemplate.queryForList(" select t.* from leosys_type t where t.typeid in( "+item.getTypes()+")");
+   String types ="--";
+   if(typeList!=null&&typeList.size()>0){
+     for(Map<String,Object> type : typeList){
+         types+=type.get("typename").toString()+"--";
+     }
+   }
+     
+     result.put("item", item);
     result.put("imgs", imgs);
+    result.put("attrs", attrs);
+    result.put("types", types);
     return result;
     }
+       @RequestMapping(value = "/queryTypes", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Map<String,Object>> queryTypes(Long itemId){
+     return jdbcTemplate.queryForList("select t.* from leosys_type t where t.isdel=0");
+    }
+    
     /**
      * 添加收藏
      * @param itemId产品id
@@ -235,13 +256,14 @@ public class CommentController {
       */
        @RequestMapping(value = "/payBefore", method = RequestMethod.GET)
     @ResponseBody
-      public AjaxReturn payBefore(Long  orderId) throws Exception{
+      public AjaxReturn payBefore(Long  orderId,String address,String lxrName,String phoneNo) throws Exception{
            AjaxReturn ar  = new AjaxReturn(false);
           LAAOrder order = (LAAOrder)laaOrderService.querySingleEntity(LAAOrder.class, orderId);
           if(order==null){
               ar.setContent("订单不存在！！！");
               return ar;
           }
+          
           if(order.getIsCancel()==1){
           ar.setContent("订单过期！！！");
               return ar;
@@ -251,7 +273,10 @@ public class CommentController {
            ar.setContent("产品售罄，联系卖家补货！！！");
               return ar;
           }
-        ar.setStatus(true);
+          order.setAddress(address);
+          order.setPhoneNo(phoneNo);
+          order.setLxrName(lxrName);
+        ar.setStatus(laaOrderService.update(order));
         return ar;
      }
      /**
@@ -438,10 +463,50 @@ public class CommentController {
    
    }
    /**
+    * 获取回填用户
+    * @param userId
+    * @return 
+    */
+     @RequestMapping(value = "/getUserById", method = RequestMethod.GET)
+    @ResponseBody
+   public LAAUser getUserById(Long userId){
+    LAAUser userNew = laaUserService.querySingleEntity(LAAUser.class, userId);
+    return userNew;
+   }
+   /**
+    * 修改用户信息
+    * @param email邮箱
+    * @param realName真名
+    * @param uName用户名
+    * @param address地址
+    * @param userId用户id必填
+    * @return 
+    */
+    @RequestMapping(value = "/updateUser", method = RequestMethod.GET)
+    @ResponseBody
+   public AjaxReturn updateUser(String email,String realName,String uName,String address,Long userId){
+      AjaxReturn ar = new AjaxReturn(false); 
+       try{
+     
+       LAAUser userNew = laaUserService.querySingleEntity(LAAUser.class, userId);
+       userNew.setEmail(email);
+       userNew.setName(realName);
+        userNew.setAddress(address);
+        userNew.setuName(uName);
+        ar.setStatus(laaUserService.update(userNew));
+        return ar;
+       }catch(Exception e){
+       e.printStackTrace();
+       return ar;
+       }
+   
+   }
+   
+   /**
     * 
     * @param phoneNo
     * @param password
-    * @return 返回参数用户id，用户名，用户等级要存在本地
+    * @return 返回参数用户id，用户名，用户等级要存在本地,地址电话，真名
     */
      @RequestMapping(value = "/loginComment", method = RequestMethod.GET)
     @ResponseBody
@@ -457,6 +522,9 @@ public class CommentController {
         if(user!=null&&user.getPass().equalsIgnoreCase(passAtferDes)&&user.getRoles()!=null&&user.getRoles().size()>0){
         LAARole role= user.getRoles().get(0);
         ar.setStatus(true);
+        params.put("address", user.getAddress());
+        params.put("phoneNo", phoneNo);
+         params.put("realName", user.getName());
         params.put("userId", user.getuId());
         params.put("level", role.getLevel());
         params.put("userName", user.getuName());

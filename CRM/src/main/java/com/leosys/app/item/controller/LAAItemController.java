@@ -5,7 +5,11 @@
  */
 package com.leosys.app.item.controller;
 
+import com.leosys.app.attr.service.LAAAttrService;
+import com.leosys.app.item.attr.service.LAAItemAttrService;
+import com.leosys.app.item.entity.LAAAttr;
 import com.leosys.app.item.entity.LAAItem;
+import com.leosys.app.item.entity.LAAItemAttr;
 import com.leosys.app.item.entity.LAAItemImg;
 import com.leosys.app.item.entity.LAAType;
 import com.leosys.app.item.img.service.LAAItemImgService;
@@ -21,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,7 +43,10 @@ public class LAAItemController {
     LAATypeService  laaTypeService;
     @Autowired
     LAAItemImgService laaItemImgService;
-    
+     @Autowired
+    LAAItemAttrService laaItemAttrService;
+       @Autowired
+    LAAAttrService laaAttrService;
      @RequestMapping(value = "/getAll/{page}", method = RequestMethod.GET)
     public String getAllNavis(Model model,@PathVariable int page) throws Exception {
         List<LAAItem> navis = laaItemService.findAllItems();
@@ -66,7 +74,9 @@ public class LAAItemController {
      @RequestMapping(value = "/addItems", method = RequestMethod.GET)
     public String addItems(Model model) throws Exception {
         List<LAAType> types =laaTypeService.findAllTypes();
+        List<LAAAttr> attrs =laaAttrService.findAllAttrs();
         model.addAttribute("types", types);
+          model.addAttribute("attrs", attrs);
         return "item/additem";
     }
      @RequestMapping(value = "/saveItems", method = RequestMethod.POST)
@@ -75,10 +85,31 @@ public class LAAItemController {
        AjaxReturn ar = new AjaxReturn();
        Map<String,Object> map = new HashMap();
        ar.setStatus(laaItemService.add(item));
+       
+     
        map.put("itemId", item.getItemId());
         ar.setParams(map);
         return ar;
     }
+    
+      @RequestMapping(value = "/saveItemAttrs", method = RequestMethod.POST)
+     @ResponseBody
+    public AjaxReturn saveItemAttrs(@RequestBody List<LAAItemAttr> attrs) throws Exception {
+       AjaxReturn ar = new AjaxReturn();
+       Map<String,Object> map = new HashMap();
+       ar.setStatus(true);
+       
+       if(attrs!=null&&attrs.size()>0){
+       for(LAAItemAttr attr:attrs){
+      
+       laaItemAttrService.add(attr);
+       }
+       }
+ 
+     
+        return ar;
+    }
+    
       @RequestMapping(value = "/saveImgs", method = RequestMethod.POST)
      @ResponseBody
     public AjaxReturn saveImgs(String  urls,Long itemId)  {
@@ -104,7 +135,9 @@ public class LAAItemController {
     LAAItem item = (LAAItem)laaItemService.querySingleEntity(LAAItem.class, itemId);
     List<LAAItemImg> imgs=laaItemImgService.queryImgsByItemId(itemId);
     List<LAAType> types =laaTypeService.findAllTypes();
+    List<LAAItemAttr> attrs =laaItemAttrService.queryAttrsByItemId(itemId);
         model.addAttribute("types", types);
+        model.addAttribute("attrs", attrs);
    model.addAttribute("item", item);
    model.addAttribute("imgs", imgs);
     return "item/detailItem";

@@ -10,19 +10,11 @@
     <div id="wrapper">
         <!-- logo-->
         <div class="header">
-        <#if companys ??>
-           <a href="${companys.cgswz}" class="logo"  target="_blank" id="a1">
-               <#if companys.cimagesrc=="">
-                <img  class="img-circle" style="width: 187px;height: 45px;"  src="/LAA/resource/tpl/bootstrap/images/logo.png"  />   
-               <#else>
-                <img  class="img-circle"   style="width: 187px;height: 45px;" src="/upload/${companys.cimagesrc}"  onerror="javascript:this.src='/LAA/resource/tpl/bootstrap/images/logo.png'"/>
-               </#if>
-            </a> 
-        <#else>
+     
             <a href="http://www.leosys.com.cn/" class="logo"  target="_blank" id="a1">
-             <img  class="img-circle"   style="width: 187px;height: 45px;;"  src="/LAA/resource/tpl/bootstrap/images/logo.png" />
+             <img  class="img-circle"   style="width: 187px;height: 45px;;"  src="/CRM/resource/tpl/bootstrap/images/logo.png" />
             </a>
-        </#if>
+        
             
         </div>
         <form id="loginfrm" class="loginForm">
@@ -32,7 +24,7 @@
             </div>
             <!-- 验证码-->
             <div id="seccodeDiv">
-                <input  type="text" name="seccode"  id="seccode"  placeholder="验证码" /><div id="imgWrap" ><img id="seccodeimg"  src="/LAA/app/getCheckCode" width="95" height="35"/></div>
+                <input  type="text" name="seccode"  id="seccode"  placeholder="验证码" /><div id="imgWrap" ><img id="seccodeimg"  src="/CRM/app/getCheckCode" width="95" height="35"/></div>
             </div>
 
             <!-- 登录按钮-->
@@ -41,19 +33,17 @@
                 <p id="validateText"></p>
             </div>
              <div>
-                 <a style="float: right;color: #fff;text-decoration: none;margin-left: 10px;" href="/LAA/app/index/verify">忘记密码</a>
-                 <a style="float: right;color: #fff;text-decoration: none" href="/LAA/app/index/register">厂商注册</a>
+<!--                 <a style="float: right;color: #fff;text-decoration: none;margin-left: 10px;" href="/LAA/app/index/verify">忘记密码</a>
+                 <a style="float: right;color: #fff;text-decoration: none" href="/LAA/app/index/register">厂商注册</a>-->
                  
             </div>
         </form>
     </div>
 </div>
 <div id="footer">
-    <#if companys ??>
-    <p>${companys.ccpmcname}</p><p>${companys.clogindec}</p><p>${companys.cloginqita}</p>
-    <#else>
-    <p>数字资源管理分析数据库</p><p>leosys Powered By leosys Co.,Ltd</p><p>浏览器最低要求IE8.0,推荐使用IE9.0,FireFox,Chrome</p>
-    </#if>
+   
+    <p>自然元素后台</p><p>fanyy Powered By leosys Co.,Ltd</p><p>浏览器最低要求IE8.0,推荐使用IE9.0,FireFox,Chrome</p>
+   
 </div>
 
 <script src="${RESOURCE}/bootstrap/js/jquery-1.9.0.min.js"></script>
