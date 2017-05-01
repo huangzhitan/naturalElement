@@ -43,7 +43,9 @@
                                     <th>单号</th>
                                     <th>购买数量</th>
                                     <th>价格</th>
-                                    <th>数量</th>
+                                     <th>联系人</th>
+                                    <th>电话</th>
+                                    <th>地址</th>
                                     <th>状态</th>
                                    
                                     
@@ -76,7 +78,7 @@
         function  queryOrderList (page){
            
             $.ajax({
-                type:"post",
+                type:"get",
                 url:"/CRM/app/comment/queryMyOrder",
                
                 data:{status:status,isCancel:0,page:page,pageSize:10},
@@ -85,12 +87,15 @@
                       var html=[];
                       $.each(shows, function (index) {
                             html.push('<tr>');
-                            html.push('<td  class="middle" style="text-align:left;white-space:pre-line;" valign="middle"><a >'); 
-                             html.push('<img style="float: left;padding: 0 10px;margin-top:3px;" id="itemimg"  src="/upload/'+shows[index].pubimg+'" width="100" height="100" style="width:110px"/>'); 
+                            html.push('<td  class="middle" style="text-align:left;white-space:pre-line;" valign="middle"><a onclick="editOrder('+shows[index].orderid+')">'); 
+                             html.push('<img style="float: left;padding: 0 10px;margin-top:3px;" id="itemimg"  src="'+shows[index].pubimg+'" width="100" height="100" style="width:110px"/>'); 
                               html.push('<div style="margin-left:120px;margin-top: 10px"> <strong style="display:table-cell;">'+shows[index].itemname+'</strong> </div></a></td>'); 
                               html.push('<td>'+shows[index].orderno+'</td>');
                               html.push('<td>'+shows[index].paynum+'</td>');
                               html.push('<td>'+shows[index].payprice+'</td>');
+                               html.push('<td>'+(shows[index].lxrname==null?"--":shows[index].lxrname)+'</td>');
+                                html.push('<td>'+(shows[index].phoneno==null?"--":shows[index].phoneno)+'</td>');
+                                 html.push('<td>'+(shows[index].address==null?"--":shows[index].address)+'</td>');
                               var statusText='待付款';
                               if(shows[index].status==1)
                                   statusText='待发货';
@@ -113,6 +118,50 @@
             }
         });
     }
+    
+     function editOrder  (nid){
+           var index = layer.open({
+                type: 2,
+                title: '编辑',
+                closeBtn: 1,
+                shade: 0.3,
+                skin: 'layer-seat',
+                area: ['600px', '275px'],
+                content: "/CRM/app/laaItem/getUpdateOrders/?orderId="+nid,
+                btn: ['确定', '取消'],
+                yes: function (index) {
+                    var status = layer.getChildFrame("#status").val();
+                    var payPrice = layer.getChildFrame("#payPrice").val();
+                  
+                  
+               
+                    layer.confirm("确定修改？", {icon: 3, title:'提示'}, function(index){          
+                        var loadIndex=layer.load();
+                        $.ajax({
+                                url : "/CRM/app/comment/updateOrder/",
+                                type : "GET",
+                                data : {
+                                    orderId:nid,
+                                    status:status,
+                                    payPrice:payPrice
+                                },
+                                success : function(data) {
+                                    layer.close(loadIndex);
+                                    layer.msg("修改成功");
+                                    queryOrderList(1);
+                                    layer.close(index);
+                                }
+                            });       
+                     });
+
+                },
+                cancel: function (index) {
+                    //默认关闭
+                }
+            });
+
+    }
+    
     $(function(){
         $("#fistClick").click();
         

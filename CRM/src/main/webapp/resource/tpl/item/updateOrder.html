@@ -1,0 +1,26 @@
+<#include "/bootstrap/include/static.html"/>
+<#import "/bootstrap/baseui/UIE.html" as forms />
+ <#include "/bootstrap/include/boxjs.html" />  
+<link href="${RESOURCE}/bootstrap/css/ymcss/user.css" rel="stylesheet">
+<form action="#" name="frmMain" class="form-horizontal form-horizontal-bg">
+   
+    <div class="frow">
+        <span ><strong>价格</strong></span>
+        <input  class="input" id='payPrice' name="payPrice"  type="text"   value="${order.payPrice!'0'}" />
+        <input  class="input" id='orderId' name="orderId"  type="text"   value="${order.orderId!'0'}" />
+    </div>
+    <div class="frow">
+        <span ><strong>排序编号</strong></span>
+        <select id='status'>
+            <option value="0"<#if order.status==0> selected</#if>>待付款</option>
+            <option value="1"<#if order.status==1> selected</#if>>待发货</option>
+            <option value="2"<#if order.status==2> selected</#if>>已发货</option>
+            <option value="3"<#if order.status==3> selected</#if>>已收货</option>
+            <option value="4"<#if order.status==4> selected</#if>>支付失败</option>
+        </select>
+    </div>
+</form>
+    
+<script>
+   
+</script>

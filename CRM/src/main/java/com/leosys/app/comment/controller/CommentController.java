@@ -112,6 +112,29 @@ public class CommentController {
     return pagelist.$pageAjax;
     }
     
+    
+            
+            
+    @RequestMapping(value = "/updateOrder", method = RequestMethod.GET)
+    @ResponseBody
+     public AjaxReturn updateOrder(Long orderId,Integer status,Double payPrice){
+          AjaxReturn ar = new AjaxReturn(false);
+        LAAOrder order = laaOrderService.querySingleEntity(LAAOrder.class, orderId);
+        if(order==null)
+            return ar;
+        if(status!=null){
+            order.setStatus((byte)status.intValue());
+        }
+        if(payPrice!=null){
+            order.setPayPrice(payPrice);
+        }
+        boolean isSuccess = laaOrderService.update(order);
+         ar.setStatus(isSuccess);
+       
+         return ar;
+   
+    }
+    
     /**查询我的资源
      * 
      * @param page
@@ -119,33 +142,41 @@ public class CommentController {
      * @param status
      * @param itemName
      * @param types
+     * order 排序参数
      * @return  分页的信息   产品中的fprice ，sprice tprice 分别对应一级二级三级代理的不同价格   要根据代理等级   level 去区别展示
      */
     @RequestMapping(value = "/queryMyItem", method = RequestMethod.GET)
     @ResponseBody
-    public PageAjax queryMyItem(Integer page,Integer pageSize,Integer status,String itemName,String types){
+    public PageAjax queryMyItem(Integer page,Integer pageSize,Integer status,String itemName,String types,String order ){
     String sql ="select t.* from leosys_item t where 1=1 ";
     if(status!=null){
     sql+=" and t.isdel="+status;
     }
     
      if(itemName!=null&&!"".equals(itemName)){
-     sql+=" and t1.itemname like '%"+itemName+"%'";
+     sql+=" and t.itemname like '%"+itemName+"%'";
      }
       if(types!=null&&!"".equals(types)){
-     sql+=" and t1.types like '%"+types+"%'";
+     sql+=" and t.types like '%"+types+"%'";
      }
-     sql+=" order by t.createtime desc";
+     
+     if(order!=null&&!"".equals(order)){
+     sql+=" order by "+order;
+     }else{
+     sql+=" order by t.createtime desc ";
+     }
     PageList pagelist=new PageList(jdbcTemplate,sql, page, pageSize);
     return pagelist.$pageAjax;
     }
     /**
      * 查看产品详情
+     * itemid 产品id
+     * userid  用户id
      * @return 产品中的fprice ，sprice tprice 分别对应一级二级三级代理的不同价格   要根据代理等级   level 去区别展示
      */
     @RequestMapping(value = "/queryItemDetailById", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> queryItemDetailById(Long itemId){
+    public Map<String,Object> queryItemDetailById(Long itemId,Long userId){
     Map<String,Object> result= new HashMap();    
     LAAItem item = (LAAItem)laaItemService.querySingleEntity(LAAItem.class, itemId);
     List<LAAItemImg> imgs=laaItemImgService.queryImgsByItemId(itemId);
@@ -157,13 +188,29 @@ public class CommentController {
          types+=type.get("typename").toString()+"--";
      }
    }
+     Integer  isshou =0;
+     Long favoId=-1l;
+     if(userId!=null){
+      List<Map<String,Object>> favos = jdbcTemplate.queryForList(" select t.* from leosys_item_favo t where t.isdel=0 and t.itemid= "+itemId+" and t.userid="+userId);
+  if(favos!=null&&favos.size()>0){
+  isshou=1;
+  favoId =Long.parseLong(favos.get(0).get("favoid").toString()) ;
+  }
+     }
      
-     result.put("item", item);
+    result.put("item", item);
     result.put("imgs", imgs);
     result.put("attrs", attrs);
     result.put("types", types);
+    result.put("isshou", isshou);
+    result.put("favoId", favoId);
     return result;
     }
+    /**
+     * 
+     * @param itemId
+     * @return 
+     */
        @RequestMapping(value = "/queryTypes", method = RequestMethod.GET)
     @ResponseBody
     public List<Map<String,Object>> queryTypes(Long itemId){
@@ -174,7 +221,7 @@ public class CommentController {
      * 添加收藏
      * @param itemId产品id
      * @param userId用户id
-     * @return 
+     * @return params = favoId   收藏id
      */
      @RequestMapping(value = "/saveFavo", method = RequestMethod.GET)
     @ResponseBody
@@ -184,7 +231,28 @@ public class CommentController {
          favo.setIsDel((byte)0);
          favo.setItemId(itemId);
          favo.setUserId(userId);
-         return new AjaxReturn(laaItemFavoService.add(favo));
+         boolean isSuccess = laaItemFavoService.add(favo);
+         Map<String,Object> map = new HashMap<String,Object>();
+         AjaxReturn ar = new AjaxReturn();
+         ar.setStatus(isSuccess);
+         map.put("favoId",favo.getFavoId() );
+         ar.setParams(map);
+         return ar;
+   
+    }
+     /**
+      * 删除收藏   
+      * @param favoId 收藏id
+      * @return 
+      */
+       @RequestMapping(value = "/delFavo", method = RequestMethod.GET)
+    @ResponseBody
+     public AjaxReturn delFavo(Long favoId){
+         LAAItemFavo favo = laaItemFavoService.querySingleEntity(LAAItemFavo.class, favoId);
+         if(favo==null)
+             return new AjaxReturn(false);
+         favo.setIsDel((byte) 1);
+         return new AjaxReturn(laaItemFavoService.update(favo));
    
     }
      /**

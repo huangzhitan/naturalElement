@@ -11,10 +11,12 @@ import com.leosys.app.item.entity.LAAAttr;
 import com.leosys.app.item.entity.LAAItem;
 import com.leosys.app.item.entity.LAAItemAttr;
 import com.leosys.app.item.entity.LAAItemImg;
+import com.leosys.app.item.entity.LAAOrder;
 import com.leosys.app.item.entity.LAAType;
 import com.leosys.app.item.img.service.LAAItemImgService;
 import com.leosys.app.item.service.LAAItemService;
 import com.leosys.app.laanavi.entity.LAANavi;
+import com.leosys.app.order.service.LAAOrderService;
 import com.leosys.app.type.service.LAATypeService;
 import com.leosys.core.ajax.AjaxReturn;
 import com.leosys.core.ui.PageArr;
@@ -47,6 +49,8 @@ public class LAAItemController {
     LAAItemAttrService laaItemAttrService;
        @Autowired
     LAAAttrService laaAttrService;
+        @Autowired
+    LAAOrderService laaOrderService;
      @RequestMapping(value = "/getAll/{page}", method = RequestMethod.GET)
     public String getAllNavis(Model model,@PathVariable int page) throws Exception {
         List<LAAItem> navis = laaItemService.findAllItems();
@@ -69,6 +73,12 @@ public class LAAItemController {
      @RequestMapping(value = "/getOrders", method = RequestMethod.GET)
     public String getAllOrders(Model model) throws Exception {
         return "item/orderIndex";
+    }
+     @RequestMapping(value = "/getUpdateOrders", method = RequestMethod.GET)
+    public String getUpdateOrders(Model model,Long orderId) throws Exception {
+         LAAOrder order = laaOrderService.querySingleEntity(LAAOrder.class, orderId);
+         model.addAttribute("order", order);
+        return "item/updateOrder";
     }
     
      @RequestMapping(value = "/addItems", method = RequestMethod.GET)
