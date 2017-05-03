@@ -324,7 +324,7 @@ public class CommentController {
       */
        @RequestMapping(value = "/payBefore", method = RequestMethod.GET)
     @ResponseBody
-      public AjaxReturn payBefore(Long  orderId,String address,String lxrName,String phoneNo) throws Exception{
+      public AjaxReturn payBefore(Long  orderId,String address,String lxrName,String phoneNo,String liuYan) throws Exception{
            AjaxReturn ar  = new AjaxReturn(false);
           LAAOrder order = (LAAOrder)laaOrderService.querySingleEntity(LAAOrder.class, orderId);
           if(order==null){
@@ -344,6 +344,7 @@ public class CommentController {
           order.setAddress(address);
           order.setPhoneNo(phoneNo);
           order.setLxrName(lxrName);
+          order.setLiuYan(liuYan);
         ar.setStatus(laaOrderService.update(order));
         return ar;
      }
@@ -361,7 +362,7 @@ public class CommentController {
          LAAItem item = laaItemService.querySingleEntity(LAAItem.class, itemId);
          String content="有一笔："+item.getItemName()+"的订单支付完成，支付渠道："+zfqudao+"请注意查收并及时发货";
         
-         List<Map<String,Object>> users = jdbcTemplate.queryForList("select t.*  from  leosys_user t join leosys_user_leosys_role t1 on(t.uid = t1.LAAUser_uid) join leosys_role t2 on(t1.roles_roleid=t2.roleid)");
+         List<Map<String,Object>> users = jdbcTemplate.queryForList("select t.*  from  leosys_user t join leosys_user_leosys_role t1 on(t.uid = t1.LAAUser_uid) join leosys_role t2 on(t1.roles_roleid=t2.roleid) where t2.level=1");
          for(Map<String,Object> map:users){
           LAAMess mess  = new LAAMess();
          mess.setContent(content);
@@ -394,13 +395,45 @@ public class CommentController {
     return pagelist.$pageAjax;
     }
     /**
+     * 
+     * @param userId
+     * @param page
+     * @param pageSize
+     * @param messType
+     * @return 
+     */
+    @RequestMapping(value = "/queryCounts", method = RequestMethod.GET)
+    @ResponseBody
+     public Map<String,Object> queryCounts(Integer userId ){
+   Map<String,Object> result=new HashMap();
+   result.put("messCount", 0);
+    result.put("favoCount", 0);
+    List mess=jdbcTemplate.queryForList("select t.* from leosys_mess t where t.isread=0 and t.reciverid="+userId);
+     List favos=jdbcTemplate.queryForList("select t.* from leosys_item_favo t where t.isdel=0 and t.userid="+userId);
+     if(mess!=null)
+         result.put("messCount", mess.size());
+     if(favos!=null)
+         result.put("favoCount", favos.size());
+     return result;
+    }
+    /**
      * 标记成已读的信息
      * @param messId
      * @return 
      */
+     @RequestMapping(value = "/isRead", method = RequestMethod.GET)
+    @ResponseBody
     public AjaxReturn isRead(Long messId){
     LAAMess mess = (LAAMess)laaMessService.querySingleEntity(LAAMess.class, messId);
     mess.setIsRead((byte)1);
+    return new AjaxReturn(laaMessService.update(mess));
+    }
+    
+     @RequestMapping(value = "/delMess", method = RequestMethod.GET)
+    @ResponseBody
+    public AjaxReturn delMess(Long messId){
+    LAAMess mess = (LAAMess)laaMessService.querySingleEntity(LAAMess.class, messId);
+    mess.setIsDel((byte)1);
     return new AjaxReturn(laaMessService.update(mess));
     }
     
@@ -537,9 +570,11 @@ public class CommentController {
     */
      @RequestMapping(value = "/getUserById", method = RequestMethod.GET)
     @ResponseBody
-   public LAAUser getUserById(Long userId){
-    LAAUser userNew = laaUserService.querySingleEntity(LAAUser.class, userId);
-    return userNew;
+   public Map<String,Object> getUserById(Long userId){
+       List<Map<String,Object>> users = jdbcTemplate.queryForList(" select * from leosys_user where uid="+userId);
+       Map<String,Object> user =users.get(0);
+   // LAAUser userNew = laaUserService.querySingleEntity(LAAUser.class, userId);
+    return user;
    }
    /**
     * 修改用户信息
@@ -701,4 +736,33 @@ public class CommentController {
        }
    
    }
+     
+        @RequestMapping(value = "/cancelOrder", method = RequestMethod.GET)
+     @ResponseBody
+     public AjaxReturn cancelOrder(Long orderId,Long userId){
+      AjaxReturn ar = new AjaxReturn(false); 
+       Map<String,Object> params = new HashMap();
+       try{
+       LAAOrder order = laaOrderService.querySingleEntity(LAAOrder.class, orderId);
+     
+       order.setIsCancel((byte)1);
+       ar.setStatus(laaOrderService.update(order));
+     LAAMess mess  = new LAAMess();
+         mess.setContent("");
+         mess.setMessTitle("系统信息，交易提醒");
+         mess.setSenderId(-1l);
+         mess.setReciverId(userId);
+         mess.setMessType((byte)1);
+         mess.setOrderId(orderId);
+         mess.setIsDel((byte)0);
+         laaMessService.add(mess);
+        return ar;
+       }catch(Exception e){
+       e.printStackTrace();
+       ar.setContent("异常："+e.getMessage());
+       return ar;
+       }
+   
+   }
+     
 }

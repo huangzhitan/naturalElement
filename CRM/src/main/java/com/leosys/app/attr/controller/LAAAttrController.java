@@ -69,7 +69,8 @@ public class LAAAttrController {
      */
     @RequestMapping(value = "/getAll/{page}", method = RequestMethod.GET)
     public String getAllTypes(Model model,@PathVariable int page) throws Exception {
-        List<LAAType> types = laaAttrService.findAllAttrs();
+        List<LAAAttr> types = laaAttrService.findAllAttrs();
+        List<LAAType> realTypes =laaTypeService.finAllParentTypes();
         PageArr arr = new PageArr();
         arr.setCount(types.size());
        
@@ -84,6 +85,7 @@ public class LAAAttrController {
         
         model.addAttribute("pagearr",arr);
         model.addAttribute("types",arr.getPageList());
+        model.addAttribute("realTypes", realTypes);
         return "attr/attrMannger";
     }
 

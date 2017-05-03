@@ -68,6 +68,9 @@ public class LAAOrder implements Serializable {
 	 private  String phoneNo="";
          @Column(name = "lxrname")
 	 private  String lxrName="";
+         
+         @Column(name = "liuyan")
+	 private  String liuYan="";
 	public Long getOrderId() {
 		return orderId;
 	}
@@ -194,6 +197,14 @@ public class LAAOrder implements Serializable {
 
     public void setLxrName(String lxrName) {
         this.lxrName = lxrName;
+    }
+
+    public String getLiuYan() {
+        return liuYan;
+    }
+
+    public void setLiuYan(String liuYan) {
+        this.liuYan = liuYan;
     }
 
   

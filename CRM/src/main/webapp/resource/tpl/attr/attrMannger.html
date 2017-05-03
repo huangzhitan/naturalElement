@@ -52,7 +52,9 @@
                                     <td>${navi.attrName!}</td>
 <!--                                    <td>${navi.orderNo!}</td>-->
                                   
-                                    <td>${navi.typeId!}</td>
+                                    <td><#list realTypes as type>
+                                        <#if navi.typeId==type.typeId>${type.typeName!''}</#if>
+                                      </#list></td>
 <!--                                    <td>${navi.naviIcon!}</td>-->
                                    
                                     <td style="text-align: center" >

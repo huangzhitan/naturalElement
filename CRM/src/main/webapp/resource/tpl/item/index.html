@@ -30,8 +30,12 @@
                                 <a  class="btn btn-default btn-success  common-btn-margin" href="${APP_PATH}/addItems " role="button" >
                                    添加
                                 </a>
-                                 <a  onclick="supplierIndex.delList()" class="btn btn-default btn-success  common-btn-margin" href="#" role="button" >
-                                   删除
+                                 <a  onclick="delList()" class="btn btn-default btn-success  common-btn-margin" href="#" role="button" >
+                                   下架
+                                </a>
+                            
+                            <a  onclick="upList()" class="btn btn-default btn-success  common-btn-margin" href="#" role="button" >
+                                   上架
                                 </a>
                         </div>
 
@@ -75,7 +79,7 @@
                                          ${item.nums!}
                                     </td>
                                     
-                                    <td>${item.isDel!}</td>
+                                    <td><#if item.isDel==0>上架<#else>下架</#if></td>
                                     <td><a href="${APP_PATH}/imgs?itemId=${item.itemId}">查看图片</a></td>
                                          
                                
@@ -99,6 +103,61 @@
           window.location.href="${APP_PATH}/detail?itemId="+itemId;
           
       }
+     function delList (){
+         var ids=[];
+          $("input[name='singleselect']:checked").each(function(){
+            ids.push($(this).val()) ; 
+              
+          });
+          if(ids.length<1){
+              layer.msg("请选择下架商品");
+              returtn;
+          }
+          var idArr=ids.join(",");
+              
+            layer.confirm("确认下架吗？", {icon: 3, title:'提示'}, function(data){
+                if (data){
+                        $.post(APP_PATH+"/delList?ids=" + idArr, {}, function(msg){
+                        if (msg.status){
+                            layer.msg("下架成功");
+                            location.reload();
+                        } 
+                        else{
+                            layer.msg(msg.content);
+                            
+                        }
+                    })
+                }
+            });
+       }
+       
+       function uplList (){
+         var ids=[];
+          $("input[name='singleselect']:checked").each(function(){
+            ids.push($(this).val()) ; 
+              
+          });
+          if(ids.length<1){
+              layer.msg("请选择上架的商品");
+              returtn;
+          }
+          var idArr=ids.join(",");
+              
+            layer.confirm("确认下架吗？", {icon: 3, title:'提示'}, function(data){
+                if (data){
+                        $.post(APP_PATH+"/upList?ids=" + idArr, {}, function(msg){
+                        if (msg.status){
+                            layer.msg("下架成功");
+                            location.reload();
+                        } 
+                        else{
+                            layer.msg(msg.content);
+                            
+                        }
+                    })
+                }
+            });
+       }
     </script>
 </body>
 </html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>消息</title>
+        <#include "/bootstrap/include/static.html" />
+        <#import "/bootstrap/baseui/UIE.html" as forms />
+        <link href="${RESOURCE}/bootstrap/css/ymcss/supplier.css" rel="stylesheet">
+        <link href="${RESOURCE}/bootstrap/css/ymcss/common.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <div id="wrapcontent" class="clearfix content">
+            <!-- 左边侧边栏-->
+            <div id="sidebar" class="sidebar clearfix">
+                <!-- 系统logo-->
+                <div id="applogo" class="fl-lt"></div>
+                <div class="bardiv fl-lt clearfix"></div>
+                <#include "/bootstrap/include/sidebar.html" />
+            </div>
+            <div id="contentdiv" class="content">
+                <#include "/bootstrap/include/topbanner.html" />
+                <div class="panel  panel-u panel-u-line alltable-panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">消息列表</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+            <li role="presentation" class="active"><a href="#home" onclick="setValue(this, '')" aria-controls="home" role="tab" data-toggle="tab" id="fistClick">全部</a></li>
+            <li role="presentation"><a href="#profile" onclick="setValue(this, 0)" aria-controls="profile" role="tab" data-toggle="tab">未读</a></li>
+            <li role="presentation"><a href="#profile" onclick="setValue(this, 1)" aria-controls="profile" role="tab" data-toggle="tab">已读</a></li>
+ 
+            
+          </ul>
+
+                        <table class="table table-hover table-u table-u-hover" >
+                            <thead>
+                                <tr>
+                                   <th>消息标题</th>
+                                    <th>消息类别</th>
+                                    <th>消息内容</th>
+                                    <th>发送时间</th>
+                                    <th>操作</th>
+                                     
+                                   
+                                    
+                                </tr>
+                            </thead>
+                            <tbody id="orderList">
+                              
+                        </tbody>
+                    </table>
+ <div class="tfoot-div">
+     <div id="pagearr">
+         
+         
+     </div>
+     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <#include "/bootstrap/include/footer.html" />
+    <script>
+        var status='';
+        function setValue(th, val){
+            $(".nav-tabs li").removeClass("active");
+            $(th).parent().addClass("active");
+            status=val;
+            queryOrderList(1);
+        }
+        
+        function  queryOrderList (page){
+           
+            $.ajax({
+                type:"get",
+                url:"/CRM/app/laaItem/queryMess",
+               
+                data:{isRead:status,userId:"${laaUserUid}",page:page,pageSize:10},
+                success:function(data){
+                      var shows=data.pageList;
+                      var html=[];
+                      $.each(shows, function (index) {
+                            html.push('<tr>');
+                         
+                               html.push('<td>'+(shows[index].messtitle==null?"无标题":shows[index].messtitle)+'</td>');
+                                html.push('<td>系统消息</td>');
+                                html.push('<td>'+(shows[index].content==null?"--":shows[index].content)+'</td>');
+                                 html.push('<td>'+(shows[index].createtime==null?"--":shows[index].createtime)+'</td>');
+                              var statusText='<a onclick="isRead('+shows[index].messid+')">标记已读</a>';
+                              if(shows[index].isread==1)
+                                  statusText='已读';
+                             
+                               html.push('<td>'+statusText+'|<a onclick="delMess('+shows[index].messid+')">删除</a></td>');           
+                            
+                           html.push('</tr>');
+
+
+                    });
+                     $("#orderList").html(html.join("")); 
+                     var pagearr= $("#pagearr");
+                     pageding(pagearr, "queryOrderList", data);
+                   
+            }
+        });
+    }
+    
+     
+    function delMess(id){
+        
+         layer.confirm("确定删除？", {icon: 3, title:'提示'}, function(index){          
+                        var loadIndex=layer.load();
+                        $.ajax({
+                                url : "/CRM/app/comment/delMess/",
+                                type : "GET",
+                                data : {
+                                    messId:id
+                                },
+                                success : function(data) {
+                                    layer.close(loadIndex);
+                                    layer.msg("删除成功");
+                                    queryOrderList(1);
+                                    layer.close(index);
+                                }
+                            });       
+                     });
+        
+    }
+     function isRead(id){
+        
+         layer.confirm("确定已读？", {icon: 3, title:'提示'}, function(index){          
+                        var loadIndex=layer.load();
+                        $.ajax({
+                                url : "/CRM/app/comment/isRead/",
+                                type : "GET",
+                                data : {
+                                    messId:id
+                                   
+                                },
+                                success : function(data) {
+                                    layer.close(loadIndex);
+                                    layer.msg("修改成功");
+                                    queryOrderList(1);
+                                    layer.close(index);
+                                }
+                            });       
+                     });
+        
+    }
+    $(function(){
+        $("#fistClick").click();
+        
+        
+    })
+    </script>
+</body>
+</html>

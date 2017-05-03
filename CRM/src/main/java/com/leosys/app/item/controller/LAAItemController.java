@@ -11,19 +11,26 @@ import com.leosys.app.item.entity.LAAAttr;
 import com.leosys.app.item.entity.LAAItem;
 import com.leosys.app.item.entity.LAAItemAttr;
 import com.leosys.app.item.entity.LAAItemImg;
+import com.leosys.app.item.entity.LAAMess;
 import com.leosys.app.item.entity.LAAOrder;
 import com.leosys.app.item.entity.LAAType;
 import com.leosys.app.item.img.service.LAAItemImgService;
 import com.leosys.app.item.service.LAAItemService;
 import com.leosys.app.laanavi.entity.LAANavi;
+import com.leosys.app.laauser.entity.LAAUser;
+import com.leosys.app.laauser.service.LAAUserService;
+import com.leosys.app.mess.service.LAAMessService;
 import com.leosys.app.order.service.LAAOrderService;
 import com.leosys.app.type.service.LAATypeService;
 import com.leosys.core.ajax.AjaxReturn;
 import com.leosys.core.ui.PageArr;
+import com.leosys.core.utils.PageAjax;
+import com.leosys.core.utils.PageList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,6 +58,12 @@ public class LAAItemController {
     LAAAttrService laaAttrService;
         @Autowired
     LAAOrderService laaOrderService;
+        @Autowired
+    private LAAUserService laaUserService;
+         @Autowired
+    private LAAMessService laaMessService;
+        @Autowired
+        JdbcTemplate jdbcTemplate;
      @RequestMapping(value = "/getAll/{page}", method = RequestMethod.GET)
     public String getAllNavis(Model model,@PathVariable int page) throws Exception {
         List<LAAItem> navis = laaItemService.findAllItems();
@@ -100,6 +113,36 @@ public class LAAItemController {
        map.put("itemId", item.getItemId());
         ar.setParams(map);
         return ar;
+    }
+    
+     @RequestMapping(value = "/delList", method = RequestMethod.POST)
+     @ResponseBody
+    public AjaxReturn delList( String ids){
+    String[] idArr=ids.split(",");
+     for(String idString:idArr){
+         LAAItem item =laaItemService.querySingleEntity(LAAItem.class, Long.parseLong(idString));
+         item.setIsDel((byte)1);
+         laaItemService.update(item);
+     }   
+ 
+   
+   return new AjaxReturn(true);
+   
+    }
+    
+       @RequestMapping(value = "/upList", method = RequestMethod.POST)
+     @ResponseBody
+    public AjaxReturn upList( String ids){
+    String[] idArr=ids.split(",");
+     for(String idString:idArr){
+         LAAItem item =laaItemService.querySingleEntity(LAAItem.class, Long.parseLong(idString));
+         item.setIsDel((byte)0);
+         laaItemService.update(item);
+     }   
+ 
+   
+   return new AjaxReturn(true);
+   
     }
     
       @RequestMapping(value = "/saveItemAttrs", method = RequestMethod.POST)
@@ -191,6 +234,68 @@ public class LAAItemController {
    model.addAttribute("itemId", itemId);
 
     return "item/addImg";
+    }
+    
+      @RequestMapping(value = "/myMess", method = RequestMethod.GET)
+    public String myMess( Model model){
+     
+   
+  
+   
+     
+   
+
+    return "item/myMess";
+    }
+    
+      @RequestMapping(value = "/toSendMess", method = RequestMethod.GET)
+    public String toSendMess( Model model){
+
+    return "item/sendMess";
+    }
+      @RequestMapping(value = "/queryMess", method = RequestMethod.GET)
+    @ResponseBody
+    public PageAjax queryMyMess(Integer userId ,Integer page,Integer pageSize,Integer isRead){
+    String sql ="select t2.* from leosys_mess t2 where t2.reciverid= "+userId+" and t2.messtype=0 and t2.isdel=0";
+   if(isRead!=null){
+       sql+=" and t2.isread="+isRead;
+   }
+   
+     sql+=" order by t2.createtime desc";
+    PageList pagelist=new PageList(jdbcTemplate,sql, page, pageSize);
+    return pagelist.$pageAjax;
+    }
+    
+      @RequestMapping(value = "/saveMyMess", method = RequestMethod.POST)
+      @ResponseBody
+    public AjaxReturn saveMyMess( Long reciverId,Long sendId,String messTitle,String content){
+        AjaxReturn ar = new AjaxReturn(false);
+        try{
+if(reciverId==-1){
+List<LAAUser> users = laaUserService.findAllLaaUsers();
+for(LAAUser user:users){
+     LAAMess mess  = new LAAMess();
+         mess.setContent(content);
+         mess.setMessTitle("系统消息："+messTitle);
+         mess.setSenderId(-1l);
+         mess.setReciverId(user.getuId());
+         mess.setMessType((byte)0);
+         laaMessService.add(mess);
+}
+ar.setStatus(true);
+}else{
+     LAAMess mess  = new LAAMess();
+         mess.setContent(content);
+         mess.setMessTitle("系统消息："+messTitle);
+         mess.setSenderId(-1l);
+         mess.setReciverId(reciverId);
+         mess.setMessType((byte)0);
+         laaMessService.add(mess);
+}
+        }catch(Exception e){
+        return ar;
+        }
+    return ar;
     }
     
 }
