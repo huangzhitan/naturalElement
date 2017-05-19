@@ -1,8 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>供应商数字资源</title>
+        <title>产品管理</title>
         <#include "/bootstrap/include/static.html" />
         <#import "/bootstrap/baseui/UIE.html" as forms />
         <link href="${RESOURCE}/bootstrap/css/ymcss/supplier.css" rel="stylesheet">
@@ -25,6 +25,21 @@
                         <h3 class="panel-title">产品列表</h3>
                     </div>
                     <div class="panel-body">
+                         <div class="show-float-left" >
+                             <span> 预定：<select id="status" onchange="queryItems(1)">
+                                     <option value="">全部</option>
+                                     <option value="0">未预定</option>
+                                     <option value="1">已预订</option>
+                                 </select></span>
+                             <span> 上下架：<select id="isDel" onchange="queryItems(1)">
+                                     <option value="">全部</option>
+                                     <option value="0">上架</option>
+                                     <option value="1">下架</option>
+                                 </select></span>
+                            
+                            
+                           
+                        </div>
                        
                         <div class="show-float-right" >
                                 <a  class="btn btn-default btn-success  common-btn-margin" href="${APP_PATH}/addItems " role="button" >
@@ -47,48 +62,21 @@
                                     <th>产品信息</th>
                                     <th>规格</th>
                                     <th>数量</th>
-                                    
+                                     <th>是否预定</th>
                                     <th>状态</th>
                                     <th>操作</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <#if items ??>
-                                <#list items?reverse as item>
-                                <tr>          
-                                    <td  class="middle"><input type="checkbox" value="${item.itemId}" name="singleselect" autocomplete="off"/></td>
-                                     <td  class="middle" style="text-align:left;white-space:pre-line;" valign="middle"><a title="点击查看详细内容" class="no-underline" onclick="showDetail(${item.itemId})" style="line-height:16px;min-height:100px;display:block">
-                                            <#if item.pubimg!="" && item.pubimg!="a">
-                                            <img style="float: left;padding: 0 10px;margin-top:3px;" id="itemimg"  src="${item.pubimg}" width="100" height="100" style='width:110px'/>
-                                            <#else>
-                                            <img style="float: left;padding: 0 10px;margin-top:3px;" id="itemimg" src="${RESOURCE}/bootstrap/images/noimg.jpg_100x100.jpg" width="100" height="100" style='width:110px'/>
-                                            </#if>
-                                            <div style="margin-left:120px;margin-top: 10px">
-                                                <strong style="display:table-cell;">${item.itemName}</strong>
-<!--                                                <#if item.itemInfo??>
-                                                <p> ${item.itemInfo}</p>  
-                                                </#if>-->
-                                            </div>
-                                        </a></td>
-                                    <td>${item.detail!}</td>
-                                    
-                                    <td class="middle">
-                                         ${item.longs!}x ${item.weidth!}x ${item.height!}
-                                    </td>
-                                    <td class="middle">
-                                         ${item.nums!}
-                                    </td>
-                                    
-                                    <td><#if item.isDel==0>上架<#else>下架</#if></td>
-                                    <td><a href="${APP_PATH}/imgs?itemId=${item.itemId}">查看图片</a></td>
-                                         
+                            <tbody id="itemList">
                                
-                            </tr>
-                            </#list>
-                            </#if>
                         </tbody>
                     </table>
- <@forms.pagination  pagearr=pagearr/>
+ <div class="tfoot-div">
+     <div id="pagearr">
+         
+         
+     </div>
+     </div>
                 </div>
             </div>
         </div>
@@ -131,7 +119,7 @@
             });
        }
        
-       function uplList (){
+       function upList (){
          var ids=[];
           $("input[name='singleselect']:checked").each(function(){
             ids.push($(this).val()) ; 
@@ -158,6 +146,55 @@
                 }
             });
        }
+       function queryItems(page){
+           var status = $("#status option:selected").val();
+           var isDel = $("#isDel option:selected").val();
+          // var itemName =$("#itemName").val();
+               $.ajax({
+                type:"POST",
+                url:"${APP_PATH}/queryMyItem",
+               
+                data:{status:status,isDel:isDel,page:page,pageSize:10},
+                success:function(data){
+                      var shows=data.pageList;
+                      var html=[];
+                           
+                      $.each(shows, function (index) {
+                          var status ="未预定";
+                          var isDel="上架"
+                          if(shows[index].status==1)
+                              status="已预订";
+                          if(shows[index].isdel==1)
+                              isDel="下架";
+                              
+                            html.push('<tr>');
+                            html.push('<td  class="middle"><input type="checkbox" value="'+shows[index].itemid+'" name="singleselect" autocomplete="off"/></td>')
+                            html.push('<td  class="middle" style="text-align:left;white-space:pre-line;" valign="middle"><a onclick="showDetail('+shows[index].itemid+')">'); 
+                             html.push('<img style="float: left;padding: 0 10px;margin-top:3px;" id="itemimg"  src="'+shows[index].pubimg+'" width="100" height="100" style="width:110px"/>'); 
+                              html.push('<div style="margin-left:120px;margin-top: 10px"> <strong style="display:table-cell;">'+shows[index].itemname+'</strong> </div></a></td>'); 
+                              html.push('<td>'+shows[index].detail+'</td>');
+                              html.push('<td>'+shows[index].longs+'x'+shows[index].weidth+'x'+shows[index].height+'</td>');
+                              html.push('<td>'+shows[index].nums+'</td>');
+                               html.push('<td>'+status+'</td>');
+                                html.push('<td>'+isDel+'</td>');
+                                 html.push('<td><a href="${APP_PATH}/imgs?itemId='+shows[index].itemid+'">查看图片</a></td>');
+                                   
+                            
+                           html.push('</tr>');
+
+
+                    });
+                     $("#itemList").html(html.join("")); 
+                     var pagearr= $("#pagearr");
+                     pageding(pagearr, "queryItems", data);
+                   
+            }
+        });
+       }
+       $(function(){
+           
+        queryItems(1);   
+       })
     </script>
 </body>
 </html>

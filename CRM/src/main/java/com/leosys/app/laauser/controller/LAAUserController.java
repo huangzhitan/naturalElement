@@ -95,13 +95,15 @@ public class LAAUserController {
      * @return
      * @throws java.lang.Exception
      */
-//    @RequestMapping(value = "/delUser/{uid}", method = RequestMethod.POST)
-//    @ResponseBody
-//    public AjaxReturn deleteUser(@PathVariable long uid,HttpSession session) throws Exception {
-//        long editUid = (long) session.getAttribute("laaUserUid");
-//        AjaxReturn ar = new AjaxReturn(laaUserService.moveToRecycle(uid, editUid));
-//        return ar;
-//    }
+    @RequestMapping(value = "/delUser/{uid}", method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxReturn deleteUser(@PathVariable long uid,HttpSession session) throws Exception {
+        long editUid = (long) session.getAttribute("laaUserUid");
+        LAAUser user = laaUserService.querySingleEntity(LAAUser.class, uid);
+       // user.setIsDel((byte)1);
+        AjaxReturn ar = new AjaxReturn(laaUserService.delete(user));
+        return ar;
+    }
 
     /**
      * 新增用户
@@ -162,6 +164,7 @@ public class LAAUserController {
         laaUser.setEmail(user.getEmail());
         laaUser.setName(user.getName());
         laaUser.setSex(user.getSex());
+        laaUser.setPhoneNo(user.getPhoneNo());
         if(roleId !=null){
         LAARole role=laaRoleService.querySingleEntity(LAARole.class, roleId);
         List<LAARole> list = new ArrayList();

@@ -15,7 +15,20 @@
         <span ><strong>排序编号</strong></span>
         <input  class="input" id='orderNo' name="orderNo"  type="text"   value="${navi.orderNo}" />
     </div>
-    
+    <div class="frow">
+        <span ><strong>初始值</strong></span>
+        <input  class="input" id='initValue' name="initValue"  type="text"   value="${navi.initValue!''}" />
+    </div>
+      <div class="frow">
+        <span ><strong>展示类别</strong></span>
+             <select  class="input" id='uiType' name="uiType" >
+            <option value="0" <#if  navi.uiType==0 > selected</#if>>文本</option>
+            <option value="1"  <#if  navi.uiType==1 > selected</#if>>下拉框</option>
+             <option value="2"  <#if  navi.uiType==2 > selected</#if>>复选框</option>
+              <option value="3"  <#if  navi.uiType==3 > selected</#if>>单选框</option>
+            
+        </select>
+    </div>
  
     <div class="frow">
         <span ><strong>所属大类</strong></span>

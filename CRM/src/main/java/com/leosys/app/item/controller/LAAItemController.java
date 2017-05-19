@@ -66,22 +66,49 @@ public class LAAItemController {
         JdbcTemplate jdbcTemplate;
      @RequestMapping(value = "/getAll/{page}", method = RequestMethod.GET)
     public String getAllNavis(Model model,@PathVariable int page) throws Exception {
-        List<LAAItem> navis = laaItemService.findAllItems();
-        PageArr arr = new PageArr();
-        arr.setCount(navis.size());
        
-        arr.setUrl("/getAll/");
-        arr.setList(navis);
-        int pageTotal = arr.getPageTotal();
-        if(page>pageTotal){
-        page=pageTotal;
-        }
-         arr.setPage(page);
-        arr.setPageTotal(pageTotal);
-        
-        model.addAttribute("pagearr",arr);
-        model.addAttribute("items",arr.getPageList());
         return "item/index";
+    }
+     /**查询我的资源
+     * 
+     * @param page
+     * @param pageSize
+     * @param status
+     * @param itemName
+     * @param types
+     * order 排序参数
+     * @return  分页的信息   产品中的fprice ，sprice tprice 分别对应一级二级三级代理的不同价格   要根据代理等级   level 去区别展示
+     */
+    @RequestMapping(value = "/queryMyItem", method = RequestMethod.POST)
+    @ResponseBody
+    public PageAjax queryMyItem(Integer page,Integer pageSize,Integer status,Integer isDel,String itemName,Integer sprice,Integer eprice ){
+    String sql ="select t.* from leosys_item t   where 1=1 ";
+    if(isDel!=null){
+    sql+=" and t.isdel="+isDel;
+    }
+    if(status!=null){
+    sql+=" and t.status="+status;
+    }
+    
+     if(itemName!=null&&!"".equals(itemName)){
+     sql+=" and t.itemname like '%"+itemName+"%'";
+     }
+   
+      
+      if(sprice!=null){
+    sql+=" and t.sprice>="+sprice;
+    }
+      if(eprice!=null){
+    sql+=" and t.sprice<="+eprice;
+    }
+  
+     
+     
+   
+     sql+=" order by t.createtime desc ";
+   
+    PageList pagelist=new PageList(jdbcTemplate,sql, page, pageSize);
+    return pagelist.$pageAjax;
     }
      @RequestMapping(value = "/getOrders", method = RequestMethod.GET)
     public String getAllOrders(Model model) throws Exception {

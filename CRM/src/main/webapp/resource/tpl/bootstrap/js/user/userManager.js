@@ -30,6 +30,7 @@ var userManager = {
                 var pass1 = layer.getChildFrame("#pass1").val();
                 var pass2 = layer.getChildFrame("#pass2").val();
                 var uname = layer.getChildFrame("#uname").val();
+                 var phoneNo = layer.getChildFrame("#phoneNo").val();
                 if (!uname) {
                     layer.msg("账号不能为空");
                     return;
@@ -55,7 +56,8 @@ var userManager = {
                         'sex': layer.getChildFrame("#sex").val(),
                         'name': layer.getChildFrame("#name").val(),
                         'email': layer.getChildFrame("#email").val(),
-                        roleId: layer.getChildFrame("#roleId").val()
+                        roleId: layer.getChildFrame("#roleId").val(),
+                        phnoeNo:phoneNo
                     },
                     success: function (data) {
                         location.reload();

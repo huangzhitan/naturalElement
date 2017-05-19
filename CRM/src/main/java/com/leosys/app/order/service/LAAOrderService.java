@@ -7,11 +7,13 @@ package com.leosys.app.order.service;
 
 import com.leosys.app.item.entity.LAAOrder;
 import com.leosys.core.service.BaseService;
+import java.util.List;
 
 /**
  *
  * @author fanyouyong
  */
 public interface  LAAOrderService extends  BaseService<LAAOrder>{
+     public List<LAAOrder> queryCancels();
     
 }

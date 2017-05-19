@@ -35,6 +35,11 @@ public class LAAAttr implements Serializable {
 	 private byte isDel = 0;
 	 @Column(name = "orderno", nullable = false)
 	 private long orderNo = 0;
+         @Column(name = "uitype", nullable = false)
+	 private long uiType = 0;
+         
+         @Column(name = "initvalue", length = 50, nullable = false)
+	 private String initValue = "";
 	
 	public Long getTypeId() {
 		return typeId;
@@ -70,6 +75,22 @@ public class LAAAttr implements Serializable {
 
     public void setAttrName(String attrName) {
         this.attrName = attrName;
+    }
+
+    public long getUiType() {
+        return uiType;
+    }
+
+    public void setUiType(long uiType) {
+        this.uiType = uiType;
+    }
+
+    public String getInitValue() {
+        return initValue;
+    }
+
+    public void setInitValue(String initValue) {
+        this.initValue = initValue;
     }
 
 	 

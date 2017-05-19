@@ -7,6 +7,11 @@
       <link rel="stylesheet" type="text/css" href="${RESOURCE}/bootstrap/jslib/diyUpload/css/webuploader.css" >
 <link rel="stylesheet" type="text/css" href="${RESOURCE}/bootstrap/jslib/diyUpload/css/diyUpload.css">   
 <link rel="stylesheet" type="text/css" href="${RESOURCE}/bootstrap/css/zTreeStyle.css">  
+<style>
+#tree li ul{
+height:auto;
+}
+</style>
     </head>
     <body>
         <!-- 总结构是上下结构：wrapcontent和footer，wrapcontent里是左右结构：sidebar和contentdiv，contentdiv可以分为多个类似的内容块 -->
@@ -35,12 +40,7 @@
               <form class="form-horizontal" enctype="multipart/form-data"
                 id="zikuform" name="myitem">
                 
-                <div class="form-group" >
-                  <label for="inputName1"  class="labels col-sm-2 control-label"><span class="red">*</span> 产品名称：</label>
-                  <div class="col-sm-6">
-                    <input type="text" class="form-control" id="itemName" placeholder="" name="itemName"/>
-                  </div>
-                </div>
+              
                   <div class="form-group" >
                   <label for="inputName1"  class="labels col-sm-2 control-label"><span class="red">*</span>是否置顶：</label>
                   <div class="col-sm-6">
@@ -57,6 +57,12 @@
                   <div class="col-sm-6">
                   <ul id="tree" class="ztree" style="width:260px; overflow:auto;"></ul>
                   <input  class="form-control" id="types" name="types"   type="hidden" />
+                  </div>
+                </div>
+                      <div class="form-group" >
+                  <label for="inputName1"  class="labels col-sm-2 control-label"><span class="red">*</span> 产品名称：</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="itemName" placeholder="" name="itemName"/>
                   </div>
                 </div>
                 <div class="form-group"  id="yixuan">
@@ -77,7 +83,7 @@
                 </div>
                 
                    <div class="form-group"  >
-                  <label for="inputName1"  class="labels col-sm-2 control-label" >长x宽x高（cm）：</label>
+                  <label for="inputName1"  class="labels col-sm-2 control-label" >长x宽x高(厚)（cm）：</label>
                   <div class="col-sm-2">
                     <input type="text" value="0" class="form-control" id="longs" placeholder="" name='longs'/>
                   </div>
@@ -103,13 +109,13 @@
                   <div class="form-group"  >
                   <label for="inputName1"  class="labels col-sm-2 control-label" >二级代理价格：</label>
                   <div class="col-sm-6">
-                    <input type="text" value="0" class="form-control" id="sprice" placeholder="" name='sprice'/>
+                    <input type="text" value="0" class="form-control" id="sprice" placeholder="" disabled="disabled" name='sprice'/>
                   </div>
                 </div>
                   <div class="form-group"  >
                   <label for="inputName1"  class="labels col-sm-2 control-label" >三级代理价格：</label>
                   <div class="col-sm-6">
-                    <input type="text" value="0" class="form-control" id="tprice" placeholder="" name='tprice'/>
+                    <input type="text" value="0" class="form-control" id="tprice" placeholder="" disabled="disabled" name='tprice'/>
                   </div>
                 </div>
                    <div class="form-group">
@@ -169,6 +175,7 @@
  <script type="text/javascript" src="${RESOURCE}/bootstrap/js/jquery.ztree.core.js"></script>
     
     <script type="text/javascript">
+        var itemNameTemp="";
         var imgs=[];
         var itemId="-1";
         var ids=[];
@@ -180,7 +187,7 @@ zNodes.push(nodet);
         </#list>
 
    <#list attrs as attr>
-        var attr = {attrId:"${attr.attrId}", attrName:"${attr.attrName}", typeId:"${attr.typeId}"};
+        var attr = {attrId:"${attr.attrId}", attrName:"${attr.attrName}", typeId:"${attr.typeId}",uiType:"${attr.uiType}",initValue:"${attr.initValue!''}"};
 attrs.push(attr);
         </#list>
 
@@ -212,14 +219,27 @@ var setting = {
                   
         $.each(attrs,function(index,value){
             if(treeNode.pId==value.typeId){
-                insertHtml.push('<div class="form-group"  ><label for="inputName1"  class="labels col-sm-2 control-label" >'+value.attrName+'</label>');
-                 insertHtml.push('<div class="col-sm-6"> <input type="text" value="" class="form-control" id="'+value.attrId+'" placeholder="" /> </div></div>');
+                insertHtml.push('<div class="form-group" uiType="'+value.uiType+'" ><label for="inputName1"  class="labels col-sm-2 control-label" >'+value.attrName+'</label>');
+                var input = '<input type="text" value="" class="form-control" id="'+value.attrId+'"  />';
+                if(value.uiType==1){
+                    input='<select   class="form-control" id="'+value.attrId+'"  >'
+                    var result = value.initValue.split(",");
+                    for(var i=0;i<result.length;i++){
+                       input+='<option value="'+result[i]+'">'+result[i]+'</option>' 
+                        
+                    }
+                    input+="</select>"
+                    
+                }
+				 insertHtml.push(input);
+                 insertHtml.push('<div class="col-sm-6">  </div></div>');
                 
             }
             
         });
         $("#attrs").html(insertHtml.join(""));
-         
+         $("#itemName").val(treeNode.name);
+         itemNameTemp=treeNode.name;
                                     
                                 }
 			}
@@ -228,7 +248,21 @@ var setting = {
 $(function(){
       $.fn.zTree.init($("#tree"), setting, zNodes);
     
-    
+    $("#height").blur(function(){
+
+     var longs =$("#longs").val();
+     var width=$("#weidth").val();
+     var height=$("#height").val();
+     var item=itemNameTemp+longs+"x"+width+"x"+height;
+	 $("#itemName").val(item);
+     
+ });
+   $("#fprice").blur(function(){
+
+    $("#sprice").val($("#fprice").val());
+	 $("#tprice").val($("#fprice").val());
+     
+ });
 })
       
         $('#imgUpload').diyUpload({
@@ -248,7 +282,7 @@ $(function(){
 	// 分片大小
 
 	//最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
-	fileNumLimit:6,
+	fileNumLimit:10,
 	fileSizeLimit:5000000 * 1024,
 	fileSingleSizeLimit:500000 * 10240,
 	accept: {}
@@ -289,9 +323,16 @@ weidth:$("#weidth").val()
      };
      var attrss=[];
      $("#attrs .form-group").each(function(){
+         var uiType =$(this).attr("uiType");
          var arrtName=$(this).find('label').text();
          var attrId=$(this).find('input').attr('id');
+         if(uiType==0){
          var value=$(this).find('input').val();
+		 var attrId=$(this).find('input').attr('id');
+         }else{
+          var value=$(this).find('select').val();
+		  var attrId=$(this).find('select').attr('id');
+         }		  
          var temp={itemId:"",attrName:arrtName,attrId:attrId,value:value};
          attrss.push(temp);
          
@@ -325,8 +366,10 @@ weidth:$("#weidth").val()
              dataType:'json',
              success:function(data){
                   layer.close(loadIndex);
+				 
                   $("#secondtPanel").css("display","block");
                  $("#firstPanel").hide();
+				   alert("请继续上传内容图片");
              }
                     
                 })}
@@ -357,7 +400,7 @@ weidth:$("#weidth").val()
 	// 分片大小
 
 	//最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
-	fileNumLimit:6,
+	fileNumLimit:10,
 	fileSizeLimit:5000000 * 1024,
 	fileSingleSizeLimit:500000 * 10240,
 	accept: {}
@@ -384,6 +427,7 @@ weidth:$("#weidth").val()
      })
      
  }
+ 
     
 </script>
     </body>

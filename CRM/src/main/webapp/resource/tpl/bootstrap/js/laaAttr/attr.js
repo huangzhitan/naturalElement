@@ -37,9 +37,9 @@ var attrManager={
                     var typeName = layer.getChildFrame("#naviName").val();
                     var orderNo = layer.getChildFrame("#orderNo").val();
                     
-                  
+                    var initValue = layer.getChildFrame("#initValue").val();
                     var parentTypeId = layer.getChildFrame("#parentNaviId").val();
-                  
+                   var uiType = layer.getChildFrame("#uiType").val();
                    
                  
                     if(!typeName){
@@ -62,9 +62,8 @@ var attrManager={
                                 data : {
                                         'attrName':typeName,
                                         'orderNo':orderNo,
-                                        
-                                       
-                                        
+                                        'uiType':uiType,
+                                        'initValue':initValue,
                                         'typeId':parentTypeId
                                 },
                                 success : function(data) {
@@ -96,7 +95,9 @@ var attrManager={
                     var naviName = layer.getChildFrame("#naviName").val();
                     var orderNo = layer.getChildFrame("#orderNo").val();
                
+                     var initValue = layer.getChildFrame("#initValue").val();
                    
+                   var uiType = layer.getChildFrame("#uiType").val();
                     var parentNaviId = layer.getChildFrame("#parentNaviId").val();
                     
                 
@@ -121,7 +122,8 @@ var attrManager={
                                         'attrId':layer.getChildFrame("#naviId").val(),
                                         'attrName':naviName,
                                         'orderNo':orderNo,
-                                     
+                                      'uiType':uiType,
+                                        'initValue':initValue,
                                         
                                         'typeId':parentNaviId
                                 },

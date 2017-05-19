@@ -147,17 +147,52 @@ public class CommentController {
      */
     @RequestMapping(value = "/queryMyItem", method = RequestMethod.GET)
     @ResponseBody
-    public PageAjax queryMyItem(Integer page,Integer pageSize,Integer status,String itemName,String types,String order ){
-    String sql ="select t.* from leosys_item t where 1=1 ";
-    if(status!=null){
-    sql+=" and t.isdel="+status;
-    }
+    public PageAjax queryMyItem(Integer page,Integer pageSize,Integer status,String itemName,String types,String order,Integer sprice,Integer eprice,Integer longs,Integer weidth,Integer height,String attrs ){
+    String sql ="select t.* from leosys_item t left join leosys_item_attr t1 on(t1.itemid=t.itemid)  where 1=1 ";
+    
+    sql+=" and t.isdel=0";
+ 
     
      if(itemName!=null&&!"".equals(itemName)){
      sql+=" and t.itemname like '%"+itemName+"%'";
      }
       if(types!=null&&!"".equals(types)){
      sql+=" and t.types like '%"+types+"%'";
+     }
+      
+      if(sprice!=null){
+    sql+=" and t.sprice>="+sprice;
+    }
+      if(eprice!=null){
+    sql+=" and t.sprice<="+eprice;
+    }
+      if(longs!=null&&longs!=0){
+          if(longs!=150&&longs!=510)
+    sql+=" and ABS(t.longs-"+longs+")<=15";
+          else if(longs==150)
+               sql+=" and (t.longs-"+longs+")<=0";
+          else if(longs==510)
+                sql+=" and (t.longs-"+longs+")>=0";
+    }
+       if(weidth!=null&&weidth!=0){
+           if(weidth!=60&&weidth!=140)
+    sql+=" and ABS(t.weidth-"+weidth+")<=10";
+           else if(weidth==60)
+              sql+=" and (t.weidth-"+weidth+")<=0";   
+           else if(weidth==140)
+              sql+=" and (t.weidth-"+weidth+")>=0";  
+    }
+        if(height!=null&&height!=0){
+            if(height!=8&&height!=12)
+    sql+=" and ABS(t.height-"+height+")<=1";
+            else if(height==8)
+                   sql+=" and (t.height-"+height+")<=0";
+              else if(height==12)
+                   sql+=" and (t.height-"+height+")>=0";
+    }
+     
+        if(attrs!=null&&!"".equals(attrs)&&!"0".equals(attrs)){
+     sql+=" "+attrs;
      }
      
      if(order!=null&&!"".equals(order)){
@@ -251,8 +286,8 @@ public class CommentController {
          LAAItemFavo favo = laaItemFavoService.querySingleEntity(LAAItemFavo.class, favoId);
          if(favo==null)
              return new AjaxReturn(false);
-         favo.setIsDel((byte) 1);
-         return new AjaxReturn(laaItemFavoService.update(favo));
+  
+         return new AjaxReturn(laaItemFavoService.delete(favo));
    
     }
      /**
@@ -266,7 +301,11 @@ public class CommentController {
       @RequestMapping(value = "/saveOrder", method = RequestMethod.GET)
     @ResponseBody
      public AjaxReturn saveOrder(Long itemId,Long userId,Integer payNum,Double payPrice){
-         AjaxReturn ar =new AjaxReturn();
+         AjaxReturn ar =new AjaxReturn(false);
+         LAAItem item = laaItemService.querySingleEntity(LAAItem.class, itemId);
+         if(item==null||item.getStatus()==1)
+             return ar;
+         
          LAAOrder order = new LAAOrder();
          order.setItemId(itemId);
          order.setUserId(userId);
@@ -279,6 +318,10 @@ public class CommentController {
          params.put("orderId", order.getOrderId());
          ar.setStatus(isSuccess);
          ar.setParams(params);
+         if(isSuccess){
+         item.setStatus(1);
+         laaItemService.update(item);
+         }
          return ar;
    
     }
@@ -387,7 +430,7 @@ public class CommentController {
     public PageAjax queryMyMess(Integer userId ,Integer page,Integer pageSize,Integer messType){
     String sql ="select t2.* from leosys_mess t2 where t2.reciverid= "+userId+" and t2.messtype=0 and t2.isdel=0";
     if(messType==1){
-    sql="select t2.content,t.*,t1.itemname,t1.pubimg,t1.fprice,t1.sprice,t1.tprice from leosys_order t join leosys_item t1 on(t.itemid= t1.itemid) join leosys_mess t2 on(t.orderid=t2.orderid) where  t2.messtype=1 and t2.isdel=0 and t2.reciverid="+userId;
+    sql="select t2.content,t2.messid,t.*,t1.itemname,t1.pubimg,t1.fprice,t1.sprice,t1.tprice from leosys_order t join leosys_item t1 on(t.itemid= t1.itemid) join leosys_mess t2 on(t.orderid=t2.orderid) where  t2.messtype=1 and t2.isdel=0 and t2.reciverid="+userId;
     }
    
      sql+=" order by t2.createtime desc";
@@ -673,7 +716,7 @@ public class CommentController {
        laaUserService.update(user);
        ar.setStatus(true);
        params.put("returnCode",returnCode);
-        
+        ar.setParams(params);
         return ar;
        }catch(Exception e){
        e.printStackTrace();
@@ -722,6 +765,9 @@ public class CommentController {
        Map<String,Object> params = new HashMap();
        try{
        LAAOrder order = laaOrderService.querySingleEntity(LAAOrder.class, orderId);
+       LAAItem item =laaItemService.querySingleEntity(LAAItem.class, order.getItemId());
+       if(item.getStatus()==1)
+           return ar;
        order.setActiveTime(new Date());
        order.setIsCancel((byte)0);
        ar.setStatus(laaOrderService.update(order));
@@ -736,32 +782,71 @@ public class CommentController {
        }
    
    }
-     
-        @RequestMapping(value = "/cancelOrder", method = RequestMethod.GET)
+     /**
+      * 
+      * @return 
+      */
+     @RequestMapping(value = "/cancelOrder", method = RequestMethod.POST)
      @ResponseBody
-     public AjaxReturn cancelOrder(Long orderId,Long userId){
-      AjaxReturn ar = new AjaxReturn(false); 
-       Map<String,Object> params = new HashMap();
+     public AjaxReturn cancelOrder(){
+      AjaxReturn ar = new AjaxReturn(true); 
+      List<LAAOrder> orders = laaOrderService.queryCancels();
+      first: for(LAAOrder order:orders){
        try{
-       LAAOrder order = laaOrderService.querySingleEntity(LAAOrder.class, orderId);
+      
+     LAAItem item  =laaItemService.querySingleEntity(LAAItem.class,order.getItemId());
+     item.setStatus(0);
+     laaItemService.update(item);
      
        order.setIsCancel((byte)1);
-       ar.setStatus(laaOrderService.update(order));
+       laaOrderService.update(order);
      LAAMess mess  = new LAAMess();
          mess.setContent("");
-         mess.setMessTitle("系统信息，交易提醒");
+         mess.setMessTitle("系统信息");
          mess.setSenderId(-1l);
-         mess.setReciverId(userId);
+         mess.setReciverId(order.getUserId());
          mess.setMessType((byte)1);
-         mess.setOrderId(orderId);
+         mess.setOrderId(order.getOrderId());
          mess.setIsDel((byte)0);
          laaMessService.add(mess);
-        return ar;
+     
        }catch(Exception e){
-       e.printStackTrace();
-       ar.setContent("异常："+e.getMessage());
-       return ar;
+           e.printStackTrace();
+      continue first;
+       
        }
+       }
+       
+          return ar;
+   
+   }
+     
+     @RequestMapping(value = "/cancelOrderOnly", method = RequestMethod.POST)
+     @ResponseBody
+     public AjaxReturn cancelOrderOnly(Long orderId){
+      AjaxReturn ar = new AjaxReturn(true); 
+ 
+      LAAOrder order =laaOrderService.querySingleEntity(LAAOrder.class, orderId);
+     LAAItem item  =laaItemService.querySingleEntity(LAAItem.class,order.getItemId());
+     item.setStatus(0);
+     laaItemService.update(item);
+     
+         order.setIsCancel((byte)1);
+         laaOrderService.update(order);
+         LAAMess mess  = new LAAMess();
+         mess.setContent("");
+         mess.setMessTitle("系统信息");
+         mess.setSenderId(-1l);
+         mess.setReciverId(order.getUserId());
+         mess.setMessType((byte)1);
+         mess.setOrderId(order.getOrderId());
+         mess.setIsDel((byte)0);
+         laaMessService.add(mess);
+     
+      
+     
+       
+          return ar;
    
    }
      

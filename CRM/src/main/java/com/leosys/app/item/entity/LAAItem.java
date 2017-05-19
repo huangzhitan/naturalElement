@@ -60,6 +60,8 @@ public class LAAItem implements Serializable {
     private long sprice = 0;
     @Column(name = "tprice", nullable = false)
     private long tprice = 0;
+    @Column(name = "status", nullable = false)
+    private int status = 0;
 
     public long getItemId() {
         return itemId;
@@ -187,6 +189,14 @@ public class LAAItem implements Serializable {
 
     public void setTprice(long tprice) {
         this.tprice = tprice;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
             
     
