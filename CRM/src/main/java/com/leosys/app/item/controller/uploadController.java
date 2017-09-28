@@ -7,6 +7,7 @@ package com.leosys.app.item.controller;
 
 import com.leosys.core.ajax.AjaxReturn;
 import java.io.File;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +33,8 @@ public class uploadController {
         System.out.println("开始");  
         String path = request.getSession().getServletContext().getRealPath("upload");  
         String fileName = file.getOriginalFilename();  
+        fileName=new Date().getTime()+fileName;
+       
 //        String fileName = new Date().getTime()+".jpg";  
         System.out.println(path);  
         File targetFile = new File(path, fileName);  

@@ -31,6 +31,18 @@ public class LAAType implements Serializable {
 	 private long parentId = 0;
 	 @Column(name = "isparent", nullable = false)
 	 private byte isParent = 0;
+         
+         @Column(name = "img", length = 255, nullable = false)
+	 private String img = "";
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+         
 	public Long getTypeId() {
 		return typeId;
 	}

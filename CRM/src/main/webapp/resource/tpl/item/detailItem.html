@@ -7,7 +7,12 @@
       <link rel="stylesheet" type="text/css" href="${RESOURCE}/bootstrap/jslib/diyUpload/css/webuploader.css" >
 <link rel="stylesheet" type="text/css" href="${RESOURCE}/bootstrap/jslib/diyUpload/css/diyUpload.css">   
 <link rel="stylesheet" type="text/css" href="${RESOURCE}/bootstrap/css/zTreeStyle.css">  
-    </head>
+    <style>
+#tree li ul{
+height:auto;
+}
+</style>
+	</head>
     <body>
         <!-- 总结构是上下结构：wrapcontent和footer，wrapcontent里是左右结构：sidebar和contentdiv，contentdiv可以分为多个类似的内容块 -->
         <div  class="clearfix content">
@@ -106,13 +111,13 @@
                   <div class="form-group"  >
                   <label for="inputName1"  class="labels col-sm-2 control-label" >二级代理价格：</label>
                   <div class="col-sm-6">
-                    <input type="text" value="${item.sprice!'0'}" class="form-control" id="sprice" placeholder="" name='sprice'/>
+                    <input type="text" value="${item.sprice!'0'}" class="form-control" id="sprice" placeholder="" name='sprice' disabled='disabled'/>
                   </div>
                 </div>
                   <div class="form-group"  >
                   <label for="inputName1"  class="labels col-sm-2 control-label" >三级代理价格：</label>
                   <div class="col-sm-6">
-                    <input type="text" value="${item.tprice!'0'}" class="form-control" id="tprice" placeholder="" name='tprice'/>
+                    <input type="text" value="${item.tprice!'0'}" class="form-control" id="tprice" placeholder="" name='tprice' disabled='disabled'/>
                   </div>
                 </div>
                    <div class="form-group">
@@ -177,6 +182,16 @@
         var nodet = {id:"${type.typeId}", pId:"${type.parentId}", name:"${type.typeName}"};
 zNodes.push(nodet);
         </#list>
+		
+		var typestr ="${item.types!}";
+		var typeArr=typestr.split(",");
+		var typeId=typeArr[typeArr.length-1];
+		var typeName="";
+		$.each(zNodes,function(index,value){
+		if(typeId==value.id)
+		 typeName=value.name;
+		});
+		var itemTemp = "${item.longs!'0'} x ${item.weidth!'0'} x ${item.height!'0'}";
 
 var setting = {
 		view: {
@@ -200,13 +215,49 @@ var setting = {
                                     ids.push(treeNode.pId);
                                     ids.push(treeNode.id);
                                     $("#types").val(ids.join(","));
+									typeName=treeNode.name;
+									var itemName =typeName+itemTemp;
+									$("#itemName").val(itemName);
                                 }
 			}
 		}
 	};
 $(function(){
       $.fn.zTree.init($("#tree"), setting, zNodes);
-    
+    $("#height").blur(function(){
+
+     var longs =$("#longs").val();
+     var width=$("#weidth").val();
+     var height=$("#height").val();
+     itemTemp=longs+"x"+width+"x"+height;
+	 $("#itemName").val(typeName+itemTemp);
+     
+ });
+  $("#longs").blur(function(){
+
+     var longs =$("#longs").val();
+     var width=$("#weidth").val();
+     var height=$("#height").val();
+     itemTemp=longs+"x"+width+"x"+height;
+	 $("#itemName").val(typeName+itemTemp);
+     
+ });
+ 
+  $("#weidth").blur(function(){
+
+     var longs =$("#longs").val();
+     var width=$("#weidth").val();
+     var height=$("#height").val();
+     itemTemp=longs+"x"+width+"x"+height;
+	 $("#itemName").val(typeName+itemTemp);
+     
+ });
+   $("#fprice").blur(function(){
+
+    $("#sprice").val($("#fprice").val());
+	 $("#tprice").val($("#fprice").val());
+     
+ });
     
 })
       
@@ -227,7 +278,7 @@ $(function(){
 	// 分片大小
 
 	//最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
-	fileNumLimit:6,
+	fileNumLimit:1,
 	fileSizeLimit:5000000 * 1024,
 	fileSingleSizeLimit:500000 * 10240,
 	accept: {}
@@ -238,6 +289,11 @@ $(function(){
                  alert("请填写产品名称");
                  return false;
              }
+			 	 if (isNaN($("#longs").val())|| isNaN($("#weidth").val()) ||isNaN($("#height").val()) ||isNaN($("#fprice").val()) ) {
+            			
+			alert("非法输入请确认长宽厚，价格等数字框是正确数字！！");
+			return false;
+			 }
              return true;
              
          } 

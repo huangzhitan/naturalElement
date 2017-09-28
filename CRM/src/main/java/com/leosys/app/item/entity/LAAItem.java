@@ -47,11 +47,11 @@ public class LAAItem implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime = new Date();
     @Column(name = "longs", nullable = false)
-    private long longs = 0;
+    private double longs = 0;
     @Column(name = "weidth", nullable = false)
-    private long weidth = 0;
+    private double weidth = 0;
     @Column(name = "height", nullable = false)
-    private long height = 0;
+    private double height = 0;
     @Column(name = "nums", nullable = false)
     private long nums = 0;
     @Column(name = "fprice", nullable = false)
@@ -135,27 +135,27 @@ public class LAAItem implements Serializable {
         this.createTime = createTime;
     }
 
-    public long getLongs() {
+    public double getLongs() {
         return longs;
     }
 
-    public void setLongs(long longs) {
+    public void setLongs(double longs) {
         this.longs = longs;
     }
 
-    public long getWeidth() {
+    public double getWeidth() {
         return weidth;
     }
 
-    public void setWeidth(long weidth) {
+    public void setWeidth(double weidth) {
         this.weidth = weidth;
     }
 
-    public long getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(long height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 

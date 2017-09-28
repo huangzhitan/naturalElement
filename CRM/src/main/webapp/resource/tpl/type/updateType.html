@@ -2,6 +2,8 @@
 <#import "/bootstrap/baseui/UIE.html" as forms />
  <#include "/bootstrap/include/boxjs.html" />  
 <link href="${RESOURCE}/bootstrap/css/ymcss/user.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="${RESOURCE}/bootstrap/jslib/diyUpload/css/webuploader.css" >
+<link rel="stylesheet" type="text/css" href="${RESOURCE}/bootstrap/jslib/diyUpload/css/diyUpload.css">  
 <form action="#" name="frmMain" class="form-horizontal form-horizontal-bg">
     <div class="frow">
         <span ><strong>类别ID</strong></span>
@@ -32,11 +34,52 @@
             </#if>
         </select>
     </div>
+    <div class="frow">
+        <span ><strong>图标路径</strong></span>
+        <input  class="input" id="img" name="img" value="${navi.img!''}"   disabled/>
+    </div>
+    <div class="frow">
+         <span ><strong>类别图片</strong></span>
+       <div class="col-sm-6">
+                       <div class="localUpload_wrap">
+
+                                <div class="localUpload" style="min-height:230px;background:#fff">
+                                    <div id="imgUpload">
+
+                                    </div>
+                                </div>
+                            </div>
+                   
+                  </div>
+    </div>
  
 </form>
-    
+    <script type="text/javascript" src="${RESOURCE}/bootstrap/jslib/diyUpload/js/webuploader.html5only.min.js"></script>
+<script type="text/javascript" src="${RESOURCE}/bootstrap/jslib/diyUpload/js/diyUpload.js"></script>
 <script>
     //默认非父节点
     $("#radio"+'${navi.isParent}').attr("checked","checked");
     $("#parentNaviId").val('${navi.parentId}');
+    
+     $('#imgUpload').diyUpload({
+	url:'/CRM/app/upload/uploadImg',
+	success:function( data ) {
+		if(data.status){
+                 $("#img").val(data.params.fileUrl);
+                }
+	},
+	error:function( err ) {
+            alert(err);
+		//console.info( err );	
+	},
+	buttonText : '选择文件',
+	chunked:true,
+	// 分片大小
+
+	//最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
+	fileNumLimit:1,
+	fileSizeLimit:5000000 * 1024,
+	fileSingleSizeLimit:500000 * 10240,
+	accept: {}
+});
 </script>

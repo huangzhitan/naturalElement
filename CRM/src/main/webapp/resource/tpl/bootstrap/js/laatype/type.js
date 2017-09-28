@@ -40,6 +40,7 @@ var typeManager={
                     
                     var isParent = layer.getChildFrame('input[name="isParent"]:checked').val();
                     var parentTypeId = layer.getChildFrame("#parentNaviId").val();
+                    var img = layer.getChildFrame("#img").val();
                     if(isParent == 1 && parentTypeId != 0){
                         layer.msg("父节点不能再选择一个父节点");return;
                     }
@@ -67,7 +68,7 @@ var typeManager={
                                 data : {
                                         'typeName':typeName,
                                         'orderNo':orderNo,
-                                        
+                                        'img':img,
                                         'isParent':isParent,
                                         
                                         'parentId':parentTypeId
@@ -103,7 +104,7 @@ var typeManager={
                
                     var isParent = layer.getChildFrame('input[name="isParent"]:checked').val();
                     var parentNaviId = layer.getChildFrame("#parentNaviId").val();
-                    
+                    var img = layer.getChildFrame("#img").val();
                     if(isParent == 1 && parentNaviId != 0){
                         layer.msg("父节点不能再选择一个父节点");return;
                     }
@@ -131,7 +132,7 @@ var typeManager={
                                         'typeId':layer.getChildFrame("#naviId").val(),
                                         'typeName':naviName,
                                         'orderNo':orderNo,
-                                        
+                                        'img':img,
                                         'isParent':isParent,
                                         
                                         'parentId':parentNaviId

@@ -148,7 +148,7 @@ public class CommentController {
     @RequestMapping(value = "/queryMyItem", method = RequestMethod.GET)
     @ResponseBody
     public PageAjax queryMyItem(Integer page,Integer pageSize,Integer status,String itemName,String types,String order,Integer sprice,Integer eprice,Integer longs,Integer weidth,Integer height,String attrs ){
-    String sql ="select t.* from leosys_item t left join leosys_item_attr t1 on(t1.itemid=t.itemid)  where 1=1 ";
+    String sql ="select distinct  t.* from leosys_item t left join leosys_item_attr t1 on(t1.itemid=t.itemid)  where 1=1 ";
     
     sql+=" and t.isdel=0";
  
@@ -198,7 +198,7 @@ public class CommentController {
      if(order!=null&&!"".equals(order)){
      sql+=" order by "+order;
      }else{
-     sql+=" order by t.createtime desc ";
+     sql+=" order by t.status ,t.createtime desc ";
      }
     PageList pagelist=new PageList(jdbcTemplate,sql, page, pageSize);
     return pagelist.$pageAjax;
@@ -403,6 +403,8 @@ public class CommentController {
              zfqudao="微信";
          Long itemId = order.getItemId();
          LAAItem item = laaItemService.querySingleEntity(LAAItem.class, itemId);
+         item.setIsDel((byte)1);
+         laaItemService.update(item);
          String content="有一笔："+item.getItemName()+"的订单支付完成，支付渠道："+zfqudao+"请注意查收并及时发货";
         
          List<Map<String,Object>> users = jdbcTemplate.queryForList("select t.*  from  leosys_user t join leosys_user_leosys_role t1 on(t.uid = t1.LAAUser_uid) join leosys_role t2 on(t1.roles_roleid=t2.roleid) where t2.level=1");
@@ -524,7 +526,7 @@ public class CommentController {
     String text = (new Date().getTime()+"");
     
     String realText = text.substring(text.length()-6,text.length());
-    String yanCode = SendMessage.postMessage(phoneNo, "邀请码："+realText);
+    String yanCode = SendMessage.postMessage(phoneNo, "验证码："+realText);
     if(Integer.parseInt(yanCode)<0){
         System.out.println(yanCode);
     return ar;

@@ -244,6 +244,7 @@ public class LAAItemController {
     return "item/imgs";
     }
       @RequestMapping(value = "/delImg", method = RequestMethod.POST)
+      @ResponseBody
     public AjaxReturn delImg( Long id){
     LAAItemImg img =laaItemImgService.querySingleEntity(LAAItemImg.class, id);
    

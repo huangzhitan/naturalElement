@@ -282,7 +282,7 @@ $(function(){
 	// 分片大小
 
 	//最大上传的文件数量, 总文件大小,单个文件大小(单位字节);
-	fileNumLimit:10,
+	fileNumLimit:1,
 	fileSizeLimit:5000000 * 1024,
 	fileSingleSizeLimit:500000 * 10240,
 	accept: {}
@@ -293,6 +293,11 @@ $(function(){
                  alert("请填写产品名称");
                  return false;
              }
+			 if (isNaN($("#longs").val())|| isNaN($("#weidth").val()) ||isNaN($("#height").val()) ||isNaN($("#fprice").val()) ) {
+            			
+			alert("非法输入请确认长宽厚，价格等数字框是正确数字！！");
+			return false;
+			 }
              return true;
              
          } 
@@ -366,7 +371,7 @@ weidth:$("#weidth").val()
              dataType:'json',
              success:function(data){
                   layer.close(loadIndex);
-				 
+				
                   $("#secondtPanel").css("display","block");
                  $("#firstPanel").hide();
 				   alert("请继续上传内容图片");

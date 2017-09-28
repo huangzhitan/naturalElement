@@ -18,7 +18,7 @@ import org.apache.commons.httpclient.methods.PostMethod;
 public class SendMessage {
     public static String postMessage(String phoneNo,String sendText) throws IOException{
       HttpClient client = new HttpClient();    
-            PostMethod post = new PostMethod("http://sms.webchinese.cn/web_api/");    
+            PostMethod post = new PostMethod("http://gbk.api.smschinese.cn");    
             post.addRequestHeader("Content-Type",    
                     "application/x-www-form-urlencoded;charset=gbk");// 在头文件中设置转码    
             NameValuePair[] data = { new NameValuePair("Uid", "fanyy"), // 注册的用户名    
